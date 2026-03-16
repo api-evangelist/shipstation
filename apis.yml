@@ -1,33 +1,39 @@
 aid: shipstation
 name: ShipStation
 description: >-
-  Effortlessly integrate shipping into your workflow with a modern, reliable API
-  to reduce costs, improve efficiency, and create a customized shipping
-  experience. 
+  ShipStation is a shipping platform that provides APIs to integrate shipping
+  workflows into ecommerce applications. The ShipStation API enables developers
+  to automate order management, create shipments, generate labels, track
+  packages, and manage shipping settings across multiple carriers.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
+  - Shipping
+  - Ecommerce
+  - Logistics
+  - Order Management
 created: '2025-03-01'
-modified: '2025-03-01'
+modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/shipstation/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
   - aid: shipstation:shipstation
-    name: ShipStation
+    name: ShipStation API
     description: >-
-      Effortlessly integrate shipping into your workflow with a modern, reliable
-      API to reduce costs, improve efficiency, and create a customized shipping
-      experience. 
-    humanURL: ' https://www.shipengine.com/'
+      The ShipStation API enables developers to automate order management,
+      create shipments, generate shipping labels, track packages, and manage
+      shipping settings across multiple carriers.
+    humanURL: https://www.shipstation.com/docs/api/
     tags:
+      - Shipping
+      - Order Management
       - API
     properties:
       - type: Documentation
-        url: ' https://www.shipengine.com/'
+        url: https://www.shipstation.com/docs/api/
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
