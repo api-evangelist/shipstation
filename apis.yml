@@ -10,10 +10,10 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Shipping
   - Ecommerce
   - Logistics
   - Order Management
+  - Shipping
 created: '2025-03-01'
 modified: '2026-03-16'
 url: >-
@@ -28,9 +28,8 @@ apis:
       shipping settings across multiple carriers.
     humanURL: https://www.shipstation.com/docs/api/
     tags:
-      - Shipping
       - Order Management
-      - API
+      - Shipping
     properties:
       - type: Documentation
         url: https://www.shipstation.com/docs/api/
