@@ -1,0 +1,80 @@
+{
+  "title": "ShipStation Order Structure",
+  "description": "Structural documentation for the ShipStation Order object",
+  "type": "object",
+  "fields": {
+    "orderId": { "type": "integer", "description": "System-generated order ID", "example": 1234567 },
+    "orderNumber": { "type": "string", "description": "Selling channel order number", "example": "ORD-2026-001" },
+    "orderKey": { "type": "string", "description": "Unique deduplication key from selling channel" },
+    "orderDate": { "type": "datetime", "description": "Date order was placed" },
+    "createDate": { "type": "datetime", "description": "Date order was created in ShipStation" },
+    "modifyDate": { "type": "datetime", "description": "Date order was last modified" },
+    "paymentDate": { "type": "datetime", "description": "Date payment was received" },
+    "shipByDate": { "type": "datetime", "description": "Deadline to ship the order" },
+    "orderStatus": { "type": "enum", "values": ["awaiting_payment", "awaiting_shipment", "pending_fulfillment", "shipped", "on_hold", "cancelled"] },
+    "customerId": { "type": "integer", "description": "ShipStation customer ID" },
+    "customerEmail": { "type": "string", "description": "Customer email address" },
+    "billTo": { "type": "Address", "description": "Billing address" },
+    "shipTo": { "type": "Address", "description": "Shipping destination" },
+    "items": { "type": "array[OrderItem]", "description": "Line items in the order" },
+    "orderTotal": { "type": "float", "description": "Total order value" },
+    "amountPaid": { "type": "float", "description": "Amount paid by customer" },
+    "taxAmount": { "type": "float", "description": "Tax charged" },
+    "shippingAmount": { "type": "float", "description": "Shipping charged to customer" },
+    "carrierCode": { "type": "string", "description": "Assigned shipping carrier code" },
+    "serviceCode": { "type": "string", "description": "Assigned service level code" },
+    "packageCode": { "type": "string", "description": "Package type code" },
+    "confirmation": { "type": "enum", "values": ["none", "delivery", "signature", "adult_signature", "direct_signature"] },
+    "shipDate": { "type": "date", "description": "Expected ship date" },
+    "holdUntilDate": { "type": "datetime", "description": "Hold until this date (for on-hold orders)" },
+    "weight": { "type": "Weight", "description": "Total order weight" },
+    "dimensions": { "type": "Dimensions", "description": "Package dimensions" },
+    "tagIds": { "type": "array[integer]", "description": "Applied tag IDs" }
+  },
+  "nested": {
+    "Address": {
+      "name": "string - Full recipient name",
+      "company": "string - Company name",
+      "street1": "string - Street address line 1",
+      "street2": "string - Street address line 2",
+      "street3": "string - Street address line 3",
+      "city": "string - City",
+      "state": "string - State code",
+      "postalCode": "string - ZIP/postal code",
+      "country": "string - ISO 2-letter country code",
+      "phone": "string - Phone number",
+      "residential": "boolean - Residential vs commercial"
+    },
+    "OrderItem": {
+      "lineItemKey": "string - Unique line item key",
+      "sku": "string - SKU identifier",
+      "name": "string - Product name",
+      "imageUrl": "string - Product image URL",
+      "weight": "Weight - Item weight",
+      "quantity": "integer - Quantity ordered",
+      "unitPrice": "float - Price per unit",
+      "taxAmount": "float - Tax for this item",
+      "shippingAmount": "float - Shipping for this item",
+      "warehouseLocation": "string - Warehouse bin/location",
+      "productId": "integer - ShipStation product ID",
+      "upc": "string - UPC barcode"
+    },
+    "Weight": {
+      "value": "float - Weight value",
+      "units": "enum[pounds, ounces, grams] - Unit of weight"
+    },
+    "Dimensions": {
+      "length": "float - Package length",
+      "width": "float - Package width",
+      "height": "float - Package height",
+      "units": "enum[inches, centimeters] - Unit of measurement"
+    }
+  },
+  "lifecycle": {
+    "import": "POST /orders/createorder to import from selling channel",
+    "bulk_import": "POST /orders/createorders for up to 100 orders",
+    "create_label": "POST /shipments/createlabel with orderId",
+    "mark_shipped": "POST /orders/markasshipped for external labels",
+    "void_label": "POST /shipments/voidlabel with shipmentId"
+  }
+}

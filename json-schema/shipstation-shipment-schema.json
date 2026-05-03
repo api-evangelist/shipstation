@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/shipstation/blob/main/json-schema/shipstation-shipment-schema.json",
+  "title": "ShipStation Shipment",
+  "description": "A ShipStation shipment representing a shipped order with a label and tracking number",
+  "type": "object",
+  "properties": {
+    "shipmentId": {
+      "type": "integer",
+      "description": "System-generated unique identifier for the shipment"
+    },
+    "orderId": {
+      "type": "integer",
+      "description": "ID of the associated order"
+    },
+    "orderKey": {
+      "type": "string",
+      "description": "Order key from the selling channel"
+    },
+    "userId": {
+      "type": "string",
+      "description": "ID of the user who created the shipment"
+    },
+    "orderNumber": {
+      "type": "string",
+      "description": "Order number from the selling channel"
+    },
+    "createDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "shipDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the shipment was shipped"
+    },
+    "shipmentCost": {
+      "type": "number",
+      "format": "float",
+      "description": "Total cost of the shipping label"
+    },
+    "insuranceCost": {
+      "type": "number",
+      "format": "float",
+      "description": "Cost of shipping insurance"
+    },
+    "trackingNumber": {
+      "type": "string",
+      "description": "Carrier-issued tracking number"
+    },
+    "isReturnLabel": {
+      "type": "boolean",
+      "description": "Whether this is a return label"
+    },
+    "carrierCode": {
+      "type": "string",
+      "description": "Carrier code (e.g., stamps_com, fedex, ups)"
+    },
+    "serviceCode": {
+      "type": "string",
+      "description": "Carrier service code"
+    },
+    "packageCode": {
+      "type": "string",
+      "description": "Package type code"
+    },
+    "confirmation": {
+      "type": "string",
+      "enum": ["none", "delivery", "signature", "adult_signature", "direct_signature"]
+    },
+    "warehouseId": {
+      "type": "integer",
+      "description": "ID of the warehouse the shipment was sent from"
+    },
+    "voided": {
+      "type": "boolean",
+      "description": "Whether the label has been voided"
+    },
+    "voidDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date the label was voided"
+    },
+    "shipTo": {
+      "$ref": "#/$defs/Address"
+    },
+    "weight": {
+      "$ref": "#/$defs/Weight"
+    },
+    "dimensions": {
+      "$ref": "#/$defs/Dimensions"
+    },
+    "labelData": {
+      "type": "string",
+      "description": "Base64-encoded label PDF data"
+    }
+  },
+  "required": ["shipmentId", "orderId", "trackingNumber", "carrierCode", "serviceCode"],
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "title": "ShipStation Address",
+      "properties": {
+        "name": { "type": "string" },
+        "company": { "type": "string" },
+        "street1": { "type": "string" },
+        "street2": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "postalCode": { "type": "string" },
+        "country": { "type": "string" },
+        "phone": { "type": "string" },
+        "residential": { "type": "boolean" }
+      }
+    },
+    "Weight": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "number" },
+        "units": { "type": "string", "enum": ["pounds", "ounces", "grams"] }
+      }
+    },
+    "Dimensions": {
+      "type": "object",
+      "properties": {
+        "length": { "type": "number" },
+        "width": { "type": "number" },
+        "height": { "type": "number" },
+        "units": { "type": "string", "enum": ["inches", "centimeters"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "example": "Create Order",
+  "description": "Create a new order in ShipStation from an ecommerce platform",
+  "request": {
+    "method": "POST",
+    "url": "https://ssapi.shipstation.com/orders/createorder",
+    "headers": {
+      "Authorization": "Basic BASE64_ENCODED_API_KEY_AND_SECRET",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "orderNumber": "ORD-2026-00123",
+      "orderKey": "shop_order_98765",
+      "orderDate": "2026-05-02T09:00:00.000Z",
+      "paymentDate": "2026-05-02T09:01:00.000Z",
+      "shipByDate": "2026-05-05T00:00:00.000Z",
+      "orderStatus": "awaiting_shipment",
+      "customerId": null,
+      "customerUsername": "customer@example.com",
+      "customerEmail": "customer@example.com",
+      "billTo": {
+        "name": "John Doe",
+        "company": null,
+        "street1": "123 Main Street",
+        "street2": "Apt 4B",
+        "city": "Austin",
+        "state": "TX",
+        "postalCode": "78701",
+        "country": "US",
+        "phone": "5125551234",
+        "residential": true
+      },
+      "shipTo": {
+        "name": "John Doe",
+        "company": null,
+        "street1": "123 Main Street",
+        "street2": "Apt 4B",
+        "city": "Austin",
+        "state": "TX",
+        "postalCode": "78701",
+        "country": "US",
+        "phone": "5125551234",
+        "residential": true
+      },
+      "items": [
+        {
+          "lineItemKey": "item-001",
+          "sku": "WIDGET-BLU-MED",
+          "name": "Blue Widget - Medium",
+          "imageUrl": "https://example.com/products/widget-blue.jpg",
+          "weight": {
+            "value": 0.5,
+            "units": "pounds"
+          },
+          "quantity": 2,
+          "unitPrice": 24.99,
+          "taxAmount": 4.12,
+          "shippingAmount": 0
+        }
+      ],
+      "amountPaid": 59.22,
+      "taxAmount": 4.12,
+      "shippingAmount": 9.24,
+      "customerNotes": "Please leave at door",
+      "internalNotes": null,
+      "gift": false,
+      "paymentMethod": "Credit Card",
+      "requestedShippingService": "USPS Priority Mail",
+      "carrierCode": "stamps_com",
+      "serviceCode": "usps_priority_mail",
+      "packageCode": "package",
+      "confirmation": "delivery",
+      "weight": {
+        "value": 1.0,
+        "units": "pounds"
+      },
+      "dimensions": {
+        "length": 12,
+        "width": 8,
+        "height": 4,
+        "units": "inches"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "orderId": 1234567,
+      "orderNumber": "ORD-2026-00123",
+      "orderKey": "shop_order_98765",
+      "orderDate": "2026-05-02T09:00:00.000Z",
+      "createDate": "2026-05-02T12:15:30.000Z",
+      "modifyDate": "2026-05-02T12:15:30.000Z",
+      "paymentDate": "2026-05-02T09:01:00.000Z",
+      "shipByDate": "2026-05-05T00:00:00.000Z",
+      "orderStatus": "awaiting_shipment",
+      "customerEmail": "customer@example.com",
+      "amountPaid": 59.22,
+      "taxAmount": 4.12,
+      "shippingAmount": 9.24
+    }
+  }
+}

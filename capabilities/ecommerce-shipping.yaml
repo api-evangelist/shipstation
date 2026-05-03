@@ -1,0 +1,297 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "ShipStation Ecommerce Shipping"
+  description: >-
+    Unified ecommerce shipping workflow combining order management, multi-carrier
+    rate shopping, label generation, warehouse management, and store integration.
+    Designed for ecommerce operations teams managing shipping across multiple
+    selling channels.
+  tags:
+    - Ecommerce
+    - Labels
+    - Logistics
+    - Order Management
+    - Shipping
+    - Warehousing
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SHIPSTATION_API_KEY: SHIPSTATION_API_KEY
+      SHIPSTATION_API_SECRET: SHIPSTATION_API_SECRET
+
+capability:
+  consumes:
+    - import: shipstation
+      location: ./shared/shipstation.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: shipstation-ecommerce-api
+      description: "Unified REST API for ecommerce shipping operations across multiple channels."
+      resources:
+        - path: /v1/orders
+          name: orders
+          description: "Manage ecommerce orders from all channels"
+          operations:
+            - method: GET
+              name: list-orders
+              description: "List orders with status and date filtering"
+              call: "shipstation.list-orders"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-order
+              description: "Import an order from a selling channel"
+              call: "shipstation.create-order"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/shipments
+          name: shipments
+          description: "Track all shipments and their status"
+          operations:
+            - method: GET
+              name: list-shipments
+              description: "List shipments with carrier and tracking info"
+              call: "shipstation.list-shipments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/labels
+          name: labels
+          description: "Generate shipping labels from multiple carriers"
+          operations:
+            - method: POST
+              name: create-label
+              description: "Purchase a carrier shipping label for an order"
+              call: "shipstation.create-label"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/rates
+          name: rates
+          description: "Compare carrier rates for shipments"
+          operations:
+            - method: POST
+              name: get-rates
+              description: "Get carrier rates for a package route"
+              call: "shipstation.get-rates"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/carriers
+          name: carriers
+          description: "View connected carrier accounts"
+          operations:
+            - method: GET
+              name: list-carriers
+              description: "List all available carriers"
+              call: "shipstation.list-carriers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/warehouses
+          name: warehouses
+          description: "Manage warehouse fulfillment locations"
+          operations:
+            - method: GET
+              name: list-warehouses
+              description: "List all warehouse locations"
+              call: "shipstation.list-warehouses"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-warehouse
+              description: "Add a new warehouse location"
+              call: "shipstation.create-warehouse"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/stores
+          name: stores
+          description: "Manage selling channel connections"
+          operations:
+            - method: GET
+              name: list-stores
+              description: "List all connected stores"
+              call: "shipstation.list-stores"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/customers
+          name: customers
+          description: "Access customer shipping history"
+          operations:
+            - method: GET
+              name: list-customers
+              description: "List customers"
+              call: "shipstation.list-customers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/products
+          name: products
+          description: "Manage product shipping configurations"
+          operations:
+            - method: GET
+              name: list-products
+              description: "List products with shipping settings"
+              call: "shipstation.list-products"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/fulfillments
+          name: fulfillments
+          description: "Track third-party fulfillment orders"
+          operations:
+            - method: GET
+              name: list-fulfillments
+              description: "List third-party fulfillments"
+              call: "shipstation.list-fulfillments"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: shipstation-ecommerce-mcp
+      transport: http
+      description: "MCP server for AI-assisted ecommerce order fulfillment and shipping operations."
+      tools:
+        - name: list-orders
+          description: "List ShipStation orders with filters for status, date range, and store"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "shipstation.list-orders"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-order
+          description: "Import a new order into ShipStation from a selling channel"
+          hints:
+            readOnly: false
+          call: "shipstation.create-order"
+          with:
+            order_number: "tools.order_number"
+            order_date: "tools.order_date"
+            order_status: "tools.order_status"
+            ship_to: "tools.ship_to"
+            items: "tools.items"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-shipping-rates
+          description: "Compare carrier rates for a shipment by postal code and package weight"
+          hints:
+            readOnly: true
+          call: "shipstation.get-rates"
+          with:
+            carrier_code: "tools.carrier_code"
+            from_postal_code: "tools.from_postal_code"
+            to_postal_code: "tools.to_postal_code"
+            to_country: "tools.to_country"
+            weight: "tools.weight"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-shipping-label
+          description: "Generate a shipping label for an order using a selected carrier and service"
+          hints:
+            readOnly: false
+          call: "shipstation.create-label"
+          with:
+            order_id: "tools.order_id"
+            carrier_code: "tools.carrier_code"
+            service_code: "tools.service_code"
+            package_code: "tools.package_code"
+            ship_date: "tools.ship_date"
+            weight: "tools.weight"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: void-shipping-label
+          description: "Void a shipping label that should not be used"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "shipstation.void-label"
+          with:
+            shipment_id: "tools.shipment_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-shipments
+          description: "List shipments with carrier, tracking, and cost information"
+          hints:
+            readOnly: true
+          call: "shipstation.list-shipments"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-carriers
+          description: "List all carrier accounts connected to ShipStation"
+          hints:
+            readOnly: true
+          call: "shipstation.list-carriers"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-carrier-services
+          description: "List available services for a specific carrier"
+          hints:
+            readOnly: true
+          call: "shipstation.list-carrier-services"
+          with:
+            carrierCode: "tools.carrier_code"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-warehouses
+          description: "List all configured warehouse fulfillment locations"
+          hints:
+            readOnly: true
+          call: "shipstation.list-warehouses"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-warehouse
+          description: "Add a new warehouse ship-from location"
+          hints:
+            readOnly: false
+          call: "shipstation.create-warehouse"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-stores
+          description: "List all connected selling channels (Shopify, Amazon, eBay, etc.)"
+          hints:
+            readOnly: true
+          call: "shipstation.list-stores"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-customers
+          description: "List customer records and their shipping history"
+          hints:
+            readOnly: true
+          call: "shipstation.list-customers"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-products
+          description: "List products with their default shipping configurations"
+          hints:
+            readOnly: true
+          call: "shipstation.list-products"
+          outputParameters:
+            - type: object
+              mapping: "$."

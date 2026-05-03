@@ -1,0 +1,159 @@
+title: ShipStation API Vocabulary
+description: Operational and domain vocabulary for the ShipStation shipping platform API
+provider: ShipStation
+version: '2026-05-02'
+source: https://www.shipstation.com/docs/api/
+
+terms:
+  - term: Order
+    definition: >-
+      The central ShipStation entity representing an ecommerce order to be fulfilled.
+      Orders contain customer information, items, shipping preferences, and status.
+      Orders can be in states from awaiting payment through shipped or cancelled.
+    type: resource
+    related: [Shipment, Customer, Product, Store]
+
+  - term: Shipment
+    definition: >-
+      A shipped order with a carrier label, tracking number, and actual shipping cost.
+      Created when a shipping label is purchased for an order. An order can have
+      multiple shipments (partial fulfillment).
+    type: resource
+    related: [Order, Label, Carrier]
+
+  - term: Label
+    definition: >-
+      A shipping label purchased from a carrier via ShipStation. Contains the
+      tracking number, label data (base64 PDF), and shipment cost.
+    type: resource
+    related: [Shipment, Carrier]
+
+  - term: Carrier
+    definition: >-
+      A shipping provider connected to ShipStation (e.g., stamps_com, fedex, ups,
+      usps, canada_post). Carriers provide services and rates for label purchase.
+    type: resource
+    related: [CarrierService, Package, Rate]
+
+  - term: Carrier Service
+    definition: >-
+      A specific service level offered by a carrier (e.g., USPS Priority Mail,
+      FedEx Ground). Referenced by serviceCode when creating labels.
+    type: resource
+    related: [Carrier]
+
+  - term: Customer
+    definition: >-
+      A customer record in ShipStation, automatically created when orders are imported.
+      Contains contact information and shipping history.
+    type: resource
+    related: [Order]
+
+  - term: Product
+    definition: >-
+      A product record in ShipStation with SKU, weight, dimensions, and default
+      shipping settings. Used to auto-populate order item shipping details.
+    type: resource
+    related: [Order]
+
+  - term: Warehouse
+    definition: >-
+      A ship-from location configured in ShipStation. Orders are assigned to warehouses
+      for fulfillment. Each warehouse has an origin address and optionally a return address.
+    type: resource
+    related: [Shipment, Order]
+
+  - term: Store
+    definition: >-
+      A marketplace or selling channel connected to ShipStation (e.g., Shopify, Amazon,
+      eBay). Orders are imported from stores and can be filtered by store.
+    type: resource
+    related: [Order]
+
+  - term: Tag
+    definition: >-
+      A user-defined label applied to orders for organization and filtering. Tags
+      have a name and color for visual identification in the ShipStation UI.
+    type: resource
+    related: [Order]
+
+  - term: Fulfillment
+    definition: >-
+      A third-party fulfillment record (e.g., Amazon FBA) associated with an order.
+      Fulfillments track orders shipped outside of ShipStation's direct label creation.
+    type: resource
+    related: [Order]
+
+  - term: Webhook
+    definition: >-
+      An event subscription that sends POST notifications to a configured URL when
+      orders are shipped or status changes occur.
+    type: resource
+    values: [ORDER_NOTIFY, ITEM_ORDER_NOTIFY, SHIP_NOTIFY, ITEM_SHIP_NOTIFY]
+
+  - term: Order Status
+    definition: The lifecycle state of an order in ShipStation.
+    type: enum
+    values:
+      awaiting_payment: Order received but payment not confirmed
+      awaiting_shipment: Payment confirmed, ready to ship
+      pending_fulfillment: Assigned to third-party fulfillment
+      shipped: Label purchased and order marked shipped
+      on_hold: Order held until a specific date
+      cancelled: Order cancelled
+
+  - term: Confirmation Type
+    definition: Delivery confirmation option for a shipment.
+    type: enum
+    values: [none, delivery, signature, adult_signature, direct_signature]
+
+  - term: API Key and Secret
+    definition: >-
+      ShipStation V1 API credentials. Used as Basic HTTP authentication (API Key as
+      username, API Secret as password). Found in ShipStation account settings under
+      API Settings.
+    type: concept
+    related: [Authentication]
+
+  - term: Rate Limit
+    definition: >-
+      ShipStation V1 API enforces 40 requests per minute per API key/secret pair.
+      Exceeding this returns a 429 Too Many Requests response.
+    type: concept
+
+  - term: Order Key
+    definition: >-
+      The unique identifier from the selling channel used for order deduplication.
+      If an order with the same orderKey exists, ShipStation updates rather than
+      creates a new order.
+    type: concept
+    related: [Order]
+
+capabilities:
+  - name: Order Management
+    description: Import, update, and manage orders from multiple selling channels
+    apis: [Order, Store]
+
+  - name: Label Generation
+    description: Create shipping labels from multiple carriers
+    apis: [Shipment, Carrier]
+
+  - name: Rate Shopping
+    description: Compare carrier rates for a shipment
+    apis: [Rate]
+
+  - name: Multi-Carrier Support
+    description: Connect and ship with stamps_com, UPS, FedEx, DHL, and more
+    apis: [Carrier, CarrierService]
+
+  - name: Warehouse Management
+    description: Manage multiple ship-from locations
+    apis: [Warehouse]
+
+  - name: Customer Management
+    description: Track and manage customer shipping history
+    apis: [Customer]
+
+  - name: Product Management
+    description: Maintain product records with default shipping settings
+    apis: [Product]

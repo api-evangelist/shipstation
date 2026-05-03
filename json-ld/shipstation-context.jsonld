@@ -1,0 +1,82 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "shipstation": "https://ssapi.shipstation.com/schema/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Order": "schema:Order",
+    "Shipment": "shipstation:Shipment",
+    "Label": "shipstation:ShippingLabel",
+    "Rate": "schema:DeliveryChargeSpecification",
+    "Customer": "schema:Customer",
+    "Product": "schema:Product",
+    "Warehouse": "schema:Warehouse",
+    "Store": "schema:Store",
+    "Fulfillment": "schema:OrderItem",
+
+    "orderId": "schema:orderNumber",
+    "orderNumber": { "@id": "schema:orderNumber", "@type": "xsd:string" },
+    "orderKey": "shipstation:orderKey",
+    "orderDate": { "@id": "schema:orderDate", "@type": "xsd:dateTime" },
+    "createDate": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+    "modifyDate": { "@id": "schema:dateModified", "@type": "xsd:dateTime" },
+    "paymentDate": { "@id": "schema:paymentDueDate", "@type": "xsd:dateTime" },
+    "shipByDate": { "@id": "shipstation:shipByDate", "@type": "xsd:dateTime" },
+    "orderStatus": "schema:orderStatus",
+
+    "customerId": "schema:identifier",
+    "customerEmail": "schema:email",
+    "customerUsername": "schema:alternateName",
+
+    "billTo": { "@id": "schema:billingAddress", "@type": "schema:PostalAddress" },
+    "shipTo": { "@id": "schema:deliveryAddress", "@type": "schema:PostalAddress" },
+
+    "name": "schema:name",
+    "company": "schema:legalName",
+    "street1": "schema:streetAddress",
+    "street2": "shipstation:streetAddress2",
+    "city": "schema:addressLocality",
+    "state": "schema:addressRegion",
+    "postalCode": "schema:postalCode",
+    "country": "schema:addressCountry",
+    "phone": "schema:telephone",
+    "residential": "shipstation:isResidential",
+
+    "items": { "@id": "schema:orderedItem", "@container": "@list" },
+    "lineItemKey": "schema:identifier",
+    "sku": "schema:sku",
+    "quantity": { "@id": "schema:orderQuantity", "@type": "xsd:integer" },
+    "unitPrice": { "@id": "schema:price", "@type": "xsd:float" },
+
+    "orderTotal": { "@id": "schema:totalPrice", "@type": "xsd:float" },
+    "amountPaid": { "@id": "schema:totalPaymentDue", "@type": "xsd:float" },
+    "taxAmount": { "@id": "schema:taxAmount", "@type": "xsd:float" },
+    "shippingAmount": { "@id": "schema:deliveryChargeSpecification", "@type": "xsd:float" },
+
+    "carrierCode": "schema:provider",
+    "serviceCode": "shipstation:serviceCode",
+    "packageCode": "shipstation:packageCode",
+    "trackingNumber": "schema:trackingNumber",
+
+    "shipmentId": "schema:identifier",
+    "shipDate": { "@id": "schema:dateShipped", "@type": "xsd:date" },
+    "shipmentCost": { "@id": "schema:price", "@type": "xsd:float" },
+    "voided": "shipstation:isVoided",
+    "labelData": "shipstation:labelData",
+
+    "weight": { "@id": "schema:weight", "@type": "schema:QuantitativeValue" },
+    "dimensions": { "@id": "schema:hasMeasurement", "@type": "schema:QuantitativeValue" },
+    "value": { "@id": "schema:value", "@type": "xsd:float" },
+    "units": "schema:unitCode",
+
+    "warehouseId": "schema:identifier",
+    "warehouseName": "schema:name",
+    "isDefault": "shipstation:isDefault",
+
+    "storeId": "schema:identifier",
+    "storeName": "schema:name",
+    "marketplaceId": "schema:identifier",
+    "marketplaceName": "schema:name",
+    "active": "schema:isAccessibleForFree"
+  }
+}

@@ -1,0 +1,112 @@
+extends: spectral:oas
+rules:
+  # ShipStation API Naming Conventions
+  shipstation-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  shipstation-path-lowercase:
+    description: Path segments must be lowercase (ShipStation uses lowercase paths)
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9{}_/-]+)+$"
+
+  shipstation-must-have-summary:
+    description: All operations must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: defined
+
+  shipstation-must-have-tags:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: defined
+
+  shipstation-must-have-operation-id:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: defined
+
+  shipstation-get-must-return-200:
+    description: GET operations must return 200 response
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: defined
+
+  shipstation-post-must-return-200:
+    description: POST operations should return 200 response (ShipStation uses 200 for creates)
+    severity: warn
+    given: "$.paths[*].post"
+    then:
+      field: responses.200
+      function: defined
+
+  shipstation-basic-auth:
+    description: ShipStation uses HTTP Basic authentication
+    severity: info
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+
+  shipstation-paginated-list-fields:
+    description: Paginated list responses should include items array, total, page, and pages
+    severity: info
+    given: "$.components.schemas[*PaginatedList]"
+    then:
+      field: properties
+      function: defined
+
+  shipstation-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: ".*/$"
+
+  shipstation-parameters-have-schema:
+    description: All parameters must have a schema defined
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: schema
+      function: defined
+
+  shipstation-rate-limit-header:
+    description: ShipStation enforces 40 req/min rate limit - document in description
+    severity: info
+    given: "$.info"
+    then:
+      field: description
+      function: defined
+
+  shipstation-ssapi-base-url:
+    description: ShipStation V1 API base URL must be ssapi.shipstation.com
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "https://ssapi.shipstation.com"

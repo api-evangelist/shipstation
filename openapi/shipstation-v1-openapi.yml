@@ -1,0 +1,1973 @@
+openapi: 3.1.0
+info:
+  title: ShipStation V1 API
+  description: >-
+    The ShipStation V1 API provides programmatic access to ShipStation's shipping
+    platform for ecommerce businesses. Endpoints cover order management, shipment
+    creation, label generation, carrier rate shopping, package tracking, warehouse
+    management, product management, and store integrations. Authentication uses
+    HTTP Basic auth with API key and secret.
+  version: '1.0'
+  contact:
+    name: ShipStation
+    url: https://www.shipstation.com/docs/api/
+    email: apisupport@shipstation.com
+  license:
+    name: ShipStation API Terms
+    url: https://www.shipstation.com/legal/terms-of-service/
+  x-date: '2026-05-02'
+servers:
+  - url: https://ssapi.shipstation.com
+    description: ShipStation V1 API
+security:
+  - BasicAuth: []
+tags:
+  - name: Orders
+    description: Manage customer orders
+  - name: Shipments
+    description: Create and manage shipments
+  - name: Carriers
+    description: Query carriers and services
+  - name: Customers
+    description: Manage customer records
+  - name: Products
+    description: Manage product records
+  - name: Warehouses
+    description: Manage warehouse locations
+  - name: Stores
+    description: Manage marketplace store connections
+  - name: Fulfillments
+    description: Manage third-party fulfillments
+  - name: Webhooks
+    description: Manage webhook subscriptions
+  - name: Accounts
+    description: Manage ShipStation account settings
+paths:
+  /orders:
+    get:
+      operationId: listOrders
+      summary: List Orders
+      description: Obtains a list of orders that match the specified criteria.
+      tags:
+        - Orders
+      parameters:
+        - name: customerName
+          in: query
+          description: Returns orders that match the specified name
+          schema:
+            type: string
+        - name: itemKeyword
+          in: query
+          description: Returns orders that contain items that match the specified keyword
+          schema:
+            type: string
+        - name: createDateStart
+          in: query
+          description: Returns orders that were created in ShipStation after the specified date
+          schema:
+            type: string
+            format: date-time
+        - name: createDateEnd
+          in: query
+          description: Returns orders that were created in ShipStation before the specified date
+          schema:
+            type: string
+            format: date-time
+        - name: modifyDateStart
+          in: query
+          description: Returns orders modified after the specified date
+          schema:
+            type: string
+            format: date-time
+        - name: modifyDateEnd
+          in: query
+          description: Returns orders modified before the specified date
+          schema:
+            type: string
+            format: date-time
+        - name: orderDateStart
+          in: query
+          description: Returns orders that were placed after the specified date
+          schema:
+            type: string
+            format: date-time
+        - name: orderDateEnd
+          in: query
+          description: Returns orders that were placed before the specified date
+          schema:
+            type: string
+            format: date-time
+        - name: orderNumber
+          in: query
+          description: Filter by order number
+          schema:
+            type: string
+        - name: orderStatus
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum: [awaiting_payment, awaiting_shipment, pending_fulfillment, shipped, on_hold, cancelled]
+        - name: paymentDateStart
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: paymentDateEnd
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: storeId
+          in: query
+          description: Filters orders by store
+          schema:
+            type: integer
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+            enum: [OrderDate, ModifyDate, CreateDate]
+        - name: sortDir
+          in: query
+          schema:
+            type: string
+            enum: [ASC, DESC]
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            maximum: 500
+      responses:
+        '200':
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderPaginatedList'
+    post:
+      operationId: createOrUpdateOrder
+      summary: Create or Update Order
+      description: >-
+        Creates a new order or updates an existing order. This call does not support
+        partial updates. The entire resource must be provided in the body of the request.
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateRequest'
+      responses:
+        '200':
+          description: Order created or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get Order
+      description: Retrieves a single order from the database.
+      tags:
+        - Orders
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          description: The system-generated identifier for the order
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Order object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    delete:
+      operationId: deleteOrder
+      summary: Delete Order
+      description: Removes order from ShipStation's UI.
+      tags:
+        - Orders
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Order deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+  /orders/createorder:
+    post:
+      operationId: createOrder
+      summary: Create Order
+      description: Creates a new order. Use this endpoint when creating an order for the first time.
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateRequest'
+      responses:
+        '200':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /orders/createorders:
+    post:
+      operationId: createOrders
+      summary: Create Orders (Bulk)
+      description: Creates multiple orders in a single request. Supports up to 100 orders.
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderCreateRequest'
+              maxItems: 100
+      responses:
+        '200':
+          description: Orders created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasErrors:
+                    type: boolean
+                  results:
+                    type: array
+                    items:
+                      type: object
+  /orders/holduntil:
+    post:
+      operationId: holdOrderUntil
+      summary: Hold Order Until
+      description: Marks an order as on hold until the given date.
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: integer
+                holdUntilDate:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Order placed on hold
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+  /orders/markasshipped:
+    post:
+      operationId: markOrderAsShipped
+      summary: Mark Order as Shipped
+      description: Marks an order as shipped without creating a label in ShipStation.
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: integer
+                carrierId:
+                  type: integer
+                shipDate:
+                  type: string
+                trackingNumber:
+                  type: string
+                notifyCustomer:
+                  type: boolean
+                notifySalesChannel:
+                  type: boolean
+      responses:
+        '200':
+          description: Order marked as shipped
+          content:
+            application/json:
+              schema:
+                type: object
+  /orders/{orderId}/assignuser:
+    post:
+      operationId: assignOrderToUser
+      summary: Assign Order to User
+      description: Assigns the requested orders to the user specified.
+      tags:
+        - Orders
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+      responses:
+        '200':
+          description: Order assigned to user
+          content:
+            application/json:
+              schema:
+                type: object
+  /shipments:
+    get:
+      operationId: listShipments
+      summary: List Shipments
+      description: Obtains a list of shipments that match the specified criteria.
+      tags:
+        - Shipments
+      parameters:
+        - name: recipientName
+          in: query
+          description: Returns shipments shipped to the specified recipient name
+          schema:
+            type: string
+        - name: recipientCountryCode
+          in: query
+          description: Returns shipments shipped to the specified country code
+          schema:
+            type: string
+        - name: orderNumber
+          in: query
+          description: Returns shipments for the specified order number
+          schema:
+            type: string
+        - name: orderId
+          in: query
+          description: Returns shipments for the specified order ID
+          schema:
+            type: integer
+        - name: carrierCode
+          in: query
+          description: Returns shipments shipped with the specified carrier
+          schema:
+            type: string
+        - name: serviceCode
+          in: query
+          description: Returns shipments shipped with the specified service
+          schema:
+            type: string
+        - name: trackingNumber
+          in: query
+          description: Returns shipments with the specified tracking number
+          schema:
+            type: string
+        - name: createDateStart
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: createDateEnd
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: shipDateStart
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: shipDateEnd
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: voidDateStart
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: voidDateEnd
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: storeId
+          in: query
+          schema:
+            type: integer
+        - name: includeShipmentItems
+          in: query
+          schema:
+            type: boolean
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+        - name: sortDir
+          in: query
+          schema:
+            type: string
+            enum: [ASC, DESC]
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            maximum: 500
+      responses:
+        '200':
+          description: A list of shipments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentPaginatedList'
+  /shipments/createlabel:
+    post:
+      operationId: createShipmentLabel
+      summary: Create Shipment Label
+      description: Creates a shipping label for the specified order.
+      tags:
+        - Shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelCreateRequest'
+      responses:
+        '200':
+          description: Label created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+  /shipments/getrates:
+    post:
+      operationId: getShippingRates
+      summary: Get Shipping Rates
+      description: Retrieves shipping rates for the specified shipment details.
+      tags:
+        - Shipments
+        - Carriers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateRequest'
+      responses:
+        '200':
+          description: Shipping rates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rate'
+  /shipments/voidlabel:
+    post:
+      operationId: voidLabel
+      summary: Void Label
+      description: Voids the specified label.
+      tags:
+        - Shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shipmentId:
+                  type: integer
+      responses:
+        '200':
+          description: Label voided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  approved:
+                    type: boolean
+                  message:
+                    type: string
+  /carriers:
+    get:
+      operationId: listCarriers
+      summary: List Carriers
+      description: Lists all shipping providers connected to this account.
+      tags:
+        - Carriers
+      responses:
+        '200':
+          description: A list of carriers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carrier'
+  /carriers/getservices:
+    get:
+      operationId: listCarrierServices
+      summary: List Carrier Services
+      description: Lists the services available to the specified carrier.
+      tags:
+        - Carriers
+      parameters:
+        - name: carrierCode
+          in: query
+          required: true
+          description: The carrier's code
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of carrier services
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarrierService'
+  /carriers/listpackages:
+    get:
+      operationId: listCarrierPackages
+      summary: List Carrier Packages
+      description: Retrieves a list of packages for the specified carrier.
+      tags:
+        - Carriers
+      parameters:
+        - name: carrierCode
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of packages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Package'
+  /customers:
+    get:
+      operationId: listCustomers
+      summary: List Customers
+      description: Obtains a list of customers that match the specified criteria.
+      tags:
+        - Customers
+      parameters:
+        - name: stateCode
+          in: query
+          schema:
+            type: string
+        - name: countryCode
+          in: query
+          schema:
+            type: string
+        - name: marketplaceId
+          in: query
+          schema:
+            type: integer
+        - name: tagId
+          in: query
+          schema:
+            type: integer
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+            enum: [Name, ModifyDate, CreateDate]
+        - name: sortDir
+          in: query
+          schema:
+            type: string
+            enum: [ASC, DESC]
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of customers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPaginatedList'
+  /customers/{customerId}:
+    get:
+      operationId: getCustomer
+      summary: Get Customer
+      description: Gets the customer specified by the system-generated identifier.
+      tags:
+        - Customers
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Customer object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    put:
+      operationId: updateCustomer
+      summary: Update Customer
+      description: Updates the specified customer.
+      tags:
+        - Customers
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer updated
+          content:
+            application/json:
+              schema:
+                type: object
+  /products:
+    get:
+      operationId: listProducts
+      summary: List Products
+      description: Obtains a list of products that match the specified criteria.
+      tags:
+        - Products
+      parameters:
+        - name: sku
+          in: query
+          schema:
+            type: string
+        - name: name
+          in: query
+          schema:
+            type: string
+        - name: productCategoryId
+          in: query
+          schema:
+            type: integer
+        - name: productTypeId
+          in: query
+          schema:
+            type: integer
+        - name: tagId
+          in: query
+          schema:
+            type: integer
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+        - name: sortDir
+          in: query
+          schema:
+            type: string
+            enum: [ASC, DESC]
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+        - name: showInactive
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductPaginatedList'
+  /products/{productId}:
+    get:
+      operationId: getProduct
+      summary: Get Product
+      description: Retrieves the product specified by the system-generated identifier.
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Product object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    put:
+      operationId: updateProduct
+      summary: Update Product
+      description: Updates the specified product.
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Product updated
+          content:
+            application/json:
+              schema:
+                type: object
+  /warehouses:
+    get:
+      operationId: listWarehouses
+      summary: List Warehouses
+      description: Obtains a list of your warehouses.
+      tags:
+        - Warehouses
+      responses:
+        '200':
+          description: A list of warehouses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Warehouse'
+    post:
+      operationId: createWarehouse
+      summary: Create Warehouse
+      description: Adds a warehouse record to your account.
+      tags:
+        - Warehouses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WarehouseCreateRequest'
+      responses:
+        '200':
+          description: Warehouse created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warehouse'
+  /warehouses/{warehouseId}:
+    get:
+      operationId: getWarehouse
+      summary: Get Warehouse
+      description: Returns a warehouse by warehouseId.
+      tags:
+        - Warehouses
+      parameters:
+        - name: warehouseId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Warehouse object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warehouse'
+    put:
+      operationId: updateWarehouse
+      summary: Update Warehouse
+      description: Updates an existing warehouse.
+      tags:
+        - Warehouses
+      parameters:
+        - name: warehouseId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WarehouseCreateRequest'
+      responses:
+        '200':
+          description: Warehouse updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Warehouse'
+    delete:
+      operationId: deleteWarehouse
+      summary: Delete Warehouse
+      description: Removes a warehouse from ShipStation.
+      tags:
+        - Warehouses
+      parameters:
+        - name: warehouseId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Warehouse deleted
+          content:
+            application/json:
+              schema:
+                type: object
+  /stores:
+    get:
+      operationId: listStores
+      summary: List Stores
+      description: Retrieve the list of installed stores on the account.
+      tags:
+        - Stores
+      parameters:
+        - name: showInactive
+          in: query
+          description: Determines whether inactive stores are returned
+          schema:
+            type: boolean
+        - name: marketplaceId
+          in: query
+          description: Filter by marketplace ID
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of stores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Store'
+  /stores/{storeId}:
+    get:
+      operationId: getStore
+      summary: Get Store
+      description: Get details about a specific store.
+      tags:
+        - Stores
+      parameters:
+        - name: storeId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Store object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Store'
+  /stores/refreshstore:
+    post:
+      operationId: refreshStore
+      summary: Refresh Store
+      description: Initiates a store refresh.
+      tags:
+        - Stores
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeId:
+                  type: integer
+                refreshDate:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Store refresh initiated
+          content:
+            application/json:
+              schema:
+                type: object
+  /fulfillments:
+    get:
+      operationId: listFulfillments
+      summary: List Fulfillments
+      description: Obtains a list of fulfillments that match the specified criteria.
+      tags:
+        - Fulfillments
+      parameters:
+        - name: fulfillmentId
+          in: query
+          schema:
+            type: integer
+        - name: orderId
+          in: query
+          schema:
+            type: integer
+        - name: orderNumber
+          in: query
+          schema:
+            type: string
+        - name: trackingNumber
+          in: query
+          schema:
+            type: string
+        - name: recipientName
+          in: query
+          schema:
+            type: string
+        - name: createDateStart
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: createDateEnd
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: shipDateStart
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: shipDateEnd
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+        - name: sortDir
+          in: query
+          schema:
+            type: string
+            enum: [ASC, DESC]
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A list of fulfillments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentPaginatedList'
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      summary: List Webhooks
+      description: Retrieves a list of registered webhooks for the account.
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: A list of webhooks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhooks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: subscribeToWebhook
+      summary: Subscribe to Webhook
+      description: Subscribes to a specific type of event so that when the event occurs, a notification is sent to a specified URL.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreateRequest'
+      responses:
+        '200':
+          description: Webhook subscription created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+  /webhooks/{webhookId}:
+    delete:
+      operationId: unsubscribeFromWebhook
+      summary: Unsubscribe from Webhook
+      description: Unsubscribes from a specific webhook.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhookId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Webhook unsubscribed
+  /accounts/listtags:
+    get:
+      operationId: listTags
+      summary: List Tags
+      description: Lists all tags defined for this account.
+      tags:
+        - Accounts
+      responses:
+        '200':
+          description: A list of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+  /accounts/createtag:
+    post:
+      operationId: createTag
+      summary: Create Tag
+      description: Creates a new tag that can be applied to orders.
+      tags:
+        - Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                color:
+                  type: string
+      responses:
+        '200':
+          description: Tag created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using API Key as username and API Secret as password
+  schemas:
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of person
+        company:
+          type: string
+          description: Company
+        street1:
+          type: string
+          description: First line of address
+        street2:
+          type: string
+          description: Second line of address
+        street3:
+          type: string
+          description: Third line of address
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        residential:
+          type: boolean
+          description: Whether the address is residential
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: integer
+          description: System-generated identifier for each order
+        orderNumber:
+          type: string
+          description: User-generated order number
+        orderKey:
+          type: string
+          description: Unique identifier from the selling channel
+        orderDate:
+          type: string
+          format: date-time
+        createDate:
+          type: string
+          format: date-time
+        modifyDate:
+          type: string
+          format: date-time
+        paymentDate:
+          type: string
+          format: date-time
+        shipByDate:
+          type: string
+          format: date-time
+        orderStatus:
+          type: string
+          enum: [awaiting_payment, awaiting_shipment, pending_fulfillment, shipped, on_hold, cancelled]
+        customerId:
+          type: integer
+        customerUsername:
+          type: string
+        customerEmail:
+          type: string
+        billTo:
+          $ref: '#/components/schemas/Address'
+        shipTo:
+          $ref: '#/components/schemas/Address'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        orderTotal:
+          type: number
+          format: float
+        amountPaid:
+          type: number
+          format: float
+        taxAmount:
+          type: number
+          format: float
+        shippingAmount:
+          type: number
+          format: float
+        customerNotes:
+          type: string
+        internalNotes:
+          type: string
+        gift:
+          type: boolean
+        giftMessage:
+          type: string
+        paymentMethod:
+          type: string
+        requestedShippingService:
+          type: string
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+          enum: [none, delivery, signature, adult_signature, direct_signature]
+        shipDate:
+          type: string
+          format: date
+        holdUntilDate:
+          type: string
+          format: date-time
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        insuranceOptions:
+          type: object
+        internationalOptions:
+          type: object
+        advancedOptions:
+          type: object
+        tagIds:
+          type: array
+          items:
+            type: integer
+        userId:
+          type: string
+        externallyFulfilled:
+          type: boolean
+        externallyFulfilledBy:
+          type: string
+    OrderItem:
+      type: object
+      properties:
+        lineItemKey:
+          type: string
+        sku:
+          type: string
+        name:
+          type: string
+        imageUrl:
+          type: string
+        weight:
+          $ref: '#/components/schemas/Weight'
+        quantity:
+          type: integer
+        unitPrice:
+          type: number
+          format: float
+        taxAmount:
+          type: number
+          format: float
+        shippingAmount:
+          type: number
+          format: float
+        warehouseLocation:
+          type: string
+        options:
+          type: array
+          items:
+            type: object
+        productId:
+          type: integer
+        fulfillmentSku:
+          type: string
+        adjustment:
+          type: boolean
+        upc:
+          type: string
+    OrderCreateRequest:
+      type: object
+      required:
+        - orderNumber
+        - orderDate
+        - orderStatus
+        - billTo
+        - shipTo
+      properties:
+        orderNumber:
+          type: string
+        orderKey:
+          type: string
+        orderDate:
+          type: string
+          format: date-time
+        paymentDate:
+          type: string
+          format: date-time
+        shipByDate:
+          type: string
+          format: date-time
+        orderStatus:
+          type: string
+        customerId:
+          type: integer
+        customerUsername:
+          type: string
+        customerEmail:
+          type: string
+        billTo:
+          $ref: '#/components/schemas/Address'
+        shipTo:
+          $ref: '#/components/schemas/Address'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        amountPaid:
+          type: number
+        taxAmount:
+          type: number
+        shippingAmount:
+          type: number
+        customerNotes:
+          type: string
+        internalNotes:
+          type: string
+        gift:
+          type: boolean
+        giftMessage:
+          type: string
+        paymentMethod:
+          type: string
+        requestedShippingService:
+          type: string
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+        shipDate:
+          type: string
+          format: date
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        tagIds:
+          type: array
+          items:
+            type: integer
+    OrderPaginatedList:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    Shipment:
+      type: object
+      properties:
+        shipmentId:
+          type: integer
+        orderId:
+          type: integer
+        orderKey:
+          type: string
+        userId:
+          type: string
+        customerEmail:
+          type: string
+        orderNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        shipmentCost:
+          type: number
+          format: float
+        insuranceCost:
+          type: number
+          format: float
+        trackingNumber:
+          type: string
+        isReturnLabel:
+          type: boolean
+        batchNumber:
+          type: string
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+        warehouseId:
+          type: integer
+        voided:
+          type: boolean
+        voidDate:
+          type: string
+          format: date-time
+        marketplaceNotified:
+          type: boolean
+        notifyErrorMessage:
+          type: string
+        shipTo:
+          $ref: '#/components/schemas/Address'
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        insuranceOptions:
+          type: object
+        advancedOptions:
+          type: object
+        shipmentItems:
+          type: array
+          items:
+            type: object
+        labelData:
+          type: string
+          description: Base64-encoded label data
+        formData:
+          type: string
+    ShipmentPaginatedList:
+      type: object
+      properties:
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    LabelCreateRequest:
+      type: object
+      required:
+        - orderId
+        - carrierCode
+        - serviceCode
+        - packageCode
+        - weight
+      properties:
+        orderId:
+          type: integer
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+        shipDate:
+          type: string
+          format: date
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        insuranceOptions:
+          type: object
+        internationalOptions:
+          type: object
+        advancedOptions:
+          type: object
+        testLabel:
+          type: boolean
+    Label:
+      type: object
+      properties:
+        shipmentId:
+          type: integer
+        orderId:
+          type: integer
+        userId:
+          type: string
+        customerEmail:
+          type: string
+        orderNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        shipmentCost:
+          type: number
+        trackingNumber:
+          type: string
+        labelData:
+          type: string
+        formData:
+          type: string
+    RateRequest:
+      type: object
+      required:
+        - carrierCode
+        - fromPostalCode
+        - toPostalCode
+        - toCountry
+        - weight
+      properties:
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        fromPostalCode:
+          type: string
+        toPostalCode:
+          type: string
+        toState:
+          type: string
+        toCountry:
+          type: string
+        toCity:
+          type: string
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        confirmation:
+          type: string
+        residential:
+          type: boolean
+    Rate:
+      type: object
+      properties:
+        serviceName:
+          type: string
+        serviceCode:
+          type: string
+        shipmentCost:
+          type: number
+          format: float
+        otherCost:
+          type: number
+          format: float
+    Carrier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Carrier name
+        code:
+          type: string
+          description: Carrier code
+        accountNumber:
+          type: string
+        requiresFundedAccount:
+          type: boolean
+        balance:
+          type: number
+        nickname:
+          type: string
+        shippingProviderId:
+          type: integer
+        primary:
+          type: boolean
+    CarrierService:
+      type: object
+      properties:
+        carrierId:
+          type: integer
+        carrierCode:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
+    Package:
+      type: object
+      properties:
+        carrierCode:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
+    Weight:
+      type: object
+      properties:
+        value:
+          type: number
+          format: float
+        units:
+          type: string
+          enum: [pounds, ounces, grams]
+        WeightUnits:
+          type: integer
+    Dimensions:
+      type: object
+      properties:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum: [inches, centimeters]
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: integer
+        createDate:
+          type: string
+          format: date-time
+        modifyDate:
+          type: string
+          format: date-time
+        name:
+          type: string
+        company:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        countryCode:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        addressVerified:
+          type: string
+    CustomerPaginatedList:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    Product:
+      type: object
+      properties:
+        productId:
+          type: integer
+        sku:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+          format: float
+        defaultCost:
+          type: number
+          format: float
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        weightOz:
+          type: number
+          format: float
+        internalNotes:
+          type: string
+        fulfillmentSku:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        modifyDate:
+          type: string
+          format: date-time
+        active:
+          type: boolean
+        productCategory:
+          type: object
+        productType:
+          type: object
+        warehouseLocation:
+          type: string
+        defaultCarrierCode:
+          type: string
+        defaultServiceCode:
+          type: string
+        defaultPackageCode:
+          type: string
+        defaultIntlCarrierCode:
+          type: string
+        defaultIntlServiceCode:
+          type: string
+        defaultIntlPackageCode:
+          type: string
+        defaultConfirmation:
+          type: string
+        defaultIntlConfirmation:
+          type: string
+        customsDescription:
+          type: string
+        customsValue:
+          type: number
+        customsTariffNo:
+          type: string
+        customsCountryCode:
+          type: string
+        noCustoms:
+          type: boolean
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    ProductPaginatedList:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    Warehouse:
+      type: object
+      properties:
+        warehouseId:
+          type: integer
+        warehouseName:
+          type: string
+        originAddress:
+          $ref: '#/components/schemas/Address'
+        returnAddress:
+          $ref: '#/components/schemas/Address'
+        createDate:
+          type: string
+          format: date-time
+        isDefault:
+          type: boolean
+    WarehouseCreateRequest:
+      type: object
+      required:
+        - warehouseName
+        - originAddress
+      properties:
+        warehouseName:
+          type: string
+        originAddress:
+          $ref: '#/components/schemas/Address'
+        returnAddress:
+          $ref: '#/components/schemas/Address'
+        isDefault:
+          type: boolean
+    Store:
+      type: object
+      properties:
+        storeId:
+          type: integer
+        storeName:
+          type: string
+        marketplaceId:
+          type: integer
+        marketplaceName:
+          type: string
+        accountName:
+          type: string
+        email:
+          type: string
+        integrationUrl:
+          type: string
+        active:
+          type: boolean
+        companyName:
+          type: string
+        phone:
+          type: string
+        publicEmail:
+          type: string
+        website:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        modifyDate:
+          type: string
+          format: date-time
+    Fulfillment:
+      type: object
+      properties:
+        fulfillmentId:
+          type: integer
+        orderId:
+          type: integer
+        orderNumber:
+          type: string
+        userId:
+          type: string
+        customerEmail:
+          type: string
+        trackingNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        void:
+          type: boolean
+        deliveryEmail:
+          type: boolean
+        shipTo:
+          $ref: '#/components/schemas/Address'
+    FulfillmentPaginatedList:
+      type: object
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    Webhook:
+      type: object
+      properties:
+        IsLabelAPIHook:
+          type: boolean
+        WebHookID:
+          type: integer
+        SellerID:
+          type: integer
+        StoreID:
+          type: integer
+        HookType:
+          type: string
+        MessageFormat:
+          type: string
+        Url:
+          type: string
+        Name:
+          type: string
+        BulkCopyBatchID:
+          type: string
+        BulkCopyRecordID:
+          type: string
+        Active:
+          type: boolean
+        WebhookLogs:
+          type: array
+          items:
+            type: object
+        Seller:
+          type: string
+        Store:
+          type: string
+    WebhookCreateRequest:
+      type: object
+      required:
+        - target_url
+        - event
+      properties:
+        target_url:
+          type: string
+          description: The URL where webhook events will be sent
+        event:
+          type: string
+          enum: [ORDER_NOTIFY, ITEM_ORDER_NOTIFY, SHIP_NOTIFY, ITEM_SHIP_NOTIFY]
+        store_id:
+          type: string
+        friendly_name:
+          type: string
+    Tag:
+      type: object
+      properties:
+        tagId:
+          type: integer
+        name:
+          type: string
+        color:
+          type: string

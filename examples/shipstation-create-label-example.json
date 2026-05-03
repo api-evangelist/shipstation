@@ -1,0 +1,57 @@
+{
+  "example": "Create Shipping Label",
+  "description": "Generate a shipping label for an order in ShipStation",
+  "request": {
+    "method": "POST",
+    "url": "https://ssapi.shipstation.com/shipments/createlabel",
+    "headers": {
+      "Authorization": "Basic BASE64_ENCODED_API_KEY_AND_SECRET",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "orderId": 1234567,
+      "carrierCode": "stamps_com",
+      "serviceCode": "usps_priority_mail",
+      "packageCode": "package",
+      "confirmation": "delivery",
+      "shipDate": "2026-05-03",
+      "weight": {
+        "value": 1.0,
+        "units": "pounds"
+      },
+      "dimensions": {
+        "length": 12,
+        "width": 8,
+        "height": 4,
+        "units": "inches"
+      },
+      "insuranceOptions": {
+        "provider": "carrier",
+        "insureShipment": false,
+        "insuredValue": 0
+      },
+      "testLabel": false
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "shipmentId": 9876543,
+      "orderId": 1234567,
+      "orderNumber": "ORD-2026-00123",
+      "createDate": "2026-05-02T12:30:00.000Z",
+      "shipDate": "2026-05-03",
+      "shipmentCost": 8.95,
+      "insuranceCost": 0,
+      "trackingNumber": "9400111899223434769485",
+      "isReturnLabel": false,
+      "carrierCode": "stamps_com",
+      "serviceCode": "usps_priority_mail",
+      "packageCode": "package",
+      "confirmation": "delivery",
+      "voided": false,
+      "labelData": "JVBERi0xLjMKJcTl8uXrp...",
+      "formData": null
+    }
+  }
+}

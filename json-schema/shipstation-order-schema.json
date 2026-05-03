@@ -1,0 +1,276 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-evangelist/shipstation/blob/main/json-schema/shipstation-order-schema.json",
+  "title": "ShipStation Order",
+  "description": "A ShipStation order representing an ecommerce order to be shipped",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "integer",
+      "description": "System-generated unique identifier for the order"
+    },
+    "orderNumber": {
+      "type": "string",
+      "description": "User-generated order number from the selling channel"
+    },
+    "orderKey": {
+      "type": "string",
+      "description": "Unique identifier from the selling channel for order deduplication"
+    },
+    "orderDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the order was placed"
+    },
+    "createDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the order was created in ShipStation"
+    },
+    "modifyDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the order was last modified"
+    },
+    "paymentDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time payment was received"
+    },
+    "shipByDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date by which the order must be shipped"
+    },
+    "orderStatus": {
+      "type": "string",
+      "enum": ["awaiting_payment", "awaiting_shipment", "pending_fulfillment", "shipped", "on_hold", "cancelled"],
+      "description": "Current status of the order"
+    },
+    "customerId": {
+      "type": "integer",
+      "description": "System-generated customer identifier"
+    },
+    "customerUsername": {
+      "type": "string",
+      "description": "Customer username from the selling channel"
+    },
+    "customerEmail": {
+      "type": "string",
+      "format": "email",
+      "description": "Customer email address"
+    },
+    "billTo": {
+      "$ref": "#/$defs/Address",
+      "description": "Billing address for the order"
+    },
+    "shipTo": {
+      "$ref": "#/$defs/Address",
+      "description": "Shipping destination address"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/OrderItem"
+      },
+      "description": "List of items in the order"
+    },
+    "orderTotal": {
+      "type": "number",
+      "format": "float",
+      "description": "Total order amount including all line items"
+    },
+    "amountPaid": {
+      "type": "number",
+      "format": "float",
+      "description": "Amount paid by the customer"
+    },
+    "taxAmount": {
+      "type": "number",
+      "format": "float",
+      "description": "Tax amount for the order"
+    },
+    "shippingAmount": {
+      "type": "number",
+      "format": "float",
+      "description": "Shipping cost charged to the customer"
+    },
+    "carrierCode": {
+      "type": "string",
+      "description": "Carrier code for the selected shipping carrier"
+    },
+    "serviceCode": {
+      "type": "string",
+      "description": "Service code for the selected shipping service"
+    },
+    "packageCode": {
+      "type": "string",
+      "description": "Package type code"
+    },
+    "confirmation": {
+      "type": "string",
+      "enum": ["none", "delivery", "signature", "adult_signature", "direct_signature"],
+      "description": "Delivery confirmation type"
+    },
+    "shipDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Expected ship date"
+    },
+    "weight": {
+      "$ref": "#/$defs/Weight"
+    },
+    "dimensions": {
+      "$ref": "#/$defs/Dimensions"
+    },
+    "tagIds": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "List of tag IDs applied to the order"
+    }
+  },
+  "required": ["orderNumber", "orderDate", "orderStatus", "billTo", "shipTo"],
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "title": "ShipStation Address",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full name of the recipient"
+        },
+        "company": {
+          "type": "string",
+          "description": "Company name"
+        },
+        "street1": {
+          "type": "string",
+          "description": "First line of street address"
+        },
+        "street2": {
+          "type": "string",
+          "description": "Second line of street address"
+        },
+        "street3": {
+          "type": "string",
+          "description": "Third line of street address"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string",
+          "description": "State or province code"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "description": "ISO 3166-1 alpha-2 country code"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "residential": {
+          "type": "boolean",
+          "description": "Whether the address is residential"
+        }
+      },
+      "required": ["name", "street1", "city", "state", "postalCode", "country"]
+    },
+    "OrderItem": {
+      "type": "object",
+      "title": "ShipStation Order Item",
+      "properties": {
+        "lineItemKey": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "imageUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "weight": {
+          "$ref": "#/$defs/Weight"
+        },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "unitPrice": {
+          "type": "number",
+          "format": "float"
+        },
+        "taxAmount": {
+          "type": "number",
+          "format": "float"
+        },
+        "shippingAmount": {
+          "type": "number",
+          "format": "float"
+        },
+        "warehouseLocation": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "integer"
+        },
+        "upc": {
+          "type": "string"
+        }
+      }
+    },
+    "Weight": {
+      "type": "object",
+      "title": "ShipStation Weight",
+      "properties": {
+        "value": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0
+        },
+        "units": {
+          "type": "string",
+          "enum": ["pounds", "ounces", "grams"]
+        }
+      },
+      "required": ["value", "units"]
+    },
+    "Dimensions": {
+      "type": "object",
+      "title": "ShipStation Dimensions",
+      "properties": {
+        "length": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0
+        },
+        "width": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0
+        },
+        "height": {
+          "type": "number",
+          "format": "float",
+          "minimum": 0
+        },
+        "units": {
+          "type": "string",
+          "enum": ["inches", "centimeters"]
+        }
+      },
+      "required": ["length", "width", "height", "units"]
+    }
+  }
+}
