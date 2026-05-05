@@ -1,0 +1,133 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: ShipStation
+providerId: shipstation
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Shipping
+  - Order Management
+description: 'ShipStation per-shipment monthly tiers: Starter / Standard / Premium.'
+sources:
+  - https://www.shipstation.com/pricing/
+plans:
+  - id: shipstation-starter
+    name: Starter
+    type: paid
+    description: $14.99/month; 50 shipments included; 3 users.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '14.99'
+        userMultiplied: false
+      - label: Shipments included
+        name: shipments
+        type: quota
+        metric: shipment
+        limit: 50
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Users
+        name: users
+        type: quota
+        metric: user
+        limit: 3
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited store connections
+      - name: Automated rate shopping
+      - name: Return labels
+      - name: Basic automations
+      - name: Reporting
+      - name: Email support
+  - id: shipstation-standard
+    name: Standard
+    type: paid
+    description: $29.99/month; 50 shipments + 10 users; API access.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '29.99'
+        userMultiplied: false
+      - label: Shipments included
+        name: shipments
+        type: quota
+        metric: shipment
+        limit: 50
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Users
+        name: users
+        type: quota
+        metric: user
+        limit: 10
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Unlimited automations
+      - name: Combine + auto-split orders
+      - name: BYO carrier accounts
+      - name: Returns + Exchanges
+      - name: Basic warehouse management
+      - name: Shipping API
+      - name: Phone support
+  - id: shipstation-premium
+    name: Premium
+    type: paid
+    description: $349.99/month; advanced inventory + warehouse.
+    entries:
+      - label: Monthly
+        name: monthly
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '349.99'
+        userMultiplied: false
+      - label: Users
+        name: users
+        type: quota
+        metric: user
+        limit: 15
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Advanced Inventory Management
+      - name: Advanced Warehouse Management
+      - name: Custom Analytics
+      - name: Auto-Routing
+      - name: Cubiscan
+      - name: ODBC
+      - name: Dedicated onboarding

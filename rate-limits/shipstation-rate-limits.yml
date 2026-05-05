@@ -1,0 +1,31 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: ShipStation
+providerId: shipstation
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Shipping
+description: ShipStation API v1/v2 rate limits per account.
+sources:
+  - https://www.shipstation.com/pricing/
+  - https://www.shipstation.com/docs/api/requirements/
+headers:
+  limit: X-Rate-Limit-Limit
+  remaining: X-Rate-Limit-Remaining
+  reset: X-Rate-Limit-Reset
+responseCodes:
+  throttled: 429
+limits:
+  - name: API v1 (default)
+    scope: account
+    metric: requests_per_minute
+    limit: 40
+    timeFrame: minute
+  - name: Bulk endpoints
+    scope: account
+    metric: concurrent
+    limit: 5
