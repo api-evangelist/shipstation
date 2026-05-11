@@ -66,6 +66,34 @@ description: ShipStation is a leading shipping platform for ecommerce businesses
   shipping workflows into applications. The ShipStation API enables developers to automate order management,
   create shipments, generate labels, track packages, manage warehouses, and connect to multiple carriers.
   ShipStation offers both V1 (ssapi.shipstation.com) and V2 (ShipEngine-powered) API versions.
+integrations:
+  - name: USPS
+  - name: UPS
+  - name: FedEx
+  - name: GlobalPost
+  - name: DHL
+  - name: Canada Post
+  - name: Royal Mail
+  - name: Australia Post
+  - name: Amazon
+  - name: DPD
+  - name: TikTok Shop
+  - name: Etsy
+  - name: Walmart
+  - name: Ebay
+  - name: Shein
+  - name: Temu
+  - name: Alibaba
+  - name: Shopify
+  - name: WooCommerce
+  - name: BigCommerce
+  - name: Squarespace
+  - name: Wix
+  - name: Big Cartel
+  - name: Adobe Commerce
+  - name: PayPal
+  - name: Yodel
+  - name: NetSuite
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
@@ -110,3 +138,5 @@ common:
     sources:
       - https://www.shipstation.com/pricing/
     updated: '2026-05-04'
+  - type: Integrations
+    url: https://www.shipstation.com/partners/
