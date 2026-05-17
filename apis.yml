@@ -43,7 +43,7 @@ apis:
       - url: https://docs.shipstation.com/
         type: Documentation
       - url: https://docs.shipstation.com/rest
-        type: API Reference
+        type: APIReference
     description: The ShipStation V2 API is the next-generation shipping and inventory API built on ShipEngine
       technology. It provides improved endpoints for creating orders, managing customers, querying order
       and shipping data, and integrating with ShipStation's multi-carrier shipping platform. Available
@@ -56,7 +56,7 @@ tags:
   - Order Management
   - Shipping
   - Warehousing
-type: Contract
+kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-03-01'
@@ -102,9 +102,9 @@ common:
   - url: https://www.shipstation.com/docs/api/
     type: Documentation
   - url: https://docs.shipstation.com/
-    type: API Reference
+    type: APIReference
   - url: https://docs.shipstation.com/getting-started
-    type: Getting Started
+    type: GettingStarted
   - url: https://www.shipstation.com/docs/api/requirements/
     type: Authentication
   - url: https://docs.shipstation.com/openapi/downloads
@@ -112,9 +112,9 @@ common:
   - url: https://help.shipstation.com/hc/en-us/articles/360025856212-ShipStation-API
     type: Support
   - url: https://www.shipstation.com/legal/terms-of-service/
-    type: Terms of Service
+    type: TermsOfService
   - url: https://www.shipstation.com/legal/privacy-policy/
-    type: Privacy Policy
+    type: PrivacyPolicy
   - url: https://www.shipstation.com
     type: Website
   - type: Features
