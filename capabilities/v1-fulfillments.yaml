@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ShipStation V1 API — Fulfillments
+  description: 'ShipStation V1 API — Fulfillments. 1 operations. Lead operation: List Fulfillments. Self-contained Naftiko
+    capability covering one Shipstation business surface.'
+  tags:
+  - Shipstation
+  - Fulfillments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPSTATION_API_KEY: SHIPSTATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v1-fulfillments
+    baseUri: https://ssapi.shipstation.com
+    description: ShipStation V1 API — Fulfillments business capability. Self-contained, no shared references.
+    resources:
+    - name: fulfillments
+      path: /fulfillments
+      operations:
+      - name: listfulfillments
+        method: GET
+        description: List Fulfillments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fulfillmentId
+          in: query
+          type: integer
+        - name: orderId
+          in: query
+          type: integer
+        - name: orderNumber
+          in: query
+          type: string
+        - name: trackingNumber
+          in: query
+          type: string
+        - name: recipientName
+          in: query
+          type: string
+        - name: createDateStart
+          in: query
+          type: string
+        - name: createDateEnd
+          in: query
+          type: string
+        - name: shipDateStart
+          in: query
+          type: string
+        - name: shipDateEnd
+          in: query
+          type: string
+        - name: sortBy
+          in: query
+          type: string
+        - name: sortDir
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    authentication:
+      type: basic
+      username: '{{env.SHIPSTATION_USER}}'
+      password: '{{env.SHIPSTATION_PASS}}'
+  exposes:
+  - type: rest
+    namespace: v1-fulfillments-rest
+    port: 8080
+    description: REST adapter for ShipStation V1 API — Fulfillments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/fulfillments
+      name: fulfillments
+      description: REST surface for fulfillments.
+      operations:
+      - method: GET
+        name: listfulfillments
+        description: List Fulfillments
+        call: v1-fulfillments.listfulfillments
+        with:
+          fulfillmentId: rest.fulfillmentId
+          orderId: rest.orderId
+          orderNumber: rest.orderNumber
+          trackingNumber: rest.trackingNumber
+          recipientName: rest.recipientName
+          createDateStart: rest.createDateStart
+          createDateEnd: rest.createDateEnd
+          shipDateStart: rest.shipDateStart
+          shipDateEnd: rest.shipDateEnd
+          sortBy: rest.sortBy
+          sortDir: rest.sortDir
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v1-fulfillments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ShipStation V1 API — Fulfillments. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-fulfillments
+      description: List Fulfillments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-fulfillments.listfulfillments
+      with:
+        fulfillmentId: tools.fulfillmentId
+        orderId: tools.orderId
+        orderNumber: tools.orderNumber
+        trackingNumber: tools.trackingNumber
+        recipientName: tools.recipientName
+        createDateStart: tools.createDateStart
+        createDateEnd: tools.createDateEnd
+        shipDateStart: tools.shipDateStart
+        shipDateEnd: tools.shipDateEnd
+        sortBy: tools.sortBy
+        sortDir: tools.sortDir
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.

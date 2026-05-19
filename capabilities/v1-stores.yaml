@@ -1,0 +1,169 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ShipStation V1 API — Stores
+  description: 'ShipStation V1 API — Stores. 3 operations. Lead operation: List Stores. Self-contained Naftiko capability
+    covering one Shipstation business surface.'
+  tags:
+  - Shipstation
+  - Stores
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPSTATION_API_KEY: SHIPSTATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v1-stores
+    baseUri: https://ssapi.shipstation.com
+    description: ShipStation V1 API — Stores business capability. Self-contained, no shared references.
+    resources:
+    - name: stores
+      path: /stores
+      operations:
+      - name: liststores
+        method: GET
+        description: List Stores
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: showInactive
+          in: query
+          type: boolean
+          description: Determines whether inactive stores are returned
+        - name: marketplaceId
+          in: query
+          type: integer
+          description: Filter by marketplace ID
+    - name: stores-refreshstore
+      path: /stores/refreshstore
+      operations:
+      - name: refreshstore
+        method: POST
+        description: Refresh Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: stores-storeId
+      path: /stores/{storeId}
+      operations:
+      - name: getstore
+        method: GET
+        description: Get Store
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storeId
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.SHIPSTATION_USER}}'
+      password: '{{env.SHIPSTATION_PASS}}'
+  exposes:
+  - type: rest
+    namespace: v1-stores-rest
+    port: 8080
+    description: REST adapter for ShipStation V1 API — Stores. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/stores
+      name: stores
+      description: REST surface for stores.
+      operations:
+      - method: GET
+        name: liststores
+        description: List Stores
+        call: v1-stores.liststores
+        with:
+          showInactive: rest.showInactive
+          marketplaceId: rest.marketplaceId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stores/refreshstore
+      name: stores-refreshstore
+      description: REST surface for stores-refreshstore.
+      operations:
+      - method: POST
+        name: refreshstore
+        description: Refresh Store
+        call: v1-stores.refreshstore
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stores/{storeid}
+      name: stores-storeid
+      description: REST surface for stores-storeId.
+      operations:
+      - method: GET
+        name: getstore
+        description: Get Store
+        call: v1-stores.getstore
+        with:
+          storeId: rest.storeId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v1-stores-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ShipStation V1 API — Stores. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-stores
+      description: List Stores
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-stores.liststores
+      with:
+        showInactive: tools.showInactive
+        marketplaceId: tools.marketplaceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: refresh-store
+      description: Refresh Store
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v1-stores.refreshstore
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-store
+      description: Get Store
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-stores.getstore
+      with:
+        storeId: tools.storeId
+      outputParameters:
+      - type: object
+        mapping: $.

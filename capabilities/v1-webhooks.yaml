@@ -1,0 +1,147 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ShipStation V1 API — Webhooks
+  description: 'ShipStation V1 API — Webhooks. 3 operations. Lead operation: List Webhooks. Self-contained Naftiko capability
+    covering one Shipstation business surface.'
+  tags:
+  - Shipstation
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPSTATION_API_KEY: SHIPSTATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v1-webhooks
+    baseUri: https://ssapi.shipstation.com
+    description: ShipStation V1 API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: webhooks
+      path: /webhooks
+      operations:
+      - name: listwebhooks
+        method: GET
+        description: List Webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: subscribetowebhook
+        method: POST
+        description: Subscribe to Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-webhookId
+      path: /webhooks/{webhookId}
+      operations:
+      - name: unsubscribefromwebhook
+        method: DELETE
+        description: Unsubscribe from Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhookId
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.SHIPSTATION_USER}}'
+      password: '{{env.SHIPSTATION_PASS}}'
+  exposes:
+  - type: rest
+    namespace: v1-webhooks-rest
+    port: 8080
+    description: REST adapter for ShipStation V1 API — Webhooks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/webhooks
+      name: webhooks
+      description: REST surface for webhooks.
+      operations:
+      - method: GET
+        name: listwebhooks
+        description: List Webhooks
+        call: v1-webhooks.listwebhooks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: subscribetowebhook
+        description: Subscribe to Webhook
+        call: v1-webhooks.subscribetowebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{webhookid}
+      name: webhooks-webhookid
+      description: REST surface for webhooks-webhookId.
+      operations:
+      - method: DELETE
+        name: unsubscribefromwebhook
+        description: Unsubscribe from Webhook
+        call: v1-webhooks.unsubscribefromwebhook
+        with:
+          webhookId: rest.webhookId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v1-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ShipStation V1 API — Webhooks. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-webhooks
+      description: List Webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-webhooks.listwebhooks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: subscribe-webhook
+      description: Subscribe to Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v1-webhooks.subscribetowebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unsubscribe-webhook
+      description: Unsubscribe from Webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v1-webhooks.unsubscribefromwebhook
+      with:
+        webhookId: tools.webhookId
+      outputParameters:
+      - type: object
+        mapping: $.

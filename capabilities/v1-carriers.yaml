@@ -1,0 +1,196 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ShipStation V1 API — Carriers
+  description: 'ShipStation V1 API — Carriers. 4 operations. Lead operation: List Carriers. Self-contained Naftiko capability
+    covering one Shipstation business surface.'
+  tags:
+  - Shipstation
+  - Carriers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPSTATION_API_KEY: SHIPSTATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v1-carriers
+    baseUri: https://ssapi.shipstation.com
+    description: ShipStation V1 API — Carriers business capability. Self-contained, no shared references.
+    resources:
+    - name: carriers
+      path: /carriers
+      operations:
+      - name: listcarriers
+        method: GET
+        description: List Carriers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: carriers-getservices
+      path: /carriers/getservices
+      operations:
+      - name: listcarrierservices
+        method: GET
+        description: List Carrier Services
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: carrierCode
+          in: query
+          type: string
+          description: The carrier's code
+          required: true
+    - name: carriers-listpackages
+      path: /carriers/listpackages
+      operations:
+      - name: listcarrierpackages
+        method: GET
+        description: List Carrier Packages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: carrierCode
+          in: query
+          type: string
+          required: true
+    - name: shipments-getrates
+      path: /shipments/getrates
+      operations:
+      - name: getshippingrates
+        method: POST
+        description: Get Shipping Rates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.SHIPSTATION_USER}}'
+      password: '{{env.SHIPSTATION_PASS}}'
+  exposes:
+  - type: rest
+    namespace: v1-carriers-rest
+    port: 8080
+    description: REST adapter for ShipStation V1 API — Carriers. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/carriers
+      name: carriers
+      description: REST surface for carriers.
+      operations:
+      - method: GET
+        name: listcarriers
+        description: List Carriers
+        call: v1-carriers.listcarriers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/carriers/getservices
+      name: carriers-getservices
+      description: REST surface for carriers-getservices.
+      operations:
+      - method: GET
+        name: listcarrierservices
+        description: List Carrier Services
+        call: v1-carriers.listcarrierservices
+        with:
+          carrierCode: rest.carrierCode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/carriers/listpackages
+      name: carriers-listpackages
+      description: REST surface for carriers-listpackages.
+      operations:
+      - method: GET
+        name: listcarrierpackages
+        description: List Carrier Packages
+        call: v1-carriers.listcarrierpackages
+        with:
+          carrierCode: rest.carrierCode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/shipments/getrates
+      name: shipments-getrates
+      description: REST surface for shipments-getrates.
+      operations:
+      - method: POST
+        name: getshippingrates
+        description: Get Shipping Rates
+        call: v1-carriers.getshippingrates
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v1-carriers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ShipStation V1 API — Carriers. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-carriers
+      description: List Carriers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-carriers.listcarriers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-carrier-services
+      description: List Carrier Services
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-carriers.listcarrierservices
+      with:
+        carrierCode: tools.carrierCode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-carrier-packages
+      description: List Carrier Packages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-carriers.listcarrierpackages
+      with:
+        carrierCode: tools.carrierCode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-shipping-rates
+      description: Get Shipping Rates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: v1-carriers.getshippingrates
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

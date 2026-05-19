@@ -1,0 +1,497 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: ShipStation V1 API — Orders
+  description: 'ShipStation V1 API — Orders. 9 operations. Lead operation: List Orders. Self-contained Naftiko capability
+    covering one Shipstation business surface.'
+  tags:
+  - Shipstation
+  - Orders
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SHIPSTATION_API_KEY: SHIPSTATION_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: v1-orders
+    baseUri: https://ssapi.shipstation.com
+    description: ShipStation V1 API — Orders business capability. Self-contained, no shared references.
+    resources:
+    - name: orders
+      path: /orders
+      operations:
+      - name: listorders
+        method: GET
+        description: List Orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customerName
+          in: query
+          type: string
+          description: Returns orders that match the specified name
+        - name: itemKeyword
+          in: query
+          type: string
+          description: Returns orders that contain items that match the specified keyword
+        - name: createDateStart
+          in: query
+          type: string
+          description: Returns orders that were created in ShipStation after the specified date
+        - name: createDateEnd
+          in: query
+          type: string
+          description: Returns orders that were created in ShipStation before the specified date
+        - name: modifyDateStart
+          in: query
+          type: string
+          description: Returns orders modified after the specified date
+        - name: modifyDateEnd
+          in: query
+          type: string
+          description: Returns orders modified before the specified date
+        - name: orderDateStart
+          in: query
+          type: string
+          description: Returns orders that were placed after the specified date
+        - name: orderDateEnd
+          in: query
+          type: string
+          description: Returns orders that were placed before the specified date
+        - name: orderNumber
+          in: query
+          type: string
+          description: Filter by order number
+        - name: orderStatus
+          in: query
+          type: string
+          description: Filter by order status
+        - name: paymentDateStart
+          in: query
+          type: string
+        - name: paymentDateEnd
+          in: query
+          type: string
+        - name: storeId
+          in: query
+          type: integer
+          description: Filters orders by store
+        - name: sortBy
+          in: query
+          type: string
+        - name: sortDir
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+      - name: createorupdateorder
+        method: POST
+        description: Create or Update Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: orders-createorder
+      path: /orders/createorder
+      operations:
+      - name: createorder
+        method: POST
+        description: Create Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: orders-createorders
+      path: /orders/createorders
+      operations:
+      - name: createorders
+        method: POST
+        description: Create Orders (Bulk)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: orders-holduntil
+      path: /orders/holduntil
+      operations:
+      - name: holdorderuntil
+        method: POST
+        description: Hold Order Until
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: orders-markasshipped
+      path: /orders/markasshipped
+      operations:
+      - name: markorderasshipped
+        method: POST
+        description: Mark Order as Shipped
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: orders-orderId
+      path: /orders/{orderId}
+      operations:
+      - name: getorder
+        method: GET
+        description: Get Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orderId
+          in: path
+          type: integer
+          description: The system-generated identifier for the order
+          required: true
+      - name: deleteorder
+        method: DELETE
+        description: Delete Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orderId
+          in: path
+          type: integer
+          required: true
+    - name: orders-orderId-assignuser
+      path: /orders/{orderId}/assignuser
+      operations:
+      - name: assignordertouser
+        method: POST
+        description: Assign Order to User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orderId
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.SHIPSTATION_USER}}'
+      password: '{{env.SHIPSTATION_PASS}}'
+  exposes:
+  - type: rest
+    namespace: v1-orders-rest
+    port: 8080
+    description: REST adapter for ShipStation V1 API — Orders. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/orders
+      name: orders
+      description: REST surface for orders.
+      operations:
+      - method: GET
+        name: listorders
+        description: List Orders
+        call: v1-orders.listorders
+        with:
+          customerName: rest.customerName
+          itemKeyword: rest.itemKeyword
+          createDateStart: rest.createDateStart
+          createDateEnd: rest.createDateEnd
+          modifyDateStart: rest.modifyDateStart
+          modifyDateEnd: rest.modifyDateEnd
+          orderDateStart: rest.orderDateStart
+          orderDateEnd: rest.orderDateEnd
+          orderNumber: rest.orderNumber
+          orderStatus: rest.orderStatus
+          paymentDateStart: rest.paymentDateStart
+          paymentDateEnd: rest.paymentDateEnd
+          storeId: rest.storeId
+          sortBy: rest.sortBy
+          sortDir: rest.sortDir
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createorupdateorder
+        description: Create or Update Order
+        call: v1-orders.createorupdateorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/createorder
+      name: orders-createorder
+      description: REST surface for orders-createorder.
+      operations:
+      - method: POST
+        name: createorder
+        description: Create Order
+        call: v1-orders.createorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/createorders
+      name: orders-createorders
+      description: REST surface for orders-createorders.
+      operations:
+      - method: POST
+        name: createorders
+        description: Create Orders (Bulk)
+        call: v1-orders.createorders
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/holduntil
+      name: orders-holduntil
+      description: REST surface for orders-holduntil.
+      operations:
+      - method: POST
+        name: holdorderuntil
+        description: Hold Order Until
+        call: v1-orders.holdorderuntil
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/markasshipped
+      name: orders-markasshipped
+      description: REST surface for orders-markasshipped.
+      operations:
+      - method: POST
+        name: markorderasshipped
+        description: Mark Order as Shipped
+        call: v1-orders.markorderasshipped
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/{orderid}
+      name: orders-orderid
+      description: REST surface for orders-orderId.
+      operations:
+      - method: GET
+        name: getorder
+        description: Get Order
+        call: v1-orders.getorder
+        with:
+          orderId: rest.orderId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteorder
+        description: Delete Order
+        call: v1-orders.deleteorder
+        with:
+          orderId: rest.orderId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/orders/{orderid}/assignuser
+      name: orders-orderid-assignuser
+      description: REST surface for orders-orderId-assignuser.
+      operations:
+      - method: POST
+        name: assignordertouser
+        description: Assign Order to User
+        call: v1-orders.assignordertouser
+        with:
+          orderId: rest.orderId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: v1-orders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for ShipStation V1 API — Orders. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-orders
+      description: List Orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-orders.listorders
+      with:
+        customerName: tools.customerName
+        itemKeyword: tools.itemKeyword
+        createDateStart: tools.createDateStart
+        createDateEnd: tools.createDateEnd
+        modifyDateStart: tools.modifyDateStart
+        modifyDateEnd: tools.modifyDateEnd
+        orderDateStart: tools.orderDateStart
+        orderDateEnd: tools.orderDateEnd
+        orderNumber: tools.orderNumber
+        orderStatus: tools.orderStatus
+        paymentDateStart: tools.paymentDateStart
+        paymentDateEnd: tools.paymentDateEnd
+        storeId: tools.storeId
+        sortBy: tools.sortBy
+        sortDir: tools.sortDir
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-update-order
+      description: Create or Update Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v1-orders.createorupdateorder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-order
+      description: Create Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v1-orders.createorder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-orders-bulk
+      description: Create Orders (Bulk)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v1-orders.createorders
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: hold-order-until
+      description: Hold Order Until
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v1-orders.holdorderuntil
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: mark-order-shipped
+      description: Mark Order as Shipped
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v1-orders.markorderasshipped
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-order
+      description: Get Order
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: v1-orders.getorder
+      with:
+        orderId: tools.orderId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-order
+      description: Delete Order
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: v1-orders.deleteorder
+      with:
+        orderId: tools.orderId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: assign-order-user
+      description: Assign Order to User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: v1-orders.assignordertouser
+      with:
+        orderId: tools.orderId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
