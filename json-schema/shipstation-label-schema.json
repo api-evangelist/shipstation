@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Label",
+  "title": "Label",
+  "type": "object",
+  "properties": {
+    "shipmentId": {
+      "type": "integer"
+    },
+    "orderId": {
+      "type": "integer"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "customerEmail": {
+      "type": "string"
+    },
+    "orderNumber": {
+      "type": "string"
+    },
+    "createDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "shipDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "shipmentCost": {
+      "type": "number"
+    },
+    "trackingNumber": {
+      "type": "string"
+    },
+    "labelData": {
+      "type": "string"
+    },
+    "formData": {
+      "type": "string"
+    }
+  }
+}

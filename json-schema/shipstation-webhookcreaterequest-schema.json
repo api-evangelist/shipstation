@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookCreateRequest",
+  "title": "WebhookCreateRequest",
+  "type": "object",
+  "required": [
+    "target_url",
+    "event"
+  ],
+  "properties": {
+    "target_url": {
+      "type": "string",
+      "description": "The URL where webhook events will be sent"
+    },
+    "event": {
+      "type": "string",
+      "enum": [
+        "ORDER_NOTIFY",
+        "ITEM_ORDER_NOTIFY",
+        "SHIP_NOTIFY",
+        "ITEM_SHIP_NOTIFY"
+      ]
+    },
+    "store_id": {
+      "type": "string"
+    },
+    "friendly_name": {
+      "type": "string"
+    }
+  }
+}

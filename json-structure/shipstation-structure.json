@@ -1,0 +1,529 @@
+{
+  "provider": "ShipStation",
+  "providerId": "shipstation",
+  "kind": "json-structure",
+  "description": "Structural overview of the ShipStation API surface; extracted from openapi/.",
+  "schemaCount": 28,
+  "operationCount": 36,
+  "schemas": [
+    {
+      "name": "Address",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "Order",
+      "type": "object",
+      "propertyCount": 40,
+      "required": []
+    },
+    {
+      "name": "OrderItem",
+      "type": "object",
+      "propertyCount": 15,
+      "required": []
+    },
+    {
+      "name": "OrderCreateRequest",
+      "type": "object",
+      "propertyCount": 29,
+      "required": [
+        "orderNumber",
+        "orderDate",
+        "orderStatus",
+        "billTo",
+        "shipTo"
+      ]
+    },
+    {
+      "name": "OrderPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Shipment",
+      "type": "object",
+      "propertyCount": 30,
+      "required": []
+    },
+    {
+      "name": "ShipmentPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "LabelCreateRequest",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "orderId",
+        "carrierCode",
+        "serviceCode",
+        "packageCode",
+        "weight"
+      ]
+    },
+    {
+      "name": "Label",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "RateRequest",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "carrierCode",
+        "fromPostalCode",
+        "toPostalCode",
+        "toCountry",
+        "weight"
+      ]
+    },
+    {
+      "name": "Rate",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Carrier",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "CarrierService",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Package",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Weight",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Dimensions",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Customer",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "CustomerPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Product",
+      "type": "object",
+      "propertyCount": 31,
+      "required": []
+    },
+    {
+      "name": "ProductPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Warehouse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "WarehouseCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "warehouseName",
+        "originAddress"
+      ]
+    },
+    {
+      "name": "Store",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "Fulfillment",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "FulfillmentPaginatedList",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Webhook",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "WebhookCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "target_url",
+        "event"
+      ]
+    },
+    {
+      "name": "Tag",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/orders",
+      "operationId": "listOrders",
+      "summary": "List Orders",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders",
+      "operationId": "createOrUpdateOrder",
+      "summary": "Create or Update Order",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/orders/{orderId}",
+      "operationId": "getOrder",
+      "summary": "Get Order",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/orders/{orderId}",
+      "operationId": "deleteOrder",
+      "summary": "Delete Order",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders/createorder",
+      "operationId": "createOrder",
+      "summary": "Create Order",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders/createorders",
+      "operationId": "createOrders",
+      "summary": "Create Orders (Bulk)",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders/holduntil",
+      "operationId": "holdOrderUntil",
+      "summary": "Hold Order Until",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders/markasshipped",
+      "operationId": "markOrderAsShipped",
+      "summary": "Mark Order as Shipped",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/orders/{orderId}/assignuser",
+      "operationId": "assignOrderToUser",
+      "summary": "Assign Order to User",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/shipments",
+      "operationId": "listShipments",
+      "summary": "List Shipments",
+      "tags": [
+        "Shipments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/shipments/createlabel",
+      "operationId": "createShipmentLabel",
+      "summary": "Create Shipment Label",
+      "tags": [
+        "Shipments"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/shipments/getrates",
+      "operationId": "getShippingRates",
+      "summary": "Get Shipping Rates",
+      "tags": [
+        "Shipments",
+        "Carriers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/shipments/voidlabel",
+      "operationId": "voidLabel",
+      "summary": "Void Label",
+      "tags": [
+        "Shipments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/carriers",
+      "operationId": "listCarriers",
+      "summary": "List Carriers",
+      "tags": [
+        "Carriers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/carriers/getservices",
+      "operationId": "listCarrierServices",
+      "summary": "List Carrier Services",
+      "tags": [
+        "Carriers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/carriers/listpackages",
+      "operationId": "listCarrierPackages",
+      "summary": "List Carrier Packages",
+      "tags": [
+        "Carriers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers",
+      "operationId": "listCustomers",
+      "summary": "List Customers",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customerId}",
+      "operationId": "getCustomer",
+      "summary": "Get Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/customers/{customerId}",
+      "operationId": "updateCustomer",
+      "summary": "Update Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/products",
+      "operationId": "listProducts",
+      "summary": "List Products",
+      "tags": [
+        "Products"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/products/{productId}",
+      "operationId": "getProduct",
+      "summary": "Get Product",
+      "tags": [
+        "Products"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/products/{productId}",
+      "operationId": "updateProduct",
+      "summary": "Update Product",
+      "tags": [
+        "Products"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/warehouses",
+      "operationId": "listWarehouses",
+      "summary": "List Warehouses",
+      "tags": [
+        "Warehouses"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/warehouses",
+      "operationId": "createWarehouse",
+      "summary": "Create Warehouse",
+      "tags": [
+        "Warehouses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/warehouses/{warehouseId}",
+      "operationId": "getWarehouse",
+      "summary": "Get Warehouse",
+      "tags": [
+        "Warehouses"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/warehouses/{warehouseId}",
+      "operationId": "updateWarehouse",
+      "summary": "Update Warehouse",
+      "tags": [
+        "Warehouses"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/warehouses/{warehouseId}",
+      "operationId": "deleteWarehouse",
+      "summary": "Delete Warehouse",
+      "tags": [
+        "Warehouses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/stores",
+      "operationId": "listStores",
+      "summary": "List Stores",
+      "tags": [
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/stores/{storeId}",
+      "operationId": "getStore",
+      "summary": "Get Store",
+      "tags": [
+        "Stores"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/stores/refreshstore",
+      "operationId": "refreshStore",
+      "summary": "Refresh Store",
+      "tags": [
+        "Stores"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/fulfillments",
+      "operationId": "listFulfillments",
+      "summary": "List Fulfillments",
+      "tags": [
+        "Fulfillments"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks",
+      "operationId": "listWebhooks",
+      "summary": "List Webhooks",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhooks",
+      "operationId": "subscribeToWebhook",
+      "summary": "Subscribe to Webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/webhooks/{webhookId}",
+      "operationId": "unsubscribeFromWebhook",
+      "summary": "Unsubscribe from Webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/listtags",
+      "operationId": "listTags",
+      "summary": "List Tags",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounts/createtag",
+      "operationId": "createTag",
+      "summary": "Create Tag",
+      "tags": [
+        "Accounts"
+      ]
+    }
+  ]
+}

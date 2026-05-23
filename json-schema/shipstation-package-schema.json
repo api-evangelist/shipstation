@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Package",
+  "title": "Package",
+  "type": "object",
+  "properties": {
+    "carrierCode": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "domestic": {
+      "type": "boolean"
+    },
+    "international": {
+      "type": "boolean"
+    }
+  }
+}

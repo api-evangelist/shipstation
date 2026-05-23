@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrderPaginatedList",
+  "title": "OrderPaginatedList",
+  "type": "object",
+  "properties": {
+    "orders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Order"
+      }
+    },
+    "total": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "pages": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Product",
+  "title": "Product",
+  "type": "object",
+  "properties": {
+    "productId": {
+      "type": "integer"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number",
+      "format": "float"
+    },
+    "defaultCost": {
+      "type": "number",
+      "format": "float"
+    },
+    "length": {
+      "type": "number",
+      "format": "float"
+    },
+    "width": {
+      "type": "number",
+      "format": "float"
+    },
+    "height": {
+      "type": "number",
+      "format": "float"
+    },
+    "weightOz": {
+      "type": "number",
+      "format": "float"
+    },
+    "internalNotes": {
+      "type": "string"
+    },
+    "fulfillmentSku": {
+      "type": "string"
+    },
+    "createDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modifyDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "productCategory": {
+      "type": "object"
+    },
+    "productType": {
+      "type": "object"
+    },
+    "warehouseLocation": {
+      "type": "string"
+    },
+    "defaultCarrierCode": {
+      "type": "string"
+    },
+    "defaultServiceCode": {
+      "type": "string"
+    },
+    "defaultPackageCode": {
+      "type": "string"
+    },
+    "defaultIntlCarrierCode": {
+      "type": "string"
+    },
+    "defaultIntlServiceCode": {
+      "type": "string"
+    },
+    "defaultIntlPackageCode": {
+      "type": "string"
+    },
+    "defaultConfirmation": {
+      "type": "string"
+    },
+    "defaultIntlConfirmation": {
+      "type": "string"
+    },
+    "customsDescription": {
+      "type": "string"
+    },
+    "customsValue": {
+      "type": "number"
+    },
+    "customsTariffNo": {
+      "type": "string"
+    },
+    "customsCountryCode": {
+      "type": "string"
+    },
+    "noCustoms": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Tag"
+      }
+    }
+  }
+}

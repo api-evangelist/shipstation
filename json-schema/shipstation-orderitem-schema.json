@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrderItem",
+  "title": "OrderItem",
+  "type": "object",
+  "properties": {
+    "lineItemKey": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "weight": {
+      "$ref": "#/components/schemas/Weight"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "unitPrice": {
+      "type": "number",
+      "format": "float"
+    },
+    "taxAmount": {
+      "type": "number",
+      "format": "float"
+    },
+    "shippingAmount": {
+      "type": "number",
+      "format": "float"
+    },
+    "warehouseLocation": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "productId": {
+      "type": "integer"
+    },
+    "fulfillmentSku": {
+      "type": "string"
+    },
+    "adjustment": {
+      "type": "boolean"
+    },
+    "upc": {
+      "type": "string"
+    }
+  }
+}

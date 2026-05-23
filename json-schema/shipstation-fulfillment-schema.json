@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Fulfillment",
+  "title": "Fulfillment",
+  "type": "object",
+  "properties": {
+    "fulfillmentId": {
+      "type": "integer"
+    },
+    "orderId": {
+      "type": "integer"
+    },
+    "orderNumber": {
+      "type": "string"
+    },
+    "userId": {
+      "type": "string"
+    },
+    "customerEmail": {
+      "type": "string"
+    },
+    "trackingNumber": {
+      "type": "string"
+    },
+    "createDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "shipDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "void": {
+      "type": "boolean"
+    },
+    "deliveryEmail": {
+      "type": "boolean"
+    },
+    "shipTo": {
+      "$ref": "#/components/schemas/Address"
+    }
+  }
+}

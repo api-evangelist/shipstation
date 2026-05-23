@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FulfillmentPaginatedList",
+  "title": "FulfillmentPaginatedList",
+  "type": "object",
+  "properties": {
+    "fulfillments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Fulfillment"
+      }
+    },
+    "total": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "pages": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Rate",
+  "title": "Rate",
+  "type": "object",
+  "properties": {
+    "serviceName": {
+      "type": "string"
+    },
+    "serviceCode": {
+      "type": "string"
+    },
+    "shipmentCost": {
+      "type": "number",
+      "format": "float"
+    },
+    "otherCost": {
+      "type": "number",
+      "format": "float"
+    }
+  }
+}

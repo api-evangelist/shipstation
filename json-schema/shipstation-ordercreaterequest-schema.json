@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OrderCreateRequest",
+  "title": "OrderCreateRequest",
+  "type": "object",
+  "required": [
+    "orderNumber",
+    "orderDate",
+    "orderStatus",
+    "billTo",
+    "shipTo"
+  ],
+  "properties": {
+    "orderNumber": {
+      "type": "string"
+    },
+    "orderKey": {
+      "type": "string"
+    },
+    "orderDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "paymentDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "shipByDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "orderStatus": {
+      "type": "string"
+    },
+    "customerId": {
+      "type": "integer"
+    },
+    "customerUsername": {
+      "type": "string"
+    },
+    "customerEmail": {
+      "type": "string"
+    },
+    "billTo": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "shipTo": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/OrderItem"
+      }
+    },
+    "amountPaid": {
+      "type": "number"
+    },
+    "taxAmount": {
+      "type": "number"
+    },
+    "shippingAmount": {
+      "type": "number"
+    },
+    "customerNotes": {
+      "type": "string"
+    },
+    "internalNotes": {
+      "type": "string"
+    },
+    "gift": {
+      "type": "boolean"
+    },
+    "giftMessage": {
+      "type": "string"
+    },
+    "paymentMethod": {
+      "type": "string"
+    },
+    "requestedShippingService": {
+      "type": "string"
+    },
+    "carrierCode": {
+      "type": "string"
+    },
+    "serviceCode": {
+      "type": "string"
+    },
+    "packageCode": {
+      "type": "string"
+    },
+    "confirmation": {
+      "type": "string"
+    },
+    "shipDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "weight": {
+      "$ref": "#/components/schemas/Weight"
+    },
+    "dimensions": {
+      "$ref": "#/components/schemas/Dimensions"
+    },
+    "tagIds": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      }
+    }
+  }
+}

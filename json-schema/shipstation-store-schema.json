@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Store",
+  "title": "Store",
+  "type": "object",
+  "properties": {
+    "storeId": {
+      "type": "integer"
+    },
+    "storeName": {
+      "type": "string"
+    },
+    "marketplaceId": {
+      "type": "integer"
+    },
+    "marketplaceName": {
+      "type": "string"
+    },
+    "accountName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "integrationUrl": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "publicEmail": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "createDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modifyDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

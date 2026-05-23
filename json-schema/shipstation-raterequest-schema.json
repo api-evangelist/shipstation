@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RateRequest",
+  "title": "RateRequest",
+  "type": "object",
+  "required": [
+    "carrierCode",
+    "fromPostalCode",
+    "toPostalCode",
+    "toCountry",
+    "weight"
+  ],
+  "properties": {
+    "carrierCode": {
+      "type": "string"
+    },
+    "serviceCode": {
+      "type": "string"
+    },
+    "packageCode": {
+      "type": "string"
+    },
+    "fromPostalCode": {
+      "type": "string"
+    },
+    "toPostalCode": {
+      "type": "string"
+    },
+    "toState": {
+      "type": "string"
+    },
+    "toCountry": {
+      "type": "string"
+    },
+    "toCity": {
+      "type": "string"
+    },
+    "weight": {
+      "$ref": "#/components/schemas/Weight"
+    },
+    "dimensions": {
+      "$ref": "#/components/schemas/Dimensions"
+    },
+    "confirmation": {
+      "type": "string"
+    },
+    "residential": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CustomerPaginatedList",
+  "title": "CustomerPaginatedList",
+  "type": "object",
+  "properties": {
+    "customers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Customer"
+      }
+    },
+    "total": {
+      "type": "integer"
+    },
+    "page": {
+      "type": "integer"
+    },
+    "pages": {
+      "type": "integer"
+    }
+  }
+}

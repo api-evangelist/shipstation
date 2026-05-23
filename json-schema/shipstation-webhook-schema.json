@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Webhook",
+  "title": "Webhook",
+  "type": "object",
+  "properties": {
+    "IsLabelAPIHook": {
+      "type": "boolean"
+    },
+    "WebHookID": {
+      "type": "integer"
+    },
+    "SellerID": {
+      "type": "integer"
+    },
+    "StoreID": {
+      "type": "integer"
+    },
+    "HookType": {
+      "type": "string"
+    },
+    "MessageFormat": {
+      "type": "string"
+    },
+    "Url": {
+      "type": "string"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "BulkCopyBatchID": {
+      "type": "string"
+    },
+    "BulkCopyRecordID": {
+      "type": "string"
+    },
+    "Active": {
+      "type": "boolean"
+    },
+    "WebhookLogs": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "Seller": {
+      "type": "string"
+    },
+    "Store": {
+      "type": "string"
+    }
+  }
+}

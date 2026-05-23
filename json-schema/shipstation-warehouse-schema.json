@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Warehouse",
+  "title": "Warehouse",
+  "type": "object",
+  "properties": {
+    "warehouseId": {
+      "type": "integer"
+    },
+    "warehouseName": {
+      "type": "string"
+    },
+    "originAddress": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "returnAddress": {
+      "$ref": "#/components/schemas/Address"
+    },
+    "createDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isDefault": {
+      "type": "boolean"
+    }
+  }
+}

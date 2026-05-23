@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Weight",
+  "title": "Weight",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "number",
+      "format": "float"
+    },
+    "units": {
+      "type": "string",
+      "enum": [
+        "pounds",
+        "ounces",
+        "grams"
+      ]
+    },
+    "WeightUnits": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LabelCreateRequest",
+  "title": "LabelCreateRequest",
+  "type": "object",
+  "required": [
+    "orderId",
+    "carrierCode",
+    "serviceCode",
+    "packageCode",
+    "weight"
+  ],
+  "properties": {
+    "orderId": {
+      "type": "integer"
+    },
+    "carrierCode": {
+      "type": "string"
+    },
+    "serviceCode": {
+      "type": "string"
+    },
+    "packageCode": {
+      "type": "string"
+    },
+    "confirmation": {
+      "type": "string"
+    },
+    "shipDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "weight": {
+      "$ref": "#/components/schemas/Weight"
+    },
+    "dimensions": {
+      "$ref": "#/components/schemas/Dimensions"
+    },
+    "insuranceOptions": {
+      "type": "object"
+    },
+    "internationalOptions": {
+      "type": "object"
+    },
+    "advancedOptions": {
+      "type": "object"
+    },
+    "testLabel": {
+      "type": "boolean"
+    }
+  }
+}

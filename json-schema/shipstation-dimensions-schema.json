@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Dimensions",
+  "title": "Dimensions",
+  "type": "object",
+  "properties": {
+    "length": {
+      "type": "number",
+      "format": "float"
+    },
+    "width": {
+      "type": "number",
+      "format": "float"
+    },
+    "height": {
+      "type": "number",
+      "format": "float"
+    },
+    "units": {
+      "type": "string",
+      "enum": [
+        "inches",
+        "centimeters"
+      ]
+    }
+  }
+}
