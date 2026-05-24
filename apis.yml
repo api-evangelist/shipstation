@@ -162,3 +162,5 @@ common:
     updated: '2026-05-04'
   - type: Integrations
     url: https://www.shipstation.com/partners/
+  - type: LLMsTxt
+    url: https://docs.shipstation.com/llms.txt
