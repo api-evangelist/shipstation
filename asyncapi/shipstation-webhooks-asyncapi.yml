@@ -1,0 +1,230 @@
+asyncapi: 2.6.0
+info:
+  title: ShipStation Webhooks
+  version: '1.0.0'
+  description: |-
+    AsyncAPI description of the ShipStation V1 outbound webhook surface.
+    ShipStation delivers event notifications by issuing HTTP POST requests with
+    a JSON body to a `target_url` that the customer registers through the
+    `POST /webhooks/subscribe` endpoint (or via the ShipStation UI under
+    Account Settings > Integrations > Integration Partners).
+
+    Every documented webhook event uses the same envelope payload shape (the
+    `Webhook` model): a `resource_url` that the subscriber must fetch with
+    ShipStation API Basic Authentication credentials to retrieve the
+    triggering resource, and a `resource_type` string that names the event.
+
+    Per the ShipStation API reference, the four event types in scope here are:
+      - ORDER_NOTIFY       — fires when any new order is imported, regardless
+                             of store.
+      - ITEM_ORDER_NOTIFY  — fires when a new order is imported, with the
+                             resource URL scoped to the order items.
+      - SHIP_NOTIFY        — fires when an order is shipped.
+      - ITEM_SHIP_NOTIFY   — fires when an order is shipped, with the
+                             resource URL scoped to the shipped items.
+
+    Source documentation (ShipStation V1 docs, retrieved from web.archive.org
+    snapshots of www.shipstation.com/docs/api/):
+      - Subscribe to Webhook:   /docs/api/webhooks/subscribe/
+      - List Webhooks:          /docs/api/webhooks/list/
+      - Unsubscribe to Webhook: /docs/api/webhooks/unsubscribe/
+      - Webhook model:          /docs/api/models/webhook/
+
+    Security:
+      The HTTP POST that ShipStation sends to `target_url` does not, per the
+      public V1 docs, include a published signing header. The documented
+      authentication path is on the *callback* the subscriber issues back to
+      ShipStation to dereference `resource_url`: the subscriber authenticates
+      to `ssapi.shipstation.com` with HTTP Basic credentials (API key and
+      secret). Subscribers commonly defend the inbound `target_url` with
+      HTTPS plus a hard-to-guess path or embedded Basic credentials.
+  contact:
+    name: ShipStation API
+    url: https://www.shipstation.com/docs/api/
+  license:
+    name: ShipStation Terms of Service
+    url: https://www.shipstation.com/legal/terms-of-service/
+
+defaultContentType: application/json
+
+servers:
+  subscriber:
+    url: '{targetUrl}'
+    protocol: https
+    description: |-
+      Customer-hosted HTTPS endpoint that receives webhook POSTs from
+      ShipStation. The full URL (including path) is the `target_url` value
+      registered with `POST /webhooks/subscribe`.
+    variables:
+      targetUrl:
+        default: https://example.com/shipstation/webhook
+        description: Fully-qualified HTTPS URL of the subscriber endpoint.
+
+channels:
+  /shipstation/webhook:
+    description: |-
+      Single subscriber endpoint that receives every ShipStation webhook
+      event for the registered subscription. ShipStation sends one event per
+      HTTP POST. The `resource_type` field on the JSON body identifies the
+      event class; the `resource_url` field is a fully-qualified HTTPS URL on
+      `ssapi.shipstation.com` that the subscriber should GET (using its
+      ShipStation Basic Auth credentials) to retrieve the resource that
+      triggered the event.
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    publish:
+      operationId: receiveShipStationWebhook
+      summary: Receive a ShipStation webhook event
+      description: |-
+        ShipStation POSTs a `Webhook` JSON object to the subscriber endpoint
+        when the subscribed event occurs. Subscribers should respond with a
+        2xx status code. To consume the event the subscriber must follow
+        `resource_url` with an authenticated GET against the ShipStation V1
+        API.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/OrderNotify'
+          - $ref: '#/components/messages/ItemOrderNotify'
+          - $ref: '#/components/messages/ShipNotify'
+          - $ref: '#/components/messages/ItemShipNotify'
+
+components:
+  messages:
+    OrderNotify:
+      name: OrderNotifyEvent
+      title: ORDER_NOTIFY
+      summary: A new order has been imported into ShipStation.
+      description: |-
+        Fires when a new order is imported into ShipStation, regardless of
+        the store it came from (unless the subscription was scoped to a
+        specific `store_id` at subscribe time). The `resource_url` points to
+        a listing of the imported order(s) on the V1 API.
+      contentType: application/json
+      bindings:
+        http:
+          headers:
+            type: object
+            properties:
+              Content-Type:
+                type: string
+                const: application/json
+          bindingVersion: '0.3.0'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEnvelope'
+          - type: object
+            properties:
+              resource_type:
+                type: string
+                const: ORDER_NOTIFY
+
+    ItemOrderNotify:
+      name: ItemOrderNotifyEvent
+      title: ITEM_ORDER_NOTIFY
+      summary: A new order has been imported, scoped to the items on the order.
+      description: |-
+        Fires when a new order is imported into ShipStation. The
+        `resource_url` is scoped to the items contained on the newly
+        imported order(s).
+      contentType: application/json
+      bindings:
+        http:
+          headers:
+            type: object
+            properties:
+              Content-Type:
+                type: string
+                const: application/json
+          bindingVersion: '0.3.0'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEnvelope'
+          - type: object
+            properties:
+              resource_type:
+                type: string
+                const: ITEM_ORDER_NOTIFY
+
+    ShipNotify:
+      name: ShipNotifyEvent
+      title: SHIP_NOTIFY
+      summary: An order has been shipped.
+      description: |-
+        Fires when an order is marked shipped in ShipStation (either through
+        label creation or a manual mark-shipped action). The `resource_url`
+        points to a listing of the shipment(s) on the V1 API.
+      contentType: application/json
+      bindings:
+        http:
+          headers:
+            type: object
+            properties:
+              Content-Type:
+                type: string
+                const: application/json
+          bindingVersion: '0.3.0'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEnvelope'
+          - type: object
+            properties:
+              resource_type:
+                type: string
+                const: SHIP_NOTIFY
+
+    ItemShipNotify:
+      name: ItemShipNotifyEvent
+      title: ITEM_SHIP_NOTIFY
+      summary: An order has been shipped, scoped to the shipped items.
+      description: |-
+        Fires when an order is marked shipped in ShipStation. The
+        `resource_url` is scoped to the items contained on the resulting
+        shipment(s).
+      contentType: application/json
+      bindings:
+        http:
+          headers:
+            type: object
+            properties:
+              Content-Type:
+                type: string
+                const: application/json
+          bindingVersion: '0.3.0'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/WebhookEnvelope'
+          - type: object
+            properties:
+              resource_type:
+                type: string
+                const: ITEM_SHIP_NOTIFY
+
+  schemas:
+    WebhookEnvelope:
+      title: Webhook
+      description: |-
+        Common envelope shape that ShipStation POSTs for every event,
+        as defined by the published Webhook model in the V1 docs.
+      type: object
+      properties:
+        resource_url:
+          type: string
+          format: uri
+          maxLength: 200
+          description: |-
+            URL to GET (with ShipStation API Basic Authentication credentials)
+            to retrieve the resource that triggered the webhook. Limited to
+            200 characters by the API.
+        resource_type:
+          type: string
+          description: |-
+            The event type that triggered the webhook. One of the documented
+            event values.
+          enum:
+            - ORDER_NOTIFY
+            - ITEM_ORDER_NOTIFY
+            - SHIP_NOTIFY
+            - ITEM_SHIP_NOTIFY

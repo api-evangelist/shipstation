@@ -14,6 +14,8 @@ apis:
       type: Documentation
     - url: openapi/shipstation-v1-openapi.yml
       type: OpenAPI
+    - url: asyncapi/shipstation-webhooks-asyncapi.yml
+      type: AsyncAPI
     - url: json-schema/shipstation-order-schema.json
       type: JSONSchema
     - url: json-schema/shipstation-shipment-schema.json
@@ -78,7 +80,7 @@ kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-03-01'
-modified: '2026-05-19'
+modified: '2026-05-30'
 position: Consumer
 description: ShipStation is a leading shipping platform for ecommerce businesses providing APIs to integrate shipping workflows
   into applications. The ShipStation API enables developers to automate order management, create shipments, generate labels,
