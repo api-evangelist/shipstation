@@ -1,0 +1,1089 @@
+"""
+ShipStation GraphQL Schema
+Conceptual schema representing the ShipStation multi-carrier shipping platform REST API (V1 + V2)
+as GraphQL types for tooling, documentation, and integration design purposes.
+Source: https://www.shipstation.com/docs/api/ and https://docs.shipstation.com/
+"""
+
+# ─────────────────────────────────────────────
+# Scalars
+# ─────────────────────────────────────────────
+
+scalar DateTime
+scalar Decimal
+scalar JSON
+
+# ─────────────────────────────────────────────
+# Enumerations
+# ─────────────────────────────────────────────
+
+enum OrderStatus {
+  AWAITING_PAYMENT
+  AWAITING_SHIPMENT
+  SHIPPED
+  ON_HOLD
+  CANCELLED
+  PENDING_FULFILLMENT
+}
+
+enum ShipmentStatus {
+  LABEL_PURCHASED
+  VOIDED
+  DELIVERED
+  RETURNED
+  IN_TRANSIT
+}
+
+enum ReturnStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  RECEIVED
+  REFUNDED
+}
+
+enum ContentsType {
+  MERCHANDISE
+  DOCUMENTS
+  GIFT
+  RETURNED_GOODS
+  SAMPLE
+}
+
+enum NonDeliveryOption {
+  RETURN_TO_SENDER
+  TREAT_AS_ABANDONED
+}
+
+enum ConfirmationType {
+  NONE
+  DELIVERY
+  SIGNATURE
+  ADULT_SIGNATURE
+  DIRECT_SIGNATURE
+}
+
+enum CarrierCode {
+  STAMPS_COM
+  UPS
+  FEDEX
+  USPS
+  DHL_EXPRESS
+  CANADA_POST
+  ROYAL_MAIL
+  AUSTRALIA_POST
+  GLOBALPOST
+  DPD
+}
+
+# ─────────────────────────────────────────────
+# Address and Contact Types
+# ─────────────────────────────────────────────
+
+"""Postal address used for ship-to and bill-to fields."""
+type OrderAddress {
+  name: String
+  company: String
+  street1: String
+  street2: String
+  street3: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+  phone: String
+  residential: Boolean
+}
+
+"""Destination address for a shipment."""
+type ShipTo {
+  name: String!
+  company: String
+  street1: String!
+  street2: String
+  street3: String
+  city: String!
+  state: String!
+  postalCode: String!
+  country: String!
+  phone: String
+  residential: Boolean
+}
+
+"""Billing address for an order."""
+type BillTo {
+  name: String
+  company: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+  phone: String
+  email: String
+}
+
+# ─────────────────────────────────────────────
+# Weight and Dimension Types
+# ─────────────────────────────────────────────
+
+"""Weight of an item or shipment."""
+type ItemWeight {
+  value: Decimal!
+  units: String!
+}
+
+"""Physical dimensions of an item or package."""
+type ItemDimension {
+  length: Decimal
+  width: Decimal
+  height: Decimal
+  units: String
+}
+
+"""Weight of a shipment package."""
+type ShipmentWeight {
+  value: Decimal!
+  units: String!
+}
+
+"""Dimensions of a shipment package."""
+type ShipmentDimension {
+  length: Decimal
+  width: Decimal
+  height: Decimal
+  units: String
+}
+
+# ─────────────────────────────────────────────
+# Item and SKU Types
+# ─────────────────────────────────────────────
+
+"""SKU reference for an order line item."""
+type ItemSKU {
+  sku: String
+  upc: String
+  asin: String
+  mpn: String
+}
+
+"""Detailed attributes of an order item."""
+type ItemDetail {
+  name: String!
+  imageUrl: String
+  warehouseLocation: String
+  productId: Int
+  options: [CustomField]
+}
+
+"""A line item within an order."""
+type OrderItem {
+  orderItemId: Int
+  lineItemKey: String
+  sku: String
+  name: String!
+  imageUrl: String
+  weight: ItemWeight
+  quantity: Int!
+  unitPrice: Decimal
+  taxAmount: Decimal
+  shippingAmount: Decimal
+  warehouseLocation: String
+  options: [CustomField]
+  productId: Int
+  fulfillmentSku: String
+  adjustment: Boolean
+  upc: String
+  detail: ItemDetail
+  skuDetail: ItemSKU
+  dimensions: ItemDimension
+}
+
+# ─────────────────────────────────────────────
+# Custom Fields and Tags
+# ─────────────────────────────────────────────
+
+"""A key-value custom field attached to orders or items."""
+type CustomField {
+  name: String!
+  value: String
+}
+
+"""A tag applied to an order for categorization and filtering."""
+type OrderTag {
+  tagId: Int!
+  name: String!
+  color: String
+}
+
+"""A tag applied to a shipment."""
+type ShipmentTag {
+  tagId: Int!
+  name: String!
+  color: String
+}
+
+# ─────────────────────────────────────────────
+# Payment Types
+# ─────────────────────────────────────────────
+
+"""Method of payment used for an order."""
+type PaymentMethod {
+  name: String
+  type: String
+}
+
+"""Monetary amount with currency."""
+type PaymentAmount {
+  amount: Decimal!
+  currency: String!
+}
+
+# ─────────────────────────────────────────────
+# Gift and Advanced Option Types
+# ─────────────────────────────────────────────
+
+"""Gift message attached to an order or shipment."""
+type GiftMessage {
+  message: String
+  from: String
+  to: String
+}
+
+"""Gift configuration for an order."""
+type Gift {
+  isGift: Boolean
+  message: GiftMessage
+  giftWrap: Boolean
+  price: Decimal
+}
+
+"""Gift options for an order."""
+type GiftOptions {
+  gift: Gift
+  giftMessage: String
+}
+
+"""Source store from which an order originated."""
+type SourceStore {
+  storeId: Int
+  storeName: String
+  marketplaceName: String
+}
+
+"""Merchant-assigned reference identifiers."""
+type MerchantRef {
+  orderNumber: String
+  customerOrderNumber: String
+  externalOrderId: String
+}
+
+"""Store identifier for routing orders."""
+type StoreID {
+  storeId: Int!
+  storeName: String
+}
+
+"""Advanced routing and fulfillment options for an order."""
+type AdvancedOptions {
+  warehouseId: Int
+  nonMachinable: Boolean
+  saturdayDelivery: Boolean
+  containsAlcohol: Boolean
+  mergedOrSplit: Boolean
+  mergedIds: [Int]
+  parentId: Int
+  storeId: Int
+  customField1: String
+  customField2: String
+  customField3: String
+  source: String
+  billToParty: String
+  billToAccount: String
+  billToPostalCode: String
+  billToCountryCode: String
+  billToMyOtherAccount: Int
+}
+
+# ─────────────────────────────────────────────
+# International Options Types
+# ─────────────────────────────────────────────
+
+"""Insurance options for a shipment."""
+type InsuranceOptions {
+  provider: String
+  insureShipment: Boolean
+  insuredValue: InsuredValue
+}
+
+"""Insured value amount."""
+type InsuredValue {
+  amount: Decimal!
+  currency: String!
+}
+
+"""International shipping customs and delivery options."""
+type InternationalOptions {
+  contents: ContentsType
+  customsItems: [CustomField]
+  nonDelivery: NonDeliveryOption
+}
+
+# ─────────────────────────────────────────────
+# Carrier, Service, and Rate Types
+# ─────────────────────────────────────────────
+
+"""Service code identifying a carrier service level."""
+type ServiceCode {
+  serviceCode: String!
+  name: String!
+  domestic: Boolean
+  international: Boolean
+}
+
+"""Package type code for a carrier."""
+type PackageCode {
+  packageCode: String!
+  name: String!
+}
+
+"""A carrier connected to a ShipStation account."""
+type Carrier {
+  carrierId: String!
+  code: CarrierCode!
+  name: String!
+  accountNumber: String
+  requiresFundedAccount: Boolean
+  balance: Decimal
+  nickname: String
+  shippingProviderId: Int
+  primary: Boolean
+  services: [CarrierService]
+  packages: [PackageCode]
+}
+
+"""A specific service available from a carrier."""
+type CarrierService {
+  carrierId: String!
+  serviceCode: String!
+  name: String!
+  domestic: Boolean!
+  international: Boolean!
+}
+
+"""Carrier-level shipment record."""
+type CarrierShipment {
+  trackingNumber: String
+  carrier: Carrier
+  service: CarrierService
+  estimatedDeliveryDate: DateTime
+}
+
+"""Detail breakdown of a shipping rate."""
+type RateDetail {
+  otherCost: Decimal
+  insurance: Decimal
+  confirmation: Decimal
+  fuelSurcharge: Decimal
+}
+
+"""A shipping rate returned from rate shopping."""
+type Rate {
+  serviceCode: String!
+  serviceName: String!
+  carrierCode: String!
+  carrierName: String!
+  shipmentCost: Decimal!
+  otherCost: Decimal
+  transitDays: Int
+  validUntilDate: DateTime
+  rateDetail: RateDetail
+}
+
+# ─────────────────────────────────────────────
+# Label Types
+# ─────────────────────────────────────────────
+
+"""Raw label data (PDF or ZPL bytes)."""
+type LabelData {
+  labelData: String
+  labelFormat: String
+  labelLayout: String
+}
+
+"""A shipping label generated for a shipment."""
+type Label {
+  labelId: Int!
+  shipmentId: Int!
+  trackingNumber: String!
+  labelUrl: String
+  labelData: LabelData
+  voided: Boolean!
+  voidedAt: DateTime
+  batchId: Int
+  carrierId: String
+  serviceCode: String
+  packageCode: String
+  createdAt: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Shipment Types
+# ─────────────────────────────────────────────
+
+"""Items included in a shipment."""
+type ShipmentItems {
+  items: [OrderItem]
+  totalItems: Int
+}
+
+"""Detailed information about a shipment."""
+type ShipmentDetail {
+  carrierCode: String
+  serviceCode: String
+  packageCode: String
+  confirmation: ConfirmationType
+  dimensions: ShipmentDimension
+  weight: ShipmentWeight
+  insuranceOptions: InsuranceOptions
+  internationalOptions: InternationalOptions
+  advancedOptions: AdvancedOptions
+}
+
+"""A shipment record in ShipStation."""
+type Shipment {
+  shipmentId: Int!
+  orderId: Int!
+  orderKey: String
+  userId: String
+  orderNumber: String
+  shipDate: DateTime
+  createdDate: DateTime
+  modifiedDate: DateTime
+  shipTo: ShipTo
+  weight: ShipmentWeight
+  dimensions: ShipmentDimension
+  insuranceOptions: InsuranceOptions
+  advancedOptions: AdvancedOptions
+  shipmentCost: Decimal
+  serviceCode: String
+  packageCode: String
+  confirmation: ConfirmationType
+  carrierCode: String
+  trackingNumber: String
+  isReturnLabel: Boolean
+  batchId: Int
+  warehouseId: Int
+  voided: Boolean
+  voidDate: DateTime
+  marketplaceNotified: Boolean
+  notifyErrorMessage: String
+  shipmentStatus: ShipmentStatus
+  label: Label
+  items: ShipmentItems
+  tags: [ShipmentTag]
+  detail: ShipmentDetail
+  carrierShipment: CarrierShipment
+}
+
+# ─────────────────────────────────────────────
+# Order Types
+# ─────────────────────────────────────────────
+
+"""Detailed order attributes."""
+type OrderDetail {
+  internalNotes: String
+  customerNotes: String
+  giftMessage: String
+  paymentMethod: PaymentMethod
+  requestedShippingService: String
+  amountPaid: Decimal
+  taxAmount: Decimal
+  shippingAmount: Decimal
+  customerEmail: String
+  customerId: Int
+  externallyFulfilled: Boolean
+  externallyFulfilledBy: String
+}
+
+"""An order in ShipStation."""
+type Order {
+  orderId: Int!
+  orderNumber: String!
+  orderKey: String
+  orderDate: DateTime!
+  createDate: DateTime
+  modifyDate: DateTime
+  paymentDate: DateTime
+  shipByDate: DateTime
+  orderStatus: OrderStatus!
+  customerId: Int
+  customerUsername: String
+  customerEmail: String
+  billTo: BillTo
+  shipTo: ShipTo!
+  items: [OrderItem]
+  orderTotal: Decimal
+  amountPaid: Decimal
+  taxAmount: Decimal
+  shippingAmount: Decimal
+  customerNotes: String
+  internalNotes: String
+  gift: Boolean
+  giftOptions: GiftOptions
+  paymentMethod: PaymentMethod
+  paymentAmount: PaymentAmount
+  requestedShippingService: String
+  carrierCode: String
+  serviceCode: String
+  packageCode: String
+  confirmation: ConfirmationType
+  shipDate: DateTime
+  holdUntilDate: DateTime
+  weight: ItemWeight
+  dimensions: ItemDimension
+  insuranceOptions: InsuranceOptions
+  internationalOptions: InternationalOptions
+  advancedOptions: AdvancedOptions
+  tagIds: [Int]
+  tags: [OrderTag]
+  userId: String
+  externallyFulfilled: Boolean
+  externallyFulfilledBy: String
+  storeId: Int
+  sourceStore: SourceStore
+  merchantRef: MerchantRef
+  customFields: [CustomField]
+  detail: OrderDetail
+  shipments: [Shipment]
+}
+
+# ─────────────────────────────────────────────
+# Fulfillment and Warehouse Types
+# ─────────────────────────────────────────────
+
+"""Origin address for a warehouse."""
+type WarehouseOrigin {
+  name: String!
+  company: String
+  street1: String!
+  street2: String
+  city: String!
+  state: String!
+  postalCode: String!
+  country: String!
+  phone: String
+}
+
+"""Detailed information about a warehouse."""
+type WarehouseDetails {
+  isDefault: Boolean
+  registrationDate: DateTime
+  origins: [WarehouseOrigin]
+}
+
+"""A warehouse location in ShipStation."""
+type Warehouse {
+  warehouseId: Int!
+  warehouseName: String!
+  originAddress: WarehouseOrigin!
+  returnAddress: WarehouseOrigin
+  createDate: DateTime
+  isDefault: Boolean
+  details: WarehouseDetails
+}
+
+"""A fulfillment center."""
+type FulfillmentCenter {
+  fulfillmentCenterId: Int!
+  name: String!
+  address: OrderAddress
+  phone: String
+  email: String
+}
+
+"""A fulfillment record linking orders to fulfillment centers."""
+type Fulfillment {
+  fulfillmentId: Int!
+  orderId: Int!
+  orderNumber: String
+  userId: String
+  customerEmail: String
+  trackingNumber: String
+  createDate: DateTime
+  shipDate: DateTime
+  voidDate: DateTime
+  deliveryDate: DateTime
+  carrierCode: String
+  fulfillmentProviderCode: String
+  fulfillmentServiceCode: String
+  fulfillmentFee: Decimal
+  voidRequested: Boolean
+  voided: Boolean
+  marketplaceNotified: Boolean
+  notifyErrorMessage: String
+  shipTo: ShipTo
+  center: FulfillmentCenter
+}
+
+# ─────────────────────────────────────────────
+# Return Types
+# ─────────────────────────────────────────────
+
+"""Approval record for a return request."""
+type ReturnApproval {
+  approvedAt: DateTime
+  approvedBy: String
+  notes: String
+  rmaNumber: String
+}
+
+"""A return / reverse logistics record."""
+type Return {
+  returnId: Int!
+  orderId: Int
+  orderNumber: String
+  returnRequestDate: DateTime
+  returnStatus: ReturnStatus!
+  returnLabel: Label
+  customerEmail: String
+  items: [OrderItem]
+  reason: String
+  comments: String
+  approval: ReturnApproval
+}
+
+# ─────────────────────────────────────────────
+# Store Types
+# ─────────────────────────────────────────────
+
+"""Detailed attributes of a connected store."""
+type StoreDetails {
+  marketplaceName: String
+  marketplaceId: Int
+  storeName: String!
+  accountName: String
+  email: String
+  integrationUrl: String
+  active: Boolean!
+  companyName: String
+  phone: String
+  publicEmail: String
+  website: String
+  refreshDate: DateTime
+  lastRefreshAttempt: DateTime
+  createDate: DateTime
+  modifyDate: DateTime
+  autoRefresh: Boolean
+  statusMappings: [CustomField]
+}
+
+"""A store connected to ShipStation."""
+type Store {
+  storeId: Int!
+  storeName: String!
+  marketplaceId: Int!
+  marketplaceName: String!
+  accountName: String
+  email: String
+  integrationUrl: String
+  active: Boolean!
+  companyName: String
+  phone: String
+  publicEmail: String
+  website: String
+  refreshDate: DateTime
+  lastRefreshAttempt: DateTime
+  createDate: DateTime
+  modifyDate: DateTime
+  autoRefresh: Boolean
+  details: StoreDetails
+}
+
+# ─────────────────────────────────────────────
+# User and Account Types
+# ─────────────────────────────────────────────
+
+"""Detailed profile information for a user."""
+type UserDetails {
+  phone: String
+  address: OrderAddress
+  timezone: String
+  locale: String
+  avatar: String
+}
+
+"""A user within a ShipStation account."""
+type User {
+  userId: String!
+  userName: String!
+  name: String!
+  email: String
+  createDate: DateTime
+  modifyDate: DateTime
+  details: UserDetails
+}
+
+"""An API key credential pair."""
+type APIKey {
+  apiKey: String!
+  apiSecret: String
+  createdAt: DateTime
+  label: String
+}
+
+"""An authentication token."""
+type Token {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int
+  refreshToken: String
+  scope: String
+}
+
+"""A webhook subscription for ShipStation events."""
+type Webhook {
+  webhookId: Int!
+  hookType: String!
+  url: String!
+  name: String
+  event: String
+  storeId: Int
+  isLabelAPIHook: Boolean
+  resourceType: String
+  active: Boolean
+  createDate: DateTime
+  modifyDate: DateTime
+}
+
+"""A ShipStation account."""
+type Account {
+  accountId: Int!
+  name: String!
+  email: String!
+  phone: String
+  plan: String
+  apiRateLimit: Int
+  createDate: DateTime
+  modifyDate: DateTime
+  users: [User]
+  apiKeys: [APIKey]
+  webhooks: [Webhook]
+}
+
+# ─────────────────────────────────────────────
+# Pagination and Input Types
+# ─────────────────────────────────────────────
+
+"""Pagination metadata."""
+type PageInfo {
+  total: Int!
+  page: Int!
+  pages: Int!
+  pageSize: Int!
+}
+
+"""Paginated list of orders."""
+type OrderConnection {
+  orders: [Order]
+  pageInfo: PageInfo!
+}
+
+"""Paginated list of shipments."""
+type ShipmentConnection {
+  shipments: [Shipment]
+  pageInfo: PageInfo!
+}
+
+"""Paginated list of returns."""
+type ReturnConnection {
+  returns: [Return]
+  pageInfo: PageInfo!
+}
+
+"""Input for creating or updating an order."""
+input OrderInput {
+  orderNumber: String!
+  orderKey: String
+  orderDate: DateTime!
+  orderStatus: OrderStatus!
+  shipTo: ShipToInput!
+  billTo: BillToInput
+  items: [OrderItemInput]
+  carrierCode: String
+  serviceCode: String
+  packageCode: String
+  confirmation: ConfirmationType
+  shipDate: DateTime
+  weight: WeightInput
+  dimensions: DimensionInput
+  insuranceOptions: InsuranceOptionsInput
+  internationalOptions: InternationalOptionsInput
+  advancedOptions: AdvancedOptionsInput
+  tagIds: [Int]
+  internalNotes: String
+  customerNotes: String
+  gift: Boolean
+  giftMessage: String
+}
+
+"""Input for ship-to address."""
+input ShipToInput {
+  name: String!
+  company: String
+  street1: String!
+  street2: String
+  street3: String
+  city: String!
+  state: String!
+  postalCode: String!
+  country: String!
+  phone: String
+  residential: Boolean
+}
+
+"""Input for bill-to address."""
+input BillToInput {
+  name: String
+  company: String
+  street1: String
+  street2: String
+  city: String
+  state: String
+  postalCode: String
+  country: String
+  phone: String
+  email: String
+}
+
+"""Input for an order line item."""
+input OrderItemInput {
+  lineItemKey: String
+  sku: String
+  name: String!
+  quantity: Int!
+  unitPrice: Decimal
+  weight: WeightInput
+  imageUrl: String
+  warehouseLocation: String
+  options: [CustomFieldInput]
+  productId: Int
+  upc: String
+}
+
+"""Input for weight."""
+input WeightInput {
+  value: Decimal!
+  units: String!
+}
+
+"""Input for package dimensions."""
+input DimensionInput {
+  length: Decimal
+  width: Decimal
+  height: Decimal
+  units: String
+}
+
+"""Input for insurance options."""
+input InsuranceOptionsInput {
+  provider: String
+  insureShipment: Boolean
+  insuredValue: Decimal
+}
+
+"""Input for international shipping options."""
+input InternationalOptionsInput {
+  contents: ContentsType
+  nonDelivery: NonDeliveryOption
+}
+
+"""Input for advanced order options."""
+input AdvancedOptionsInput {
+  warehouseId: Int
+  nonMachinable: Boolean
+  saturdayDelivery: Boolean
+  containsAlcohol: Boolean
+  storeId: Int
+  customField1: String
+  customField2: String
+  customField3: String
+  source: String
+  billToParty: String
+  billToAccount: String
+  billToPostalCode: String
+  billToCountryCode: String
+}
+
+"""Input for custom field."""
+input CustomFieldInput {
+  name: String!
+  value: String
+}
+
+"""Input for rate shopping."""
+input RateInput {
+  carrierCode: String
+  serviceCode: String
+  packageCode: String
+  fromPostalCode: String!
+  toState: String
+  toCountry: String!
+  toPostalCode: String!
+  toCity: String
+  weight: WeightInput!
+  dimensions: DimensionInput
+  confirmation: ConfirmationType
+  residential: Boolean
+}
+
+"""Input for creating a shipment."""
+input CreateShipmentInput {
+  orderId: Int!
+  carrierCode: String!
+  serviceCode: String!
+  packageCode: String
+  confirmation: ConfirmationType
+  shipDate: DateTime
+  weight: WeightInput!
+  dimensions: DimensionInput
+  insuranceOptions: InsuranceOptionsInput
+  internationalOptions: InternationalOptionsInput
+  advancedOptions: AdvancedOptionsInput
+}
+
+# ─────────────────────────────────────────────
+# Root Types
+# ─────────────────────────────────────────────
+
+type Query {
+  """Retrieve a single order by ID."""
+  order(orderId: Int!): Order
+
+  """List orders with optional filters."""
+  orders(
+    orderStatus: OrderStatus
+    storeId: Int
+    tagId: Int
+    customerId: Int
+    orderDateStart: DateTime
+    orderDateEnd: DateTime
+    modifyDateStart: DateTime
+    modifyDateEnd: DateTime
+    page: Int
+    pageSize: Int
+  ): OrderConnection
+
+  """Retrieve a single shipment by ID."""
+  shipment(shipmentId: Int!): Shipment
+
+  """List shipments with optional filters."""
+  shipments(
+    recipientName: String
+    recipientCountryCode: String
+    orderNumber: String
+    orderId: Int
+    carrierCode: String
+    serviceCode: String
+    trackingNumber: String
+    shipDateStart: DateTime
+    shipDateEnd: DateTime
+    voidDateStart: DateTime
+    voidDateEnd: DateTime
+    storeId: Int
+    includeShipmentItems: Boolean
+    page: Int
+    pageSize: Int
+  ): ShipmentConnection
+
+  """List carriers connected to the account."""
+  carriers: [Carrier]
+
+  """Retrieve available services for a carrier."""
+  carrierServices(carrierCode: String!): [CarrierService]
+
+  """Retrieve available package codes for a carrier."""
+  carrierPackages(carrierCode: String!): [PackageCode]
+
+  """Rate shop across carriers for the given package."""
+  rates(input: RateInput!): [Rate]
+
+  """List warehouses."""
+  warehouses: [Warehouse]
+
+  """Retrieve a single warehouse."""
+  warehouse(warehouseId: Int!): Warehouse
+
+  """List connected stores."""
+  stores: [Store]
+
+  """Retrieve a single store."""
+  store(storeId: Int!): Store
+
+  """List returns."""
+  returns(
+    returnStatus: ReturnStatus
+    page: Int
+    pageSize: Int
+  ): ReturnConnection
+
+  """List users on the account."""
+  users: [User]
+
+  """Retrieve account information."""
+  account: Account
+
+  """List webhooks."""
+  webhooks: [Webhook]
+}
+
+type Mutation {
+  """Create a new order."""
+  createOrder(input: OrderInput!): Order
+
+  """Update an existing order."""
+  updateOrder(orderId: Int!, input: OrderInput!): Order
+
+  """Delete an order."""
+  deleteOrder(orderId: Int!): Boolean
+
+  """Hold an order until a specified date."""
+  holdOrder(orderId: Int!, holdUntilDate: DateTime): Order
+
+  """Release an order from hold."""
+  releaseOrder(orderId: Int!): Order
+
+  """Mark an order as shipped."""
+  markOrderAsShipped(orderId: Int!, carrierCode: String!, shipDate: DateTime, trackingNumber: String, notifyCustomer: Boolean, notifyShipFrom: Boolean): Order
+
+  """Create a shipment label for an order."""
+  createShipment(input: CreateShipmentInput!): Shipment
+
+  """Void an existing shipping label."""
+  voidLabel(shipmentId: Int!): Boolean
+
+  """Add a tag to an order."""
+  addTagToOrder(orderId: Int!, tagId: Int!): Boolean
+
+  """Remove a tag from an order."""
+  removeTagFromOrder(orderId: Int!, tagId: Int!): Boolean
+
+  """Create a return for an order."""
+  createReturn(orderId: Int!, reason: String, comments: String): Return
+
+  """Create a new warehouse."""
+  createWarehouse(warehouseName: String!, originAddress: ShipToInput!, returnAddress: ShipToInput, isDefault: Boolean): Warehouse
+
+  """Update a warehouse."""
+  updateWarehouse(warehouseId: Int!, warehouseName: String, originAddress: ShipToInput, returnAddress: ShipToInput, isDefault: Boolean): Warehouse
+
+  """Delete a warehouse."""
+  deleteWarehouse(warehouseId: Int!): Boolean
+
+  """Register a webhook subscription."""
+  createWebhook(hookType: String!, url: String!, name: String, storeId: Int): Webhook
+
+  """Delete a webhook subscription."""
+  deleteWebhook(webhookId: Int!): Boolean
+}
