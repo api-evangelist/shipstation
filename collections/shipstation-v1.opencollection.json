@@ -1,0 +1,1044 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipStation V1 API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/orders",
+            "params": [
+              {
+                "name": "customerName",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that match the specified name"
+              },
+              {
+                "name": "itemKeyword",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that contain items that match the specified keyword"
+              },
+              {
+                "name": "createDateStart",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that were created in ShipStation after the specified date"
+              },
+              {
+                "name": "createDateEnd",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that were created in ShipStation before the specified date"
+              },
+              {
+                "name": "modifyDateStart",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders modified after the specified date"
+              },
+              {
+                "name": "modifyDateEnd",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders modified before the specified date"
+              },
+              {
+                "name": "orderDateStart",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that were placed after the specified date"
+              },
+              {
+                "name": "orderDateEnd",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that were placed before the specified date"
+              },
+              {
+                "name": "orderNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order number"
+              },
+              {
+                "name": "orderStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "paymentDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "paymentDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "storeId",
+                "value": "",
+                "type": "query",
+                "description": "Filters orders by store"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtains a list of orders that match the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Create or Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new order or updates an existing order. This call does not support partial updates. The entire resource must be provided in the body of the request."
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated identifier for the order"
+              }
+            ]
+          },
+          "docs": "Retrieves a single order from the database."
+        },
+        {
+          "info": {
+            "name": "Delete Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ssapi.shipstation.com/orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes order from ShipStation's UI."
+        },
+        {
+          "info": {
+            "name": "Create Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/createorder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new order. Use this endpoint when creating an order for the first time."
+        },
+        {
+          "info": {
+            "name": "Create Orders (Bulk)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/createorders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates multiple orders in a single request. Supports up to 100 orders."
+        },
+        {
+          "info": {
+            "name": "Hold Order Until",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/holduntil",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks an order as on hold until the given date."
+        },
+        {
+          "info": {
+            "name": "Mark Order as Shipped",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/markasshipped",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks an order as shipped without creating a label in ShipStation."
+        },
+        {
+          "info": {
+            "name": "Assign Order to User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/:orderId/assignuser",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns the requested orders to the user specified."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/shipments",
+            "params": [
+              {
+                "name": "recipientName",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments shipped to the specified recipient name"
+              },
+              {
+                "name": "recipientCountryCode",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments shipped to the specified country code"
+              },
+              {
+                "name": "orderNumber",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments for the specified order number"
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments for the specified order ID"
+              },
+              {
+                "name": "carrierCode",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments shipped with the specified carrier"
+              },
+              {
+                "name": "serviceCode",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments shipped with the specified service"
+              },
+              {
+                "name": "trackingNumber",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments with the specified tracking number"
+              },
+              {
+                "name": "createDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "createDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shipDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shipDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "voidDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "voidDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "storeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeShipmentItems",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtains a list of shipments that match the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Create Shipment Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/shipments/createlabel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a shipping label for the specified order."
+        },
+        {
+          "info": {
+            "name": "Get Shipping Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/shipments/getrates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves shipping rates for the specified shipment details."
+        },
+        {
+          "info": {
+            "name": "Void Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/shipments/voidlabel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Voids the specified label."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Carriers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Carriers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/carriers"
+          },
+          "docs": "Lists all shipping providers connected to this account."
+        },
+        {
+          "info": {
+            "name": "List Carrier Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/carriers/getservices",
+            "params": [
+              {
+                "name": "carrierCode",
+                "value": "",
+                "type": "query",
+                "description": "The carrier's code"
+              }
+            ]
+          },
+          "docs": "Lists the services available to the specified carrier."
+        },
+        {
+          "info": {
+            "name": "List Carrier Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/carriers/listpackages",
+            "params": [
+              {
+                "name": "carrierCode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of packages for the specified carrier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/customers",
+            "params": [
+              {
+                "name": "stateCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtains a list of customers that match the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Get Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the customer specified by the system-generated identifier."
+        },
+        {
+          "info": {
+            "name": "Update Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ssapi.shipstation.com/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified customer."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/products",
+            "params": [
+              {
+                "name": "sku",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "productCategoryId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "productTypeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "showInactive",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtains a list of products that match the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Get Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the product specified by the system-generated identifier."
+        },
+        {
+          "info": {
+            "name": "Update Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ssapi.shipstation.com/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified product."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Warehouses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Warehouses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/warehouses"
+          },
+          "docs": "Obtains a list of your warehouses."
+        },
+        {
+          "info": {
+            "name": "Create Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/warehouses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a warehouse record to your account."
+        },
+        {
+          "info": {
+            "name": "Get Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/warehouses/:warehouseId",
+            "params": [
+              {
+                "name": "warehouseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a warehouse by warehouseId."
+        },
+        {
+          "info": {
+            "name": "Update Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ssapi.shipstation.com/warehouses/:warehouseId",
+            "params": [
+              {
+                "name": "warehouseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing warehouse."
+        },
+        {
+          "info": {
+            "name": "Delete Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ssapi.shipstation.com/warehouses/:warehouseId",
+            "params": [
+              {
+                "name": "warehouseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a warehouse from ShipStation."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stores",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Stores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/stores",
+            "params": [
+              {
+                "name": "showInactive",
+                "value": "",
+                "type": "query",
+                "description": "Determines whether inactive stores are returned"
+              },
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by marketplace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of installed stores on the account."
+        },
+        {
+          "info": {
+            "name": "Get Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/stores/:storeId",
+            "params": [
+              {
+                "name": "storeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details about a specific store."
+        },
+        {
+          "info": {
+            "name": "Refresh Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/stores/refreshstore",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a store refresh."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fulfillments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Fulfillments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/fulfillments",
+            "params": [
+              {
+                "name": "fulfillmentId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trackingNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recipientName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "createDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "createDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shipDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shipDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtains a list of fulfillments that match the specified criteria."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/webhooks"
+          },
+          "docs": "Retrieves a list of registered webhooks for the account."
+        },
+        {
+          "info": {
+            "name": "Subscribe to Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribes to a specific type of event so that when the event occurs, a notification is sent to a specified URL."
+        },
+        {
+          "info": {
+            "name": "Unsubscribe from Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ssapi.shipstation.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unsubscribes from a specific webhook."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/accounts/listtags"
+          },
+          "docs": "Lists all tags defined for this account."
+        },
+        {
+          "info": {
+            "name": "Create Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/accounts/createtag",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tag that can be applied to orders."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
