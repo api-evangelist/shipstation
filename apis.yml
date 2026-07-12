@@ -104,6 +104,10 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: DomainSecurity
+  url: security/shipstation-domain-security.yml
+- type: Authentication
+  url: authentication/shipstation-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/shipstation
 - type: LinkedIn
@@ -152,3 +156,5 @@ common:
   url: https://www.shipstation.com/partners/
 - type: LlmsText
   url: https://docs.shipstation.com/llms.txt
+- url: https://www.shipstation.com/feed/
+  type: Blog
