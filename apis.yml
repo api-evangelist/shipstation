@@ -104,6 +104,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: AgenticAccess
+  url: agentic-access/shipstation-agentic-access.yml
 - type: DomainSecurity
   url: security/shipstation-domain-security.yml
 - type: Authentication
