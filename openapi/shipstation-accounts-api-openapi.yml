@@ -1,0 +1,79 @@
+openapi: 3.1.0
+info:
+  title: ShipStation V1 Accounts API
+  description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
+  version: '1.0'
+  contact:
+    name: ShipStation
+    url: https://www.shipstation.com/docs/api/
+    email: apisupport@shipstation.com
+  license:
+    name: ShipStation API Terms
+    url: https://www.shipstation.com/legal/terms-of-service/
+  x-date: '2026-05-02'
+servers:
+- url: https://ssapi.shipstation.com
+  description: ShipStation V1 API
+security:
+- BasicAuth: []
+tags:
+- name: Accounts
+  description: Manage ShipStation account settings
+paths:
+  /accounts/listtags:
+    get:
+      operationId: listTags
+      summary: List Tags
+      description: Lists all tags defined for this account.
+      tags:
+      - Accounts
+      responses:
+        '200':
+          description: A list of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+  /accounts/createtag:
+    post:
+      operationId: createTag
+      summary: Create Tag
+      description: Creates a new tag that can be applied to orders.
+      tags:
+      - Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                color:
+                  type: string
+      responses:
+        '200':
+          description: Tag created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+components:
+  schemas:
+    Tag:
+      type: object
+      properties:
+        tagId:
+          type: integer
+        name:
+          type: string
+        color:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using API Key as username and API Secret as password

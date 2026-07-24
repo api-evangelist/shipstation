@@ -1,0 +1,655 @@
+openapi: 3.1.0
+info:
+  title: ShipStation V1 Accounts Orders API
+  description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
+  version: '1.0'
+  contact:
+    name: ShipStation
+    url: https://www.shipstation.com/docs/api/
+    email: apisupport@shipstation.com
+  license:
+    name: ShipStation API Terms
+    url: https://www.shipstation.com/legal/terms-of-service/
+  x-date: '2026-05-02'
+servers:
+- url: https://ssapi.shipstation.com
+  description: ShipStation V1 API
+security:
+- BasicAuth: []
+tags:
+- name: Orders
+  description: Manage customer orders
+paths:
+  /orders:
+    get:
+      operationId: listOrders
+      summary: List Orders
+      description: Obtains a list of orders that match the specified criteria.
+      tags:
+      - Orders
+      parameters:
+      - name: customerName
+        in: query
+        description: Returns orders that match the specified name
+        schema:
+          type: string
+      - name: itemKeyword
+        in: query
+        description: Returns orders that contain items that match the specified keyword
+        schema:
+          type: string
+      - name: createDateStart
+        in: query
+        description: Returns orders that were created in ShipStation after the specified date
+        schema:
+          type: string
+          format: date-time
+      - name: createDateEnd
+        in: query
+        description: Returns orders that were created in ShipStation before the specified date
+        schema:
+          type: string
+          format: date-time
+      - name: modifyDateStart
+        in: query
+        description: Returns orders modified after the specified date
+        schema:
+          type: string
+          format: date-time
+      - name: modifyDateEnd
+        in: query
+        description: Returns orders modified before the specified date
+        schema:
+          type: string
+          format: date-time
+      - name: orderDateStart
+        in: query
+        description: Returns orders that were placed after the specified date
+        schema:
+          type: string
+          format: date-time
+      - name: orderDateEnd
+        in: query
+        description: Returns orders that were placed before the specified date
+        schema:
+          type: string
+          format: date-time
+      - name: orderNumber
+        in: query
+        description: Filter by order number
+        schema:
+          type: string
+      - name: orderStatus
+        in: query
+        description: Filter by order status
+        schema:
+          type: string
+          enum:
+          - awaiting_payment
+          - awaiting_shipment
+          - pending_fulfillment
+          - shipped
+          - on_hold
+          - cancelled
+      - name: paymentDateStart
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: paymentDateEnd
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: storeId
+        in: query
+        description: Filters orders by store
+        schema:
+          type: integer
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          enum:
+          - OrderDate
+          - ModifyDate
+          - CreateDate
+      - name: sortDir
+        in: query
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          maximum: 500
+      responses:
+        '200':
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderPaginatedList'
+    post:
+      operationId: createOrUpdateOrder
+      summary: Create or Update Order
+      description: Creates a new order or updates an existing order. This call does not support partial updates. The entire resource must be provided in the body of the request.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateRequest'
+      responses:
+        '200':
+          description: Order created or updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get Order
+      description: Retrieves a single order from the database.
+      tags:
+      - Orders
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        description: The system-generated identifier for the order
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Order object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+    delete:
+      operationId: deleteOrder
+      summary: Delete Order
+      description: Removes order from ShipStation's UI.
+      tags:
+      - Orders
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Order deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+  /orders/createorder:
+    post:
+      operationId: createOrder
+      summary: Create Order
+      description: Creates a new order. Use this endpoint when creating an order for the first time.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateRequest'
+      responses:
+        '200':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /orders/createorders:
+    post:
+      operationId: createOrders
+      summary: Create Orders (Bulk)
+      description: Creates multiple orders in a single request. Supports up to 100 orders.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderCreateRequest'
+              maxItems: 100
+      responses:
+        '200':
+          description: Orders created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasErrors:
+                    type: boolean
+                  results:
+                    type: array
+                    items:
+                      type: object
+  /orders/holduntil:
+    post:
+      operationId: holdOrderUntil
+      summary: Hold Order Until
+      description: Marks an order as on hold until the given date.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: integer
+                holdUntilDate:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Order placed on hold
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+  /orders/markasshipped:
+    post:
+      operationId: markOrderAsShipped
+      summary: Mark Order as Shipped
+      description: Marks an order as shipped without creating a label in ShipStation.
+      tags:
+      - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: integer
+                carrierId:
+                  type: integer
+                shipDate:
+                  type: string
+                trackingNumber:
+                  type: string
+                notifyCustomer:
+                  type: boolean
+                notifySalesChannel:
+                  type: boolean
+      responses:
+        '200':
+          description: Order marked as shipped
+          content:
+            application/json:
+              schema:
+                type: object
+  /orders/{orderId}/assignuser:
+    post:
+      operationId: assignOrderToUser
+      summary: Assign Order to User
+      description: Assigns the requested orders to the user specified.
+      tags:
+      - Orders
+      parameters:
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+      responses:
+        '200':
+          description: Order assigned to user
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    OrderPaginatedList:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    Weight:
+      type: object
+      properties:
+        value:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
+          type: integer
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of person
+        company:
+          type: string
+          description: Company
+        street1:
+          type: string
+          description: First line of address
+        street2:
+          type: string
+          description: Second line of address
+        street3:
+          type: string
+          description: Third line of address
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        residential:
+          type: boolean
+          description: Whether the address is residential
+    OrderCreateRequest:
+      type: object
+      required:
+      - orderNumber
+      - orderDate
+      - orderStatus
+      - billTo
+      - shipTo
+      properties:
+        orderNumber:
+          type: string
+        orderKey:
+          type: string
+        orderDate:
+          type: string
+          format: date-time
+        paymentDate:
+          type: string
+          format: date-time
+        shipByDate:
+          type: string
+          format: date-time
+        orderStatus:
+          type: string
+        customerId:
+          type: integer
+        customerUsername:
+          type: string
+        customerEmail:
+          type: string
+        billTo:
+          $ref: '#/components/schemas/Address'
+        shipTo:
+          $ref: '#/components/schemas/Address'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        amountPaid:
+          type: number
+        taxAmount:
+          type: number
+        shippingAmount:
+          type: number
+        customerNotes:
+          type: string
+        internalNotes:
+          type: string
+        gift:
+          type: boolean
+        giftMessage:
+          type: string
+        paymentMethod:
+          type: string
+        requestedShippingService:
+          type: string
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+        shipDate:
+          type: string
+          format: date
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        tagIds:
+          type: array
+          items:
+            type: integer
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: integer
+          description: System-generated identifier for each order
+        orderNumber:
+          type: string
+          description: User-generated order number
+        orderKey:
+          type: string
+          description: Unique identifier from the selling channel
+        orderDate:
+          type: string
+          format: date-time
+        createDate:
+          type: string
+          format: date-time
+        modifyDate:
+          type: string
+          format: date-time
+        paymentDate:
+          type: string
+          format: date-time
+        shipByDate:
+          type: string
+          format: date-time
+        orderStatus:
+          type: string
+          enum:
+          - awaiting_payment
+          - awaiting_shipment
+          - pending_fulfillment
+          - shipped
+          - on_hold
+          - cancelled
+        customerId:
+          type: integer
+        customerUsername:
+          type: string
+        customerEmail:
+          type: string
+        billTo:
+          $ref: '#/components/schemas/Address'
+        shipTo:
+          $ref: '#/components/schemas/Address'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        orderTotal:
+          type: number
+          format: float
+        amountPaid:
+          type: number
+          format: float
+        taxAmount:
+          type: number
+          format: float
+        shippingAmount:
+          type: number
+          format: float
+        customerNotes:
+          type: string
+        internalNotes:
+          type: string
+        gift:
+          type: boolean
+        giftMessage:
+          type: string
+        paymentMethod:
+          type: string
+        requestedShippingService:
+          type: string
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+          enum:
+          - none
+          - delivery
+          - signature
+          - adult_signature
+          - direct_signature
+        shipDate:
+          type: string
+          format: date
+        holdUntilDate:
+          type: string
+          format: date-time
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        insuranceOptions:
+          type: object
+        internationalOptions:
+          type: object
+        advancedOptions:
+          type: object
+        tagIds:
+          type: array
+          items:
+            type: integer
+        userId:
+          type: string
+        externallyFulfilled:
+          type: boolean
+        externallyFulfilledBy:
+          type: string
+    OrderItem:
+      type: object
+      properties:
+        lineItemKey:
+          type: string
+        sku:
+          type: string
+        name:
+          type: string
+        imageUrl:
+          type: string
+        weight:
+          $ref: '#/components/schemas/Weight'
+        quantity:
+          type: integer
+        unitPrice:
+          type: number
+          format: float
+        taxAmount:
+          type: number
+          format: float
+        shippingAmount:
+          type: number
+          format: float
+        warehouseLocation:
+          type: string
+        options:
+          type: array
+          items:
+            type: object
+        productId:
+          type: integer
+        fulfillmentSku:
+          type: string
+        adjustment:
+          type: boolean
+        upc:
+          type: string
+    Dimensions:
+      type: object
+      properties:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using API Key as username and API Secret as password

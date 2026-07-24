@@ -1,0 +1,135 @@
+openapi: 3.1.0
+info:
+  title: ShipStation V1 Accounts Stores API
+  description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
+  version: '1.0'
+  contact:
+    name: ShipStation
+    url: https://www.shipstation.com/docs/api/
+    email: apisupport@shipstation.com
+  license:
+    name: ShipStation API Terms
+    url: https://www.shipstation.com/legal/terms-of-service/
+  x-date: '2026-05-02'
+servers:
+- url: https://ssapi.shipstation.com
+  description: ShipStation V1 API
+security:
+- BasicAuth: []
+tags:
+- name: Stores
+  description: Manage marketplace store connections
+paths:
+  /stores:
+    get:
+      operationId: listStores
+      summary: List Stores
+      description: Retrieve the list of installed stores on the account.
+      tags:
+      - Stores
+      parameters:
+      - name: showInactive
+        in: query
+        description: Determines whether inactive stores are returned
+        schema:
+          type: boolean
+      - name: marketplaceId
+        in: query
+        description: Filter by marketplace ID
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of stores
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Store'
+  /stores/{storeId}:
+    get:
+      operationId: getStore
+      summary: Get Store
+      description: Get details about a specific store.
+      tags:
+      - Stores
+      parameters:
+      - name: storeId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Store object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Store'
+  /stores/refreshstore:
+    post:
+      operationId: refreshStore
+      summary: Refresh Store
+      description: Initiates a store refresh.
+      tags:
+      - Stores
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                storeId:
+                  type: integer
+                refreshDate:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Store refresh initiated
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    Store:
+      type: object
+      properties:
+        storeId:
+          type: integer
+        storeName:
+          type: string
+        marketplaceId:
+          type: integer
+        marketplaceName:
+          type: string
+        accountName:
+          type: string
+        email:
+          type: string
+        integrationUrl:
+          type: string
+        active:
+          type: boolean
+        companyName:
+          type: string
+        phone:
+          type: string
+        publicEmail:
+          type: string
+        website:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        modifyDate:
+          type: string
+          format: date-time
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using API Key as username and API Secret as password

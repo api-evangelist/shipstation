@@ -1,0 +1,239 @@
+openapi: 3.1.0
+info:
+  title: ShipStation V1 Accounts Products API
+  description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
+  version: '1.0'
+  contact:
+    name: ShipStation
+    url: https://www.shipstation.com/docs/api/
+    email: apisupport@shipstation.com
+  license:
+    name: ShipStation API Terms
+    url: https://www.shipstation.com/legal/terms-of-service/
+  x-date: '2026-05-02'
+servers:
+- url: https://ssapi.shipstation.com
+  description: ShipStation V1 API
+security:
+- BasicAuth: []
+tags:
+- name: Products
+  description: Manage product records
+paths:
+  /products:
+    get:
+      operationId: listProducts
+      summary: List Products
+      description: Obtains a list of products that match the specified criteria.
+      tags:
+      - Products
+      parameters:
+      - name: sku
+        in: query
+        schema:
+          type: string
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: productCategoryId
+        in: query
+        schema:
+          type: integer
+      - name: productTypeId
+        in: query
+        schema:
+          type: integer
+      - name: tagId
+        in: query
+        schema:
+          type: integer
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+      - name: sortDir
+        in: query
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      - name: showInactive
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductPaginatedList'
+  /products/{productId}:
+    get:
+      operationId: getProduct
+      summary: Get Product
+      description: Retrieves the product specified by the system-generated identifier.
+      tags:
+      - Products
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Product object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+    put:
+      operationId: updateProduct
+      summary: Update Product
+      description: Updates the specified product.
+      tags:
+      - Products
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Product updated
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    ProductPaginatedList:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    Tag:
+      type: object
+      properties:
+        tagId:
+          type: integer
+        name:
+          type: string
+        color:
+          type: string
+    Product:
+      type: object
+      properties:
+        productId:
+          type: integer
+        sku:
+          type: string
+        name:
+          type: string
+        price:
+          type: number
+          format: float
+        defaultCost:
+          type: number
+          format: float
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        weightOz:
+          type: number
+          format: float
+        internalNotes:
+          type: string
+        fulfillmentSku:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        modifyDate:
+          type: string
+          format: date-time
+        active:
+          type: boolean
+        productCategory:
+          type: object
+        productType:
+          type: object
+        warehouseLocation:
+          type: string
+        defaultCarrierCode:
+          type: string
+        defaultServiceCode:
+          type: string
+        defaultPackageCode:
+          type: string
+        defaultIntlCarrierCode:
+          type: string
+        defaultIntlServiceCode:
+          type: string
+        defaultIntlPackageCode:
+          type: string
+        defaultConfirmation:
+          type: string
+        defaultIntlConfirmation:
+          type: string
+        customsDescription:
+          type: string
+        customsValue:
+          type: number
+        customsTariffNo:
+          type: string
+        customsCountryCode:
+          type: string
+        noCustoms:
+          type: boolean
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using API Key as username and API Secret as password

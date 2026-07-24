@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: ShipStation V1 Accounts Customers API
+  description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
+  version: '1.0'
+  contact:
+    name: ShipStation
+    url: https://www.shipstation.com/docs/api/
+    email: apisupport@shipstation.com
+  license:
+    name: ShipStation API Terms
+    url: https://www.shipstation.com/legal/terms-of-service/
+  x-date: '2026-05-02'
+servers:
+- url: https://ssapi.shipstation.com
+  description: ShipStation V1 API
+security:
+- BasicAuth: []
+tags:
+- name: Customers
+  description: Manage customer records
+paths:
+  /customers:
+    get:
+      operationId: listCustomers
+      summary: List Customers
+      description: Obtains a list of customers that match the specified criteria.
+      tags:
+      - Customers
+      parameters:
+      - name: stateCode
+        in: query
+        schema:
+          type: string
+      - name: countryCode
+        in: query
+        schema:
+          type: string
+      - name: marketplaceId
+        in: query
+        schema:
+          type: integer
+      - name: tagId
+        in: query
+        schema:
+          type: integer
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+          enum:
+          - Name
+          - ModifyDate
+          - CreateDate
+      - name: sortDir
+        in: query
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of customers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPaginatedList'
+  /customers/{customerId}:
+    get:
+      operationId: getCustomer
+      summary: Get Customer
+      description: Gets the customer specified by the system-generated identifier.
+      tags:
+      - Customers
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Customer object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    put:
+      operationId: updateCustomer
+      summary: Update Customer
+      description: Updates the specified customer.
+      tags:
+      - Customers
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: Customer updated
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        customerId:
+          type: integer
+        createDate:
+          type: string
+          format: date-time
+        modifyDate:
+          type: string
+          format: date-time
+        name:
+          type: string
+        company:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        countryCode:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        addressVerified:
+          type: string
+    CustomerPaginatedList:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using API Key as username and API Secret as password

@@ -1,0 +1,460 @@
+openapi: 3.1.0
+info:
+  title: ShipStation V1 Accounts Shipments API
+  description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
+  version: '1.0'
+  contact:
+    name: ShipStation
+    url: https://www.shipstation.com/docs/api/
+    email: apisupport@shipstation.com
+  license:
+    name: ShipStation API Terms
+    url: https://www.shipstation.com/legal/terms-of-service/
+  x-date: '2026-05-02'
+servers:
+- url: https://ssapi.shipstation.com
+  description: ShipStation V1 API
+security:
+- BasicAuth: []
+tags:
+- name: Shipments
+  description: Create and manage shipments
+paths:
+  /shipments:
+    get:
+      operationId: listShipments
+      summary: List Shipments
+      description: Obtains a list of shipments that match the specified criteria.
+      tags:
+      - Shipments
+      parameters:
+      - name: recipientName
+        in: query
+        description: Returns shipments shipped to the specified recipient name
+        schema:
+          type: string
+      - name: recipientCountryCode
+        in: query
+        description: Returns shipments shipped to the specified country code
+        schema:
+          type: string
+      - name: orderNumber
+        in: query
+        description: Returns shipments for the specified order number
+        schema:
+          type: string
+      - name: orderId
+        in: query
+        description: Returns shipments for the specified order ID
+        schema:
+          type: integer
+      - name: carrierCode
+        in: query
+        description: Returns shipments shipped with the specified carrier
+        schema:
+          type: string
+      - name: serviceCode
+        in: query
+        description: Returns shipments shipped with the specified service
+        schema:
+          type: string
+      - name: trackingNumber
+        in: query
+        description: Returns shipments with the specified tracking number
+        schema:
+          type: string
+      - name: createDateStart
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: createDateEnd
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: shipDateStart
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: shipDateEnd
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: voidDateStart
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: voidDateEnd
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: storeId
+        in: query
+        schema:
+          type: integer
+      - name: includeShipmentItems
+        in: query
+        schema:
+          type: boolean
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+      - name: sortDir
+        in: query
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          maximum: 500
+      responses:
+        '200':
+          description: A list of shipments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentPaginatedList'
+  /shipments/createlabel:
+    post:
+      operationId: createShipmentLabel
+      summary: Create Shipment Label
+      description: Creates a shipping label for the specified order.
+      tags:
+      - Shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelCreateRequest'
+      responses:
+        '200':
+          description: Label created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+  /shipments/getrates:
+    post:
+      operationId: getShippingRates
+      summary: Get Shipping Rates
+      description: Retrieves shipping rates for the specified shipment details.
+      tags:
+      - Shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateRequest'
+      responses:
+        '200':
+          description: Shipping rates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rate'
+  /shipments/voidlabel:
+    post:
+      operationId: voidLabel
+      summary: Void Label
+      description: Voids the specified label.
+      tags:
+      - Shipments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                shipmentId:
+                  type: integer
+      responses:
+        '200':
+          description: Label voided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  approved:
+                    type: boolean
+                  message:
+                    type: string
+components:
+  schemas:
+    RateRequest:
+      type: object
+      required:
+      - carrierCode
+      - fromPostalCode
+      - toPostalCode
+      - toCountry
+      - weight
+      properties:
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        fromPostalCode:
+          type: string
+        toPostalCode:
+          type: string
+        toState:
+          type: string
+        toCountry:
+          type: string
+        toCity:
+          type: string
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        confirmation:
+          type: string
+        residential:
+          type: boolean
+    Shipment:
+      type: object
+      properties:
+        shipmentId:
+          type: integer
+        orderId:
+          type: integer
+        orderKey:
+          type: string
+        userId:
+          type: string
+        customerEmail:
+          type: string
+        orderNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        shipmentCost:
+          type: number
+          format: float
+        insuranceCost:
+          type: number
+          format: float
+        trackingNumber:
+          type: string
+        isReturnLabel:
+          type: boolean
+        batchNumber:
+          type: string
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+        warehouseId:
+          type: integer
+        voided:
+          type: boolean
+        voidDate:
+          type: string
+          format: date-time
+        marketplaceNotified:
+          type: boolean
+        notifyErrorMessage:
+          type: string
+        shipTo:
+          $ref: '#/components/schemas/Address'
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        insuranceOptions:
+          type: object
+        advancedOptions:
+          type: object
+        shipmentItems:
+          type: array
+          items:
+            type: object
+        labelData:
+          type: string
+          description: Base64-encoded label data
+        formData:
+          type: string
+    Label:
+      type: object
+      properties:
+        shipmentId:
+          type: integer
+        orderId:
+          type: integer
+        userId:
+          type: string
+        customerEmail:
+          type: string
+        orderNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        shipmentCost:
+          type: number
+        trackingNumber:
+          type: string
+        labelData:
+          type: string
+        formData:
+          type: string
+    Rate:
+      type: object
+      properties:
+        serviceName:
+          type: string
+        serviceCode:
+          type: string
+        shipmentCost:
+          type: number
+          format: float
+        otherCost:
+          type: number
+          format: float
+    Weight:
+      type: object
+      properties:
+        value:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
+          type: integer
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of person
+        company:
+          type: string
+          description: Company
+        street1:
+          type: string
+          description: First line of address
+        street2:
+          type: string
+          description: Second line of address
+        street3:
+          type: string
+          description: Third line of address
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        residential:
+          type: boolean
+          description: Whether the address is residential
+    ShipmentPaginatedList:
+      type: object
+      properties:
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    LabelCreateRequest:
+      type: object
+      required:
+      - orderId
+      - carrierCode
+      - serviceCode
+      - packageCode
+      - weight
+      properties:
+        orderId:
+          type: integer
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+        shipDate:
+          type: string
+          format: date
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        insuranceOptions:
+          type: object
+        internationalOptions:
+          type: object
+        advancedOptions:
+          type: object
+        testLabel:
+          type: boolean
+    Dimensions:
+      type: object
+      properties:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using API Key as username and API Secret as password

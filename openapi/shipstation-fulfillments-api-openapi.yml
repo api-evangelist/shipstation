@@ -1,0 +1,174 @@
+openapi: 3.1.0
+info:
+  title: ShipStation V1 Accounts Fulfillments API
+  description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
+  version: '1.0'
+  contact:
+    name: ShipStation
+    url: https://www.shipstation.com/docs/api/
+    email: apisupport@shipstation.com
+  license:
+    name: ShipStation API Terms
+    url: https://www.shipstation.com/legal/terms-of-service/
+  x-date: '2026-05-02'
+servers:
+- url: https://ssapi.shipstation.com
+  description: ShipStation V1 API
+security:
+- BasicAuth: []
+tags:
+- name: Fulfillments
+  description: Manage third-party fulfillments
+paths:
+  /fulfillments:
+    get:
+      operationId: listFulfillments
+      summary: List Fulfillments
+      description: Obtains a list of fulfillments that match the specified criteria.
+      tags:
+      - Fulfillments
+      parameters:
+      - name: fulfillmentId
+        in: query
+        schema:
+          type: integer
+      - name: orderId
+        in: query
+        schema:
+          type: integer
+      - name: orderNumber
+        in: query
+        schema:
+          type: string
+      - name: trackingNumber
+        in: query
+        schema:
+          type: string
+      - name: recipientName
+        in: query
+        schema:
+          type: string
+      - name: createDateStart
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: createDateEnd
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: shipDateStart
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: shipDateEnd
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: sortBy
+        in: query
+        schema:
+          type: string
+      - name: sortDir
+        in: query
+        schema:
+          type: string
+          enum:
+          - ASC
+          - DESC
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of fulfillments
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentPaginatedList'
+components:
+  schemas:
+    FulfillmentPaginatedList:
+      type: object
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    Fulfillment:
+      type: object
+      properties:
+        fulfillmentId:
+          type: integer
+        orderId:
+          type: integer
+        orderNumber:
+          type: string
+        userId:
+          type: string
+        customerEmail:
+          type: string
+        trackingNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        void:
+          type: boolean
+        deliveryEmail:
+          type: boolean
+        shipTo:
+          $ref: '#/components/schemas/Address'
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of person
+        company:
+          type: string
+          description: Company
+        street1:
+          type: string
+          description: First line of address
+        street2:
+          type: string
+          description: Second line of address
+        street3:
+          type: string
+          description: Third line of address
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        residential:
+          type: boolean
+          description: Whether the address is residential
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using API Key as username and API Secret as password

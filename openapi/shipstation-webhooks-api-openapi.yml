@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: ShipStation V1 Accounts Webhooks API
+  description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
+  version: '1.0'
+  contact:
+    name: ShipStation
+    url: https://www.shipstation.com/docs/api/
+    email: apisupport@shipstation.com
+  license:
+    name: ShipStation API Terms
+    url: https://www.shipstation.com/legal/terms-of-service/
+  x-date: '2026-05-02'
+servers:
+- url: https://ssapi.shipstation.com
+  description: ShipStation V1 API
+security:
+- BasicAuth: []
+tags:
+- name: Webhooks
+  description: Manage webhook subscriptions
+paths:
+  /webhooks:
+    get:
+      operationId: listWebhooks
+      summary: List Webhooks
+      description: Retrieves a list of registered webhooks for the account.
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: A list of webhooks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  webhooks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: subscribeToWebhook
+      summary: Subscribe to Webhook
+      description: Subscribes to a specific type of event so that when the event occurs, a notification is sent to a specified URL.
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookCreateRequest'
+      responses:
+        '200':
+          description: Webhook subscription created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+  /webhooks/{webhookId}:
+    delete:
+      operationId: unsubscribeFromWebhook
+      summary: Unsubscribe from Webhook
+      description: Unsubscribes from a specific webhook.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhookId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Webhook unsubscribed
+components:
+  schemas:
+    WebhookCreateRequest:
+      type: object
+      required:
+      - target_url
+      - event
+      properties:
+        target_url:
+          type: string
+          description: The URL where webhook events will be sent
+        event:
+          type: string
+          enum:
+          - ORDER_NOTIFY
+          - ITEM_ORDER_NOTIFY
+          - SHIP_NOTIFY
+          - ITEM_SHIP_NOTIFY
+        store_id:
+          type: string
+        friendly_name:
+          type: string
+    Webhook:
+      type: object
+      properties:
+        IsLabelAPIHook:
+          type: boolean
+        WebHookID:
+          type: integer
+        SellerID:
+          type: integer
+        StoreID:
+          type: integer
+        HookType:
+          type: string
+        MessageFormat:
+          type: string
+        Url:
+          type: string
+        Name:
+          type: string
+        BulkCopyBatchID:
+          type: string
+        BulkCopyRecordID:
+          type: string
+        Active:
+          type: boolean
+        WebhookLogs:
+          type: array
+          items:
+            type: object
+        Seller:
+          type: string
+        Store:
+          type: string
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication using API Key as username and API Secret as password
