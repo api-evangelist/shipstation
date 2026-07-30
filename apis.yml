@@ -1,39 +1,6 @@
 aid: shipstation
 url: https://raw.githubusercontent.com/api-evangelist/shipstation/refs/heads/main/apis.yml
 apis:
-- aid: shipstation:shipstation-v1-api
-  name: ShipStation V1 API
-  tags:
-  - Ecommerce
-  - Labels
-  - Order Management
-  - Shipping
-  humanURL: https://www.shipstation.com/docs/api/
-  properties:
-  - url: https://www.shipstation.com/docs/api/
-    type: Documentation
-  - url: openapi/shipstation-v1-openapi.yml
-    type: OpenAPI
-  - url: asyncapi/shipstation-webhooks-asyncapi.yml
-    type: AsyncAPI
-  - url: json-schema/shipstation-order-schema.json
-    type: JSONSchema
-  - url: json-schema/shipstation-shipment-schema.json
-    type: JSONSchema
-  - url: json-ld/shipstation-context.jsonld
-    type: JSONLD
-  - url: rules/shipstation-rules.yml
-    type: SpectralRules
-  - url: vocabulary/shipstation-vocabulary.yml
-    type: Vocabulary
-  - url: graphql/shipstation-graphql.md
-    type: GraphQL
-  description: The ShipStation V1 API provides programmatic access to ShipStation's
-    shipping platform for ecommerce businesses. Endpoints cover order management,
-    shipment creation, label generation, carrier rate shopping, package tracking,
-    warehouse management, product management, and store integrations. Authentication
-    uses HTTP Basic auth with API key and secret. Base URL is https://ssapi.shipstation.com
-    with a rate limit of 40 requests per minute.
 - aid: shipstation:shipstation-v2-api
   name: ShipStation V2 API
   tags:
@@ -47,11 +14,261 @@ apis:
     type: Documentation
   - url: https://docs.shipstation.com/rest
     type: APIReference
-  description: The ShipStation V2 API is the next-generation shipping and inventory
-    API built on ShipEngine technology. It provides improved endpoints for creating
-    orders, managing customers, querying order and shipping data, and integrating
-    with ShipStation's multi-carrier shipping platform. Available to Standard plan
+  description: >-
+    The ShipStation V2 API is the next-generation shipping and inventory API built on ShipEngine technology.
+    It provides improved endpoints for creating orders, managing customers, querying order and shipping
+    data, and integrating with ShipStation's multi-carrier shipping platform. Available to Standard plan
     and higher accounts with the API add-on.
+- aid: shipstation:shipstation-accounts-api
+  name: ShipStation Accounts API
+  description: Manage ShipStation account settings
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
+- aid: shipstation:shipstation-carriers-api
+  name: ShipStation Carriers API
+  description: Query carriers and services
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Carriers
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-carriers-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
+- aid: shipstation:shipstation-customers-api
+  name: ShipStation Customers API
+  description: Manage customer records
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-customers-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
+- aid: shipstation:shipstation-fulfillments-api
+  name: ShipStation Fulfillments API
+  description: Manage third-party fulfillments
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Fulfillments
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-fulfillments-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
+- aid: shipstation:shipstation-orders-api
+  name: ShipStation Orders API
+  description: Manage customer orders
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-orders-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
+- aid: shipstation:shipstation-products-api
+  name: ShipStation Products API
+  description: Manage product records
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-products-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
+- aid: shipstation:shipstation-shipments-api
+  name: ShipStation Shipments API
+  description: Create and manage shipments
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Shipments
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-shipments-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
+- aid: shipstation:shipstation-stores-api
+  name: ShipStation Stores API
+  description: Manage marketplace store connections
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Stores
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-stores-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
+- aid: shipstation:shipstation-warehouses-api
+  name: ShipStation Warehouses API
+  description: Manage warehouse locations
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Warehouses
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-warehouses-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
+- aid: shipstation:shipstation-webhooks-api
+  name: ShipStation Webhooks API
+  description: Manage webhook subscriptions
+  humanURL: https://www.shipstation.com/docs/api/
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/shipstation-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipstation.com/docs/api/
+  - type: AsyncAPI
+    url: asyncapi/shipstation-webhooks-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/shipstation-order-schema.json
+  - type: JSONSchema
+    url: json-schema/shipstation-shipment-schema.json
+  - type: JSONLD
+    url: json-ld/shipstation-context.jsonld
+  - type: SpectralRules
+    url: rules/shipstation-rules.yml
+  - type: Vocabulary
+    url: vocabulary/shipstation-vocabulary.yml
+  - type: GraphQL
+    url: graphql/shipstation-graphql.md
 name: ShipStation
 tags:
 - Ecommerce
@@ -61,7 +278,20 @@ tags:
 - Shipping
 - Warehousing
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/shipstation.png
 access: 3rd-Party
 created: '2025-03-01'
 modified: '2026-05-30'
@@ -104,6 +334,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.19'
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/shipstation/overview
 - type: AgenticAccess
   url: agentic-access/shipstation-agentic-access.yml
 - type: DomainSecurity
