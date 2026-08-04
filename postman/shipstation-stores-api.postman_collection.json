@@ -1,0 +1,350 @@
+{
+  "info": {
+    "_postman_id": "cbdfa331-9ab2-4048-a882-8b5eea459dd3",
+    "name": "ShipStation V1 Accounts Stores API",
+    "description": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:53:08.000Z",
+    "updatedAt": "2026-07-28T02:53:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cbdfa331-9ab2-4048-a882-8b5eea459dd3"
+  },
+  "item": [
+    {
+      "name": "stores",
+      "item": [
+        {
+          "name": "{storeId}",
+          "item": [
+            {
+              "name": "Get Store",
+              "id": "403d2e8c-3164-422a-b323-afd2ea35b022",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stores/:storeId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stores",
+                    ":storeId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "184cdbee-7d1d-4fde-83c8-1cc83baeff94",
+                      "key": "storeId",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Get details about a specific store."
+              },
+              "response": [
+                {
+                  "id": "e4b18872-6648-4abd-b97d-f3b38c3a1d9c",
+                  "name": "Store object",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/stores/:storeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stores",
+                        ":storeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "storeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"storeId\": \"<integer>\",\n  \"storeName\": \"<string>\",\n  \"marketplaceId\": \"<integer>\",\n  \"marketplaceName\": \"<string>\",\n  \"accountName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"integrationUrl\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"companyName\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"publicEmail\": \"<string>\",\n  \"website\": \"<string>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:53:09.000Z",
+                  "updatedAt": "2026-07-28T02:53:09.000Z",
+                  "uid": "35240-e4b18872-6648-4abd-b97d-f3b38c3a1d9c"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:09.000Z",
+              "updatedAt": "2026-07-28T02:53:09.000Z",
+              "uid": "35240-403d2e8c-3164-422a-b323-afd2ea35b022"
+            }
+          ],
+          "id": "e882e34d-f479-4d82-85fe-1fc12b07cd94",
+          "createdAt": "2026-07-28T02:53:09.000Z",
+          "updatedAt": "2026-07-28T02:53:09.000Z",
+          "uid": "35240-e882e34d-f479-4d82-85fe-1fc12b07cd94"
+        },
+        {
+          "name": "refreshstore",
+          "item": [
+            {
+              "name": "Refresh Store",
+              "id": "1f925424-4b50-45fa-88d0-498d19ee485d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"storeId\": \"<integer>\",\n  \"refreshDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/stores/refreshstore",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stores",
+                    "refreshstore"
+                  ]
+                },
+                "description": "Initiates a store refresh."
+              },
+              "response": [
+                {
+                  "id": "ab7c3e70-c917-4094-a9a5-a57c652a1a74",
+                  "name": "Store refresh initiated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"storeId\": \"<integer>\",\n  \"refreshDate\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/stores/refreshstore",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "stores",
+                        "refreshstore"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:53:09.000Z",
+                  "updatedAt": "2026-07-28T02:53:09.000Z",
+                  "uid": "35240-ab7c3e70-c917-4094-a9a5-a57c652a1a74"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:09.000Z",
+              "updatedAt": "2026-07-28T02:53:09.000Z",
+              "uid": "35240-1f925424-4b50-45fa-88d0-498d19ee485d"
+            }
+          ],
+          "id": "3b46d51c-9b0a-488f-8af6-d2ab36c7e080",
+          "createdAt": "2026-07-28T02:53:09.000Z",
+          "updatedAt": "2026-07-28T02:53:09.000Z",
+          "uid": "35240-3b46d51c-9b0a-488f-8af6-d2ab36c7e080"
+        },
+        {
+          "name": "List Stores",
+          "id": "089bb7ec-6899-4aec-a4e6-c43f32931597",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/stores?showInactive=<boolean>&marketplaceId=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "stores"
+              ],
+              "query": [
+                {
+                  "description": "Determines whether inactive stores are returned",
+                  "key": "showInactive",
+                  "value": "<boolean>"
+                },
+                {
+                  "description": "Filter by marketplace ID",
+                  "key": "marketplaceId",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieve the list of installed stores on the account."
+          },
+          "response": [
+            {
+              "id": "f0fd6615-f014-4ced-91b2-4a4253f2fa47",
+              "name": "A list of stores",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/stores?showInactive=<boolean>&marketplaceId=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "stores"
+                  ],
+                  "query": [
+                    {
+                      "description": "Determines whether inactive stores are returned",
+                      "key": "showInactive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Filter by marketplace ID",
+                      "key": "marketplaceId",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"storeId\": \"<integer>\",\n    \"storeName\": \"<string>\",\n    \"marketplaceId\": \"<integer>\",\n    \"marketplaceName\": \"<string>\",\n    \"accountName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"integrationUrl\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"companyName\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"publicEmail\": \"<string>\",\n    \"website\": \"<string>\",\n    \"createDate\": \"<dateTime>\",\n    \"modifyDate\": \"<dateTime>\"\n  },\n  {\n    \"storeId\": \"<integer>\",\n    \"storeName\": \"<string>\",\n    \"marketplaceId\": \"<integer>\",\n    \"marketplaceName\": \"<string>\",\n    \"accountName\": \"<string>\",\n    \"email\": \"<string>\",\n    \"integrationUrl\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"companyName\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"publicEmail\": \"<string>\",\n    \"website\": \"<string>\",\n    \"createDate\": \"<dateTime>\",\n    \"modifyDate\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:53:09.000Z",
+              "updatedAt": "2026-07-28T02:53:09.000Z",
+              "uid": "35240-f0fd6615-f014-4ced-91b2-4a4253f2fa47"
+            }
+          ],
+          "createdAt": "2026-07-28T02:53:09.000Z",
+          "updatedAt": "2026-07-28T02:53:09.000Z",
+          "uid": "35240-089bb7ec-6899-4aec-a4e6-c43f32931597"
+        }
+      ],
+      "id": "21c7aeb8-3f55-4512-9e4d-efe262330ad9",
+      "createdAt": "2026-07-28T02:53:09.000Z",
+      "updatedAt": "2026-07-28T02:53:09.000Z",
+      "uid": "35240-21c7aeb8-3f55-4512-9e4d-efe262330ad9"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ssapi.shipstation.com"
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "info": {
+    "_postman_id": "2b379d46-874d-4a84-b21c-0229b42dea22",
+    "name": "ShipStation V1 Accounts API",
+    "description": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:53:00.000Z",
+    "updatedAt": "2026-07-28T02:53:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2b379d46-874d-4a84-b21c-0229b42dea22"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "listtags",
+          "item": [
+            {
+              "name": "List Tags",
+              "id": "2254d7ef-b2f0-4c89-be14-5cd8fa4ade2b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/listtags",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    "listtags"
+                  ]
+                },
+                "description": "Lists all tags defined for this account."
+              },
+              "response": [
+                {
+                  "id": "a32bf3ba-e17a-42f9-bb7c-f2cb59207d3a",
+                  "name": "A list of tags",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/listtags",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "listtags"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"tagId\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"color\": \"<string>\"\n  },\n  {\n    \"tagId\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"color\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T02:53:01.000Z",
+                  "updatedAt": "2026-07-28T02:53:01.000Z",
+                  "uid": "35240-a32bf3ba-e17a-42f9-bb7c-f2cb59207d3a"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:00.000Z",
+              "updatedAt": "2026-07-28T02:53:00.000Z",
+              "uid": "35240-2254d7ef-b2f0-4c89-be14-5cd8fa4ade2b"
+            }
+          ],
+          "id": "6fa4d7d1-c8f2-4fc1-a344-14cd1d6b1dd4",
+          "createdAt": "2026-07-28T02:53:00.000Z",
+          "updatedAt": "2026-07-28T02:53:00.000Z",
+          "uid": "35240-6fa4d7d1-c8f2-4fc1-a344-14cd1d6b1dd4"
+        },
+        {
+          "name": "createtag",
+          "item": [
+            {
+              "name": "Create Tag",
+              "id": "30897951-03a6-4ee9-86da-a9a1802ee498",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/createtag",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    "createtag"
+                  ]
+                },
+                "description": "Creates a new tag that can be applied to orders."
+              },
+              "response": [
+                {
+                  "id": "a572199b-6529-4377-bc3b-7bf27fe69e61",
+                  "name": "Tag created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/createtag",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        "createtag"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"tagId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:53:01.000Z",
+                  "updatedAt": "2026-07-28T02:53:01.000Z",
+                  "uid": "35240-a572199b-6529-4377-bc3b-7bf27fe69e61"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:00.000Z",
+              "updatedAt": "2026-07-28T02:53:00.000Z",
+              "uid": "35240-30897951-03a6-4ee9-86da-a9a1802ee498"
+            }
+          ],
+          "id": "d97b5966-13d2-4588-aa33-cca6b2ef6bc5",
+          "createdAt": "2026-07-28T02:53:00.000Z",
+          "updatedAt": "2026-07-28T02:53:00.000Z",
+          "uid": "35240-d97b5966-13d2-4588-aa33-cca6b2ef6bc5"
+        }
+      ],
+      "id": "f752e6dd-e6d7-4f62-813e-581b41955576",
+      "createdAt": "2026-07-28T02:53:00.000Z",
+      "updatedAt": "2026-07-28T02:53:00.000Z",
+      "uid": "35240-f752e6dd-e6d7-4f62-813e-581b41955576"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ssapi.shipstation.com"
+    }
+  ]
+}

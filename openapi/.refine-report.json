@@ -1,0 +1,32 @@
+{
+  "provider": "shipstation",
+  "sources": [
+    "shipstation-accounts-api-openapi.yml",
+    "shipstation-carriers-api-openapi.yml",
+    "shipstation-customers-api-openapi.yml",
+    "shipstation-fulfillments-api-openapi.yml",
+    "shipstation-orders-api-openapi.yml",
+    "shipstation-products-api-openapi.yml",
+    "shipstation-shipments-api-openapi.yml",
+    "shipstation-stores-api-openapi.yml",
+    "shipstation-warehouses-api-openapi.yml",
+    "shipstation-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "shipstation-accounts-api-openapi.yml",
+    "shipstation-carriers-api-openapi.yml",
+    "shipstation-customers-api-openapi.yml",
+    "shipstation-fulfillments-api-openapi.yml",
+    "shipstation-orders-api-openapi.yml",
+    "shipstation-products-api-openapi.yml",
+    "shipstation-shipments-api-openapi.yml",
+    "shipstation-stores-api-openapi.yml",
+    "shipstation-warehouses-api-openapi.yml",
+    "shipstation-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

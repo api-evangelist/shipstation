@@ -1,0 +1,430 @@
+{
+  "info": {
+    "_postman_id": "f1e0edc6-a1f5-4f18-b66f-47f2255f40a3",
+    "name": "ShipStation V1 Accounts Products API",
+    "description": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:53:06.000Z",
+    "updatedAt": "2026-07-28T02:53:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f1e0edc6-a1f5-4f18-b66f-47f2255f40a3"
+  },
+  "item": [
+    {
+      "name": "products",
+      "item": [
+        {
+          "name": "{productId}",
+          "item": [
+            {
+              "name": "Get Product",
+              "id": "58ebe792-09ff-4d0f-bc60-4b3ef8459299",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products/:productId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "eab35ec2-7867-47ba-89f5-d48046dcc063",
+                      "key": "productId",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves the product specified by the system-generated identifier."
+              },
+              "response": [
+                {
+                  "id": "f9df695e-3b32-44b0-9337-1143b99188bb",
+                  "name": "Product object",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/products/:productId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "products",
+                        ":productId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "productId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"productId\": \"<integer>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<float>\",\n  \"defaultCost\": \"<float>\",\n  \"length\": \"<float>\",\n  \"width\": \"<float>\",\n  \"height\": \"<float>\",\n  \"weightOz\": \"<float>\",\n  \"internalNotes\": \"<string>\",\n  \"fulfillmentSku\": \"<string>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"active\": \"<boolean>\",\n  \"productCategory\": {},\n  \"productType\": {},\n  \"warehouseLocation\": \"<string>\",\n  \"defaultCarrierCode\": \"<string>\",\n  \"defaultServiceCode\": \"<string>\",\n  \"defaultPackageCode\": \"<string>\",\n  \"defaultIntlCarrierCode\": \"<string>\",\n  \"defaultIntlServiceCode\": \"<string>\",\n  \"defaultIntlPackageCode\": \"<string>\",\n  \"defaultConfirmation\": \"<string>\",\n  \"defaultIntlConfirmation\": \"<string>\",\n  \"customsDescription\": \"<string>\",\n  \"customsValue\": \"<number>\",\n  \"customsTariffNo\": \"<string>\",\n  \"customsCountryCode\": \"<string>\",\n  \"noCustoms\": \"<boolean>\",\n  \"tags\": [\n    {\n      \"tagId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    },\n    {\n      \"tagId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:53:07.000Z",
+                  "updatedAt": "2026-07-28T02:53:07.000Z",
+                  "uid": "35240-f9df695e-3b32-44b0-9337-1143b99188bb"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:07.000Z",
+              "updatedAt": "2026-07-28T02:53:07.000Z",
+              "uid": "35240-58ebe792-09ff-4d0f-bc60-4b3ef8459299"
+            },
+            {
+              "name": "Update Product",
+              "id": "ffa63a06-d4f9-4533-bb2d-a46ac24f0189",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"<integer>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<float>\",\n  \"defaultCost\": \"<float>\",\n  \"length\": \"<float>\",\n  \"width\": \"<float>\",\n  \"height\": \"<float>\",\n  \"weightOz\": \"<float>\",\n  \"internalNotes\": \"<string>\",\n  \"fulfillmentSku\": \"<string>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"active\": \"<boolean>\",\n  \"productCategory\": {},\n  \"productType\": {},\n  \"warehouseLocation\": \"<string>\",\n  \"defaultCarrierCode\": \"<string>\",\n  \"defaultServiceCode\": \"<string>\",\n  \"defaultPackageCode\": \"<string>\",\n  \"defaultIntlCarrierCode\": \"<string>\",\n  \"defaultIntlServiceCode\": \"<string>\",\n  \"defaultIntlPackageCode\": \"<string>\",\n  \"defaultConfirmation\": \"<string>\",\n  \"defaultIntlConfirmation\": \"<string>\",\n  \"customsDescription\": \"<string>\",\n  \"customsValue\": \"<number>\",\n  \"customsTariffNo\": \"<string>\",\n  \"customsCountryCode\": \"<string>\",\n  \"noCustoms\": \"<boolean>\",\n  \"tags\": [\n    {\n      \"tagId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    },\n    {\n      \"tagId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/products/:productId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bcbb49e6-7c35-43ac-a5db-6b89cc312708",
+                      "key": "productId",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Updates the specified product."
+              },
+              "response": [
+                {
+                  "id": "ea7fabad-5faa-474f-bfc5-c488c6a3b16e",
+                  "name": "Product updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"productId\": \"<integer>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<float>\",\n  \"defaultCost\": \"<float>\",\n  \"length\": \"<float>\",\n  \"width\": \"<float>\",\n  \"height\": \"<float>\",\n  \"weightOz\": \"<float>\",\n  \"internalNotes\": \"<string>\",\n  \"fulfillmentSku\": \"<string>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"active\": \"<boolean>\",\n  \"productCategory\": {},\n  \"productType\": {},\n  \"warehouseLocation\": \"<string>\",\n  \"defaultCarrierCode\": \"<string>\",\n  \"defaultServiceCode\": \"<string>\",\n  \"defaultPackageCode\": \"<string>\",\n  \"defaultIntlCarrierCode\": \"<string>\",\n  \"defaultIntlServiceCode\": \"<string>\",\n  \"defaultIntlPackageCode\": \"<string>\",\n  \"defaultConfirmation\": \"<string>\",\n  \"defaultIntlConfirmation\": \"<string>\",\n  \"customsDescription\": \"<string>\",\n  \"customsValue\": \"<number>\",\n  \"customsTariffNo\": \"<string>\",\n  \"customsCountryCode\": \"<string>\",\n  \"noCustoms\": \"<boolean>\",\n  \"tags\": [\n    {\n      \"tagId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    },\n    {\n      \"tagId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/products/:productId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "products",
+                        ":productId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "productId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:53:07.000Z",
+                  "updatedAt": "2026-07-28T02:53:07.000Z",
+                  "uid": "35240-ea7fabad-5faa-474f-bfc5-c488c6a3b16e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:07.000Z",
+              "updatedAt": "2026-07-28T02:53:07.000Z",
+              "uid": "35240-ffa63a06-d4f9-4533-bb2d-a46ac24f0189"
+            }
+          ],
+          "id": "4adcde1e-83de-4550-958a-3584fd147cb3",
+          "createdAt": "2026-07-28T02:53:07.000Z",
+          "updatedAt": "2026-07-28T02:53:07.000Z",
+          "uid": "35240-4adcde1e-83de-4550-958a-3584fd147cb3"
+        },
+        {
+          "name": "List Products",
+          "id": "821854f7-fa79-4310-b1c7-e816c5c8dab0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/products?sku=<string>&name=<string>&productCategoryId=<integer>&productTypeId=<integer>&tagId=<integer>&startDate=<dateTime>&endDate=<dateTime>&sortBy=<string>&sortDir=DESC&page=<integer>&pageSize=<integer>&showInactive=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "sku",
+                  "value": "<string>"
+                },
+                {
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "key": "productCategoryId",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "productTypeId",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "tagId",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "startDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "key": "sortDir",
+                  "value": "DESC"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "showInactive",
+                  "value": "<boolean>"
+                }
+              ]
+            },
+            "description": "Obtains a list of products that match the specified criteria."
+          },
+          "response": [
+            {
+              "id": "75b679a0-e3e3-4428-92cb-4ffea8eddf61",
+              "name": "A list of products",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/products?sku=<string>&name=<string>&productCategoryId=<integer>&productTypeId=<integer>&tagId=<integer>&startDate=<dateTime>&endDate=<dateTime>&sortBy=<string>&sortDir=DESC&page=<integer>&pageSize=<integer>&showInactive=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productCategoryId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "productTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tagId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "showInactive",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"products\": [\n    {\n      \"productId\": \"<integer>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<float>\",\n      \"defaultCost\": \"<float>\",\n      \"length\": \"<float>\",\n      \"width\": \"<float>\",\n      \"height\": \"<float>\",\n      \"weightOz\": \"<float>\",\n      \"internalNotes\": \"<string>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"createDate\": \"<dateTime>\",\n      \"modifyDate\": \"<dateTime>\",\n      \"active\": \"<boolean>\",\n      \"productCategory\": {},\n      \"productType\": {},\n      \"warehouseLocation\": \"<string>\",\n      \"defaultCarrierCode\": \"<string>\",\n      \"defaultServiceCode\": \"<string>\",\n      \"defaultPackageCode\": \"<string>\",\n      \"defaultIntlCarrierCode\": \"<string>\",\n      \"defaultIntlServiceCode\": \"<string>\",\n      \"defaultIntlPackageCode\": \"<string>\",\n      \"defaultConfirmation\": \"<string>\",\n      \"defaultIntlConfirmation\": \"<string>\",\n      \"customsDescription\": \"<string>\",\n      \"customsValue\": \"<number>\",\n      \"customsTariffNo\": \"<string>\",\n      \"customsCountryCode\": \"<string>\",\n      \"noCustoms\": \"<boolean>\",\n      \"tags\": [\n        {\n          \"tagId\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"color\": \"<string>\"\n        },\n        {\n          \"tagId\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"color\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"productId\": \"<integer>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"price\": \"<float>\",\n      \"defaultCost\": \"<float>\",\n      \"length\": \"<float>\",\n      \"width\": \"<float>\",\n      \"height\": \"<float>\",\n      \"weightOz\": \"<float>\",\n      \"internalNotes\": \"<string>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"createDate\": \"<dateTime>\",\n      \"modifyDate\": \"<dateTime>\",\n      \"active\": \"<boolean>\",\n      \"productCategory\": {},\n      \"productType\": {},\n      \"warehouseLocation\": \"<string>\",\n      \"defaultCarrierCode\": \"<string>\",\n      \"defaultServiceCode\": \"<string>\",\n      \"defaultPackageCode\": \"<string>\",\n      \"defaultIntlCarrierCode\": \"<string>\",\n      \"defaultIntlServiceCode\": \"<string>\",\n      \"defaultIntlPackageCode\": \"<string>\",\n      \"defaultConfirmation\": \"<string>\",\n      \"defaultIntlConfirmation\": \"<string>\",\n      \"customsDescription\": \"<string>\",\n      \"customsValue\": \"<number>\",\n      \"customsTariffNo\": \"<string>\",\n      \"customsCountryCode\": \"<string>\",\n      \"noCustoms\": \"<boolean>\",\n      \"tags\": [\n        {\n          \"tagId\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"color\": \"<string>\"\n        },\n        {\n          \"tagId\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"color\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pages\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:53:07.000Z",
+              "updatedAt": "2026-07-28T02:53:07.000Z",
+              "uid": "35240-75b679a0-e3e3-4428-92cb-4ffea8eddf61"
+            }
+          ],
+          "createdAt": "2026-07-28T02:53:07.000Z",
+          "updatedAt": "2026-07-28T02:53:07.000Z",
+          "uid": "35240-821854f7-fa79-4310-b1c7-e816c5c8dab0"
+        }
+      ],
+      "id": "a31012b5-91f9-467b-9fa7-1517f538a14a",
+      "createdAt": "2026-07-28T02:53:07.000Z",
+      "updatedAt": "2026-07-28T02:53:07.000Z",
+      "uid": "35240-a31012b5-91f9-467b-9fa7-1517f538a14a"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ssapi.shipstation.com"
+    }
+  ]
+}

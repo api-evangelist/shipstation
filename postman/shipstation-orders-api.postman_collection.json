@@ -1,0 +1,1140 @@
+{
+  "info": {
+    "_postman_id": "94e9bd84-58d4-42b8-88ba-c16ca02a718c",
+    "name": "ShipStation V1 Accounts Orders API",
+    "description": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:53:05.000Z",
+    "updatedAt": "2026-07-28T02:53:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-94e9bd84-58d4-42b8-88ba-c16ca02a718c"
+  },
+  "item": [
+    {
+      "name": "orders",
+      "item": [
+        {
+          "name": "{orderId}",
+          "item": [
+            {
+              "name": "assignuser",
+              "item": [
+                {
+                  "name": "Assign Order to User",
+                  "id": "f9ece784-bd4d-4d79-9572-de6d39089906",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"userId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId/assignuser",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId",
+                        "assignuser"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6fc25366-7693-422b-ad7f-bff7a916421a",
+                          "key": "orderId",
+                          "value": "<integer>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Assigns the requested orders to the user specified."
+                  },
+                  "response": [
+                    {
+                      "id": "73464bbb-3e33-41ed-ad05-72ed144075d8",
+                      "name": "Order assigned to user",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"userId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orders/:orderId/assignuser",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            ":orderId",
+                            "assignuser"
+                          ],
+                          "variable": [
+                            {
+                              "key": "orderId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T02:53:06.000Z",
+                      "updatedAt": "2026-07-28T02:53:06.000Z",
+                      "uid": "35240-73464bbb-3e33-41ed-ad05-72ed144075d8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:53:06.000Z",
+                  "updatedAt": "2026-07-28T02:53:06.000Z",
+                  "uid": "35240-f9ece784-bd4d-4d79-9572-de6d39089906"
+                }
+              ],
+              "id": "c329433a-c602-447a-83c4-bcf66e23df9c",
+              "createdAt": "2026-07-28T02:53:06.000Z",
+              "updatedAt": "2026-07-28T02:53:06.000Z",
+              "uid": "35240-c329433a-c602-447a-83c4-bcf66e23df9c"
+            },
+            {
+              "name": "Get Order",
+              "id": "49e459f6-a459-440f-8e7e-5dbb996a7385",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "39e5e5c7-ac35-479b-89b9-b6cb6db8c23b",
+                      "key": "orderId",
+                      "value": "<integer>",
+                      "description": "(Required) The system-generated identifier for the order"
+                    }
+                  ]
+                },
+                "description": "Retrieves a single order from the database."
+              },
+              "response": [
+                {
+                  "id": "fdcdbf4c-947c-4aba-a95b-2b49d95a29ad",
+                  "name": "Order object",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"orderId\": \"<integer>\",\n  \"orderNumber\": \"<string>\",\n  \"orderKey\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"paymentDate\": \"<dateTime>\",\n  \"shipByDate\": \"<dateTime>\",\n  \"orderStatus\": \"awaiting_payment\",\n  \"customerId\": \"<integer>\",\n  \"customerUsername\": \"<string>\",\n  \"customerEmail\": \"<string>\",\n  \"billTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"shipTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"items\": [\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"ounces\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    },\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"grams\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    }\n  ],\n  \"orderTotal\": \"<float>\",\n  \"amountPaid\": \"<float>\",\n  \"taxAmount\": \"<float>\",\n  \"shippingAmount\": \"<float>\",\n  \"customerNotes\": \"<string>\",\n  \"internalNotes\": \"<string>\",\n  \"gift\": \"<boolean>\",\n  \"giftMessage\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"requestedShippingService\": \"<string>\",\n  \"carrierCode\": \"<string>\",\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"confirmation\": \"none\",\n  \"shipDate\": \"<date>\",\n  \"holdUntilDate\": \"<dateTime>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"pounds\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"inches\"\n  },\n  \"insuranceOptions\": {},\n  \"internationalOptions\": {},\n  \"advancedOptions\": {},\n  \"tagIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"userId\": \"<string>\",\n  \"externallyFulfilled\": \"<boolean>\",\n  \"externallyFulfilledBy\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:53:06.000Z",
+                  "updatedAt": "2026-07-28T02:53:06.000Z",
+                  "uid": "35240-fdcdbf4c-947c-4aba-a95b-2b49d95a29ad"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:06.000Z",
+              "updatedAt": "2026-07-28T02:53:06.000Z",
+              "uid": "35240-49e459f6-a459-440f-8e7e-5dbb996a7385"
+            },
+            {
+              "name": "Delete Order",
+              "id": "2c42e400-3478-44b9-803d-fa9d58e6c2e8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2c8fe977-c958-461b-9bb0-9a531b52e33c",
+                      "key": "orderId",
+                      "value": "<integer>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Removes order from ShipStation's UI."
+              },
+              "response": [
+                {
+                  "id": "17cc88ef-4eaf-457f-9d36-61b287fdb555",
+                  "name": "Order deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:53:06.000Z",
+                  "updatedAt": "2026-07-28T02:53:06.000Z",
+                  "uid": "35240-17cc88ef-4eaf-457f-9d36-61b287fdb555"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:06.000Z",
+              "updatedAt": "2026-07-28T02:53:06.000Z",
+              "uid": "35240-2c42e400-3478-44b9-803d-fa9d58e6c2e8"
+            }
+          ],
+          "id": "8533fdb1-398e-4fac-87bf-79a5afa1354f",
+          "createdAt": "2026-07-28T02:53:06.000Z",
+          "updatedAt": "2026-07-28T02:53:06.000Z",
+          "uid": "35240-8533fdb1-398e-4fac-87bf-79a5afa1354f"
+        },
+        {
+          "name": "createorder",
+          "item": [
+            {
+              "name": "Create Order",
+              "id": "a3a83f44-28a6-4ed0-a223-55b4003bc0cf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderNumber\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"orderStatus\": \"<string>\",\n  \"billTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"shipTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"orderKey\": \"<string>\",\n  \"paymentDate\": \"<dateTime>\",\n  \"shipByDate\": \"<dateTime>\",\n  \"customerId\": \"<integer>\",\n  \"customerUsername\": \"<string>\",\n  \"customerEmail\": \"<string>\",\n  \"items\": [\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"pounds\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    },\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"ounces\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    }\n  ],\n  \"amountPaid\": \"<number>\",\n  \"taxAmount\": \"<number>\",\n  \"shippingAmount\": \"<number>\",\n  \"customerNotes\": \"<string>\",\n  \"internalNotes\": \"<string>\",\n  \"gift\": \"<boolean>\",\n  \"giftMessage\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"requestedShippingService\": \"<string>\",\n  \"carrierCode\": \"<string>\",\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"confirmation\": \"<string>\",\n  \"shipDate\": \"<date>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"pounds\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"inches\"\n  },\n  \"tagIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders/createorder",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    "createorder"
+                  ]
+                },
+                "description": "Creates a new order. Use this endpoint when creating an order for the first time."
+              },
+              "response": [
+                {
+                  "id": "c0d6adfb-33e9-4a46-84b5-9e287d836364",
+                  "name": "Order created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"orderNumber\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"orderStatus\": \"<string>\",\n  \"billTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"shipTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"orderKey\": \"<string>\",\n  \"paymentDate\": \"<dateTime>\",\n  \"shipByDate\": \"<dateTime>\",\n  \"customerId\": \"<integer>\",\n  \"customerUsername\": \"<string>\",\n  \"customerEmail\": \"<string>\",\n  \"items\": [\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"pounds\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    },\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"ounces\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    }\n  ],\n  \"amountPaid\": \"<number>\",\n  \"taxAmount\": \"<number>\",\n  \"shippingAmount\": \"<number>\",\n  \"customerNotes\": \"<string>\",\n  \"internalNotes\": \"<string>\",\n  \"gift\": \"<boolean>\",\n  \"giftMessage\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"requestedShippingService\": \"<string>\",\n  \"carrierCode\": \"<string>\",\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"confirmation\": \"<string>\",\n  \"shipDate\": \"<date>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"pounds\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"inches\"\n  },\n  \"tagIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/createorder",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        "createorder"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"orderId\": \"<integer>\",\n  \"orderNumber\": \"<string>\",\n  \"orderKey\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"paymentDate\": \"<dateTime>\",\n  \"shipByDate\": \"<dateTime>\",\n  \"orderStatus\": \"awaiting_payment\",\n  \"customerId\": \"<integer>\",\n  \"customerUsername\": \"<string>\",\n  \"customerEmail\": \"<string>\",\n  \"billTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"shipTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"items\": [\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"ounces\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    },\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"grams\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    }\n  ],\n  \"orderTotal\": \"<float>\",\n  \"amountPaid\": \"<float>\",\n  \"taxAmount\": \"<float>\",\n  \"shippingAmount\": \"<float>\",\n  \"customerNotes\": \"<string>\",\n  \"internalNotes\": \"<string>\",\n  \"gift\": \"<boolean>\",\n  \"giftMessage\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"requestedShippingService\": \"<string>\",\n  \"carrierCode\": \"<string>\",\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"confirmation\": \"none\",\n  \"shipDate\": \"<date>\",\n  \"holdUntilDate\": \"<dateTime>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"pounds\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"inches\"\n  },\n  \"insuranceOptions\": {},\n  \"internationalOptions\": {},\n  \"advancedOptions\": {},\n  \"tagIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"userId\": \"<string>\",\n  \"externallyFulfilled\": \"<boolean>\",\n  \"externallyFulfilledBy\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:53:06.000Z",
+                  "updatedAt": "2026-07-28T02:53:06.000Z",
+                  "uid": "35240-c0d6adfb-33e9-4a46-84b5-9e287d836364"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:06.000Z",
+              "updatedAt": "2026-07-28T02:53:06.000Z",
+              "uid": "35240-a3a83f44-28a6-4ed0-a223-55b4003bc0cf"
+            }
+          ],
+          "id": "fa88cab4-c0e3-4af9-a19a-5cbb0294e0bc",
+          "createdAt": "2026-07-28T02:53:06.000Z",
+          "updatedAt": "2026-07-28T02:53:06.000Z",
+          "uid": "35240-fa88cab4-c0e3-4af9-a19a-5cbb0294e0bc"
+        },
+        {
+          "name": "createorders",
+          "item": [
+            {
+              "name": "Create Orders (Bulk)",
+              "id": "fb1f4b33-9772-4745-a4f1-0d7db1f02e0d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"orderNumber\": \"<string>\",\n    \"orderDate\": \"<dateTime>\",\n    \"orderStatus\": \"<string>\",\n    \"billTo\": {\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"street3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"residential\": \"<boolean>\"\n    },\n    \"shipTo\": {\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"street3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"residential\": \"<boolean>\"\n    },\n    \"orderKey\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"shipByDate\": \"<dateTime>\",\n    \"customerId\": \"<integer>\",\n    \"customerUsername\": \"<string>\",\n    \"customerEmail\": \"<string>\",\n    \"items\": [\n      {\n        \"lineItemKey\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"weight\": {\n          \"value\": \"<float>\",\n          \"units\": \"grams\",\n          \"WeightUnits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"unitPrice\": \"<float>\",\n        \"taxAmount\": \"<float>\",\n        \"shippingAmount\": \"<float>\",\n        \"warehouseLocation\": \"<string>\",\n        \"productId\": \"<integer>\",\n        \"fulfillmentSku\": \"<string>\",\n        \"adjustment\": \"<boolean>\",\n        \"upc\": \"<string>\"\n      },\n      {\n        \"lineItemKey\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"weight\": {\n          \"value\": \"<float>\",\n          \"units\": \"pounds\",\n          \"WeightUnits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"unitPrice\": \"<float>\",\n        \"taxAmount\": \"<float>\",\n        \"shippingAmount\": \"<float>\",\n        \"warehouseLocation\": \"<string>\",\n        \"productId\": \"<integer>\",\n        \"fulfillmentSku\": \"<string>\",\n        \"adjustment\": \"<boolean>\",\n        \"upc\": \"<string>\"\n      }\n    ],\n    \"amountPaid\": \"<number>\",\n    \"taxAmount\": \"<number>\",\n    \"shippingAmount\": \"<number>\",\n    \"customerNotes\": \"<string>\",\n    \"internalNotes\": \"<string>\",\n    \"gift\": \"<boolean>\",\n    \"giftMessage\": \"<string>\",\n    \"paymentMethod\": \"<string>\",\n    \"requestedShippingService\": \"<string>\",\n    \"carrierCode\": \"<string>\",\n    \"serviceCode\": \"<string>\",\n    \"packageCode\": \"<string>\",\n    \"confirmation\": \"<string>\",\n    \"shipDate\": \"<date>\",\n    \"weight\": {\n      \"value\": \"<float>\",\n      \"units\": \"pounds\",\n      \"WeightUnits\": \"<integer>\"\n    },\n    \"dimensions\": {\n      \"length\": \"<float>\",\n      \"width\": \"<float>\",\n      \"height\": \"<float>\",\n      \"units\": \"inches\"\n    },\n    \"tagIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  {\n    \"orderNumber\": \"<string>\",\n    \"orderDate\": \"<dateTime>\",\n    \"orderStatus\": \"<string>\",\n    \"billTo\": {\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"street3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"residential\": \"<boolean>\"\n    },\n    \"shipTo\": {\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"street3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"residential\": \"<boolean>\"\n    },\n    \"orderKey\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"shipByDate\": \"<dateTime>\",\n    \"customerId\": \"<integer>\",\n    \"customerUsername\": \"<string>\",\n    \"customerEmail\": \"<string>\",\n    \"items\": [\n      {\n        \"lineItemKey\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"weight\": {\n          \"value\": \"<float>\",\n          \"units\": \"ounces\",\n          \"WeightUnits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"unitPrice\": \"<float>\",\n        \"taxAmount\": \"<float>\",\n        \"shippingAmount\": \"<float>\",\n        \"warehouseLocation\": \"<string>\",\n        \"productId\": \"<integer>\",\n        \"fulfillmentSku\": \"<string>\",\n        \"adjustment\": \"<boolean>\",\n        \"upc\": \"<string>\"\n      },\n      {\n        \"lineItemKey\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"weight\": {\n          \"value\": \"<float>\",\n          \"units\": \"pounds\",\n          \"WeightUnits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"unitPrice\": \"<float>\",\n        \"taxAmount\": \"<float>\",\n        \"shippingAmount\": \"<float>\",\n        \"warehouseLocation\": \"<string>\",\n        \"productId\": \"<integer>\",\n        \"fulfillmentSku\": \"<string>\",\n        \"adjustment\": \"<boolean>\",\n        \"upc\": \"<string>\"\n      }\n    ],\n    \"amountPaid\": \"<number>\",\n    \"taxAmount\": \"<number>\",\n    \"shippingAmount\": \"<number>\",\n    \"customerNotes\": \"<string>\",\n    \"internalNotes\": \"<string>\",\n    \"gift\": \"<boolean>\",\n    \"giftMessage\": \"<string>\",\n    \"paymentMethod\": \"<string>\",\n    \"requestedShippingService\": \"<string>\",\n    \"carrierCode\": \"<string>\",\n    \"serviceCode\": \"<string>\",\n    \"packageCode\": \"<string>\",\n    \"confirmation\": \"<string>\",\n    \"shipDate\": \"<date>\",\n    \"weight\": {\n      \"value\": \"<float>\",\n      \"units\": \"ounces\",\n      \"WeightUnits\": \"<integer>\"\n    },\n    \"dimensions\": {\n      \"length\": \"<float>\",\n      \"width\": \"<float>\",\n      \"height\": \"<float>\",\n      \"units\": \"centimeters\"\n    },\n    \"tagIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders/createorders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    "createorders"
+                  ]
+                },
+                "description": "Creates multiple orders in a single request. Supports up to 100 orders."
+              },
+              "response": [
+                {
+                  "id": "ae848889-dbde-412c-934d-675928b6bc10",
+                  "name": "Orders created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"orderNumber\": \"<string>\",\n    \"orderDate\": \"<dateTime>\",\n    \"orderStatus\": \"<string>\",\n    \"billTo\": {\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"street3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"residential\": \"<boolean>\"\n    },\n    \"shipTo\": {\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"street3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"residential\": \"<boolean>\"\n    },\n    \"orderKey\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"shipByDate\": \"<dateTime>\",\n    \"customerId\": \"<integer>\",\n    \"customerUsername\": \"<string>\",\n    \"customerEmail\": \"<string>\",\n    \"items\": [\n      {\n        \"lineItemKey\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"weight\": {\n          \"value\": \"<float>\",\n          \"units\": \"grams\",\n          \"WeightUnits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"unitPrice\": \"<float>\",\n        \"taxAmount\": \"<float>\",\n        \"shippingAmount\": \"<float>\",\n        \"warehouseLocation\": \"<string>\",\n        \"productId\": \"<integer>\",\n        \"fulfillmentSku\": \"<string>\",\n        \"adjustment\": \"<boolean>\",\n        \"upc\": \"<string>\"\n      },\n      {\n        \"lineItemKey\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"weight\": {\n          \"value\": \"<float>\",\n          \"units\": \"pounds\",\n          \"WeightUnits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"unitPrice\": \"<float>\",\n        \"taxAmount\": \"<float>\",\n        \"shippingAmount\": \"<float>\",\n        \"warehouseLocation\": \"<string>\",\n        \"productId\": \"<integer>\",\n        \"fulfillmentSku\": \"<string>\",\n        \"adjustment\": \"<boolean>\",\n        \"upc\": \"<string>\"\n      }\n    ],\n    \"amountPaid\": \"<number>\",\n    \"taxAmount\": \"<number>\",\n    \"shippingAmount\": \"<number>\",\n    \"customerNotes\": \"<string>\",\n    \"internalNotes\": \"<string>\",\n    \"gift\": \"<boolean>\",\n    \"giftMessage\": \"<string>\",\n    \"paymentMethod\": \"<string>\",\n    \"requestedShippingService\": \"<string>\",\n    \"carrierCode\": \"<string>\",\n    \"serviceCode\": \"<string>\",\n    \"packageCode\": \"<string>\",\n    \"confirmation\": \"<string>\",\n    \"shipDate\": \"<date>\",\n    \"weight\": {\n      \"value\": \"<float>\",\n      \"units\": \"pounds\",\n      \"WeightUnits\": \"<integer>\"\n    },\n    \"dimensions\": {\n      \"length\": \"<float>\",\n      \"width\": \"<float>\",\n      \"height\": \"<float>\",\n      \"units\": \"inches\"\n    },\n    \"tagIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  {\n    \"orderNumber\": \"<string>\",\n    \"orderDate\": \"<dateTime>\",\n    \"orderStatus\": \"<string>\",\n    \"billTo\": {\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"street3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"residential\": \"<boolean>\"\n    },\n    \"shipTo\": {\n      \"name\": \"<string>\",\n      \"company\": \"<string>\",\n      \"street1\": \"<string>\",\n      \"street2\": \"<string>\",\n      \"street3\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"phone\": \"<string>\",\n      \"residential\": \"<boolean>\"\n    },\n    \"orderKey\": \"<string>\",\n    \"paymentDate\": \"<dateTime>\",\n    \"shipByDate\": \"<dateTime>\",\n    \"customerId\": \"<integer>\",\n    \"customerUsername\": \"<string>\",\n    \"customerEmail\": \"<string>\",\n    \"items\": [\n      {\n        \"lineItemKey\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"weight\": {\n          \"value\": \"<float>\",\n          \"units\": \"ounces\",\n          \"WeightUnits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"unitPrice\": \"<float>\",\n        \"taxAmount\": \"<float>\",\n        \"shippingAmount\": \"<float>\",\n        \"warehouseLocation\": \"<string>\",\n        \"productId\": \"<integer>\",\n        \"fulfillmentSku\": \"<string>\",\n        \"adjustment\": \"<boolean>\",\n        \"upc\": \"<string>\"\n      },\n      {\n        \"lineItemKey\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"name\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"weight\": {\n          \"value\": \"<float>\",\n          \"units\": \"pounds\",\n          \"WeightUnits\": \"<integer>\"\n        },\n        \"quantity\": \"<integer>\",\n        \"unitPrice\": \"<float>\",\n        \"taxAmount\": \"<float>\",\n        \"shippingAmount\": \"<float>\",\n        \"warehouseLocation\": \"<string>\",\n        \"productId\": \"<integer>\",\n        \"fulfillmentSku\": \"<string>\",\n        \"adjustment\": \"<boolean>\",\n        \"upc\": \"<string>\"\n      }\n    ],\n    \"amountPaid\": \"<number>\",\n    \"taxAmount\": \"<number>\",\n    \"shippingAmount\": \"<number>\",\n    \"customerNotes\": \"<string>\",\n    \"internalNotes\": \"<string>\",\n    \"gift\": \"<boolean>\",\n    \"giftMessage\": \"<string>\",\n    \"paymentMethod\": \"<string>\",\n    \"requestedShippingService\": \"<string>\",\n    \"carrierCode\": \"<string>\",\n    \"serviceCode\": \"<string>\",\n    \"packageCode\": \"<string>\",\n    \"confirmation\": \"<string>\",\n    \"shipDate\": \"<date>\",\n    \"weight\": {\n      \"value\": \"<float>\",\n      \"units\": \"ounces\",\n      \"WeightUnits\": \"<integer>\"\n    },\n    \"dimensions\": {\n      \"length\": \"<float>\",\n      \"width\": \"<float>\",\n      \"height\": \"<float>\",\n      \"units\": \"centimeters\"\n    },\n    \"tagIds\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/createorders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        "createorders"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"hasErrors\": \"<boolean>\"\n}",
+                  "createdAt": "2026-07-28T02:53:06.000Z",
+                  "updatedAt": "2026-07-28T02:53:06.000Z",
+                  "uid": "35240-ae848889-dbde-412c-934d-675928b6bc10"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:06.000Z",
+              "updatedAt": "2026-07-28T02:53:06.000Z",
+              "uid": "35240-fb1f4b33-9772-4745-a4f1-0d7db1f02e0d"
+            }
+          ],
+          "id": "3c5df0f8-8d7c-4942-a48a-ad6a6b812b2b",
+          "createdAt": "2026-07-28T02:53:06.000Z",
+          "updatedAt": "2026-07-28T02:53:06.000Z",
+          "uid": "35240-3c5df0f8-8d7c-4942-a48a-ad6a6b812b2b"
+        },
+        {
+          "name": "holduntil",
+          "item": [
+            {
+              "name": "Hold Order Until",
+              "id": "c0f2bcbd-1e19-4d46-8950-d24e3d5f8c39",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderId\": \"<integer>\",\n  \"holdUntilDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders/holduntil",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    "holduntil"
+                  ]
+                },
+                "description": "Marks an order as on hold until the given date."
+              },
+              "response": [
+                {
+                  "id": "b4785a43-528b-4197-bed5-1e26323d3eef",
+                  "name": "Order placed on hold",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"orderId\": \"<integer>\",\n  \"holdUntilDate\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/holduntil",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        "holduntil"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:53:06.000Z",
+                  "updatedAt": "2026-07-28T02:53:06.000Z",
+                  "uid": "35240-b4785a43-528b-4197-bed5-1e26323d3eef"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:06.000Z",
+              "updatedAt": "2026-07-28T02:53:06.000Z",
+              "uid": "35240-c0f2bcbd-1e19-4d46-8950-d24e3d5f8c39"
+            }
+          ],
+          "id": "c7585c12-d5b6-4006-a8d5-6f3ce92e2f0c",
+          "createdAt": "2026-07-28T02:53:06.000Z",
+          "updatedAt": "2026-07-28T02:53:06.000Z",
+          "uid": "35240-c7585c12-d5b6-4006-a8d5-6f3ce92e2f0c"
+        },
+        {
+          "name": "markasshipped",
+          "item": [
+            {
+              "name": "Mark Order as Shipped",
+              "id": "e8d7357e-4518-4bbe-b911-cb277d42d5dc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderId\": \"<integer>\",\n  \"carrierId\": \"<integer>\",\n  \"shipDate\": \"<string>\",\n  \"trackingNumber\": \"<string>\",\n  \"notifyCustomer\": \"<boolean>\",\n  \"notifySalesChannel\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders/markasshipped",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    "markasshipped"
+                  ]
+                },
+                "description": "Marks an order as shipped without creating a label in ShipStation."
+              },
+              "response": [
+                {
+                  "id": "25f90865-4d40-4b14-aea7-9a013883588b",
+                  "name": "Order marked as shipped",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"orderId\": \"<integer>\",\n  \"carrierId\": \"<integer>\",\n  \"shipDate\": \"<string>\",\n  \"trackingNumber\": \"<string>\",\n  \"notifyCustomer\": \"<boolean>\",\n  \"notifySalesChannel\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/markasshipped",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        "markasshipped"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:53:06.000Z",
+                  "updatedAt": "2026-07-28T02:53:06.000Z",
+                  "uid": "35240-25f90865-4d40-4b14-aea7-9a013883588b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:53:06.000Z",
+              "updatedAt": "2026-07-28T02:53:06.000Z",
+              "uid": "35240-e8d7357e-4518-4bbe-b911-cb277d42d5dc"
+            }
+          ],
+          "id": "ca7f90e8-0c7a-46e1-8477-0aa8a8cd3569",
+          "createdAt": "2026-07-28T02:53:06.000Z",
+          "updatedAt": "2026-07-28T02:53:06.000Z",
+          "uid": "35240-ca7f90e8-0c7a-46e1-8477-0aa8a8cd3569"
+        },
+        {
+          "name": "List Orders",
+          "id": "55a4bab4-d483-43d8-ae72-6dc94106b55f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/orders?customerName=<string>&itemKeyword=<string>&createDateStart=<dateTime>&createDateEnd=<dateTime>&modifyDateStart=<dateTime>&modifyDateEnd=<dateTime>&orderDateStart=<dateTime>&orderDateEnd=<dateTime>&orderNumber=<string>&orderStatus=pending_fulfillment&paymentDateStart=<dateTime>&paymentDateEnd=<dateTime>&storeId=<integer>&sortBy=CreateDate&sortDir=DESC&page=<integer>&pageSize=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [
+                {
+                  "description": "Returns orders that match the specified name",
+                  "key": "customerName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Returns orders that contain items that match the specified keyword",
+                  "key": "itemKeyword",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Returns orders that were created in ShipStation after the specified date",
+                  "key": "createDateStart",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Returns orders that were created in ShipStation before the specified date",
+                  "key": "createDateEnd",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Returns orders modified after the specified date",
+                  "key": "modifyDateStart",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Returns orders modified before the specified date",
+                  "key": "modifyDateEnd",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Returns orders that were placed after the specified date",
+                  "key": "orderDateStart",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Returns orders that were placed before the specified date",
+                  "key": "orderDateEnd",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Filter by order number",
+                  "key": "orderNumber",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by order status",
+                  "key": "orderStatus",
+                  "value": "pending_fulfillment"
+                },
+                {
+                  "key": "paymentDateStart",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "paymentDateEnd",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Filters orders by store",
+                  "key": "storeId",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "CreateDate"
+                },
+                {
+                  "key": "sortDir",
+                  "value": "DESC"
+                },
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Obtains a list of orders that match the specified criteria."
+          },
+          "response": [
+            {
+              "id": "63b3002b-8d06-4d05-ba96-e96fb707b0d4",
+              "name": "A list of orders",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders?customerName=<string>&itemKeyword=<string>&createDateStart=<dateTime>&createDateEnd=<dateTime>&modifyDateStart=<dateTime>&modifyDateEnd=<dateTime>&orderDateStart=<dateTime>&orderDateEnd=<dateTime>&orderNumber=<string>&orderStatus=pending_fulfillment&paymentDateStart=<dateTime>&paymentDateEnd=<dateTime>&storeId=<integer>&sortBy=CreateDate&sortDir=DESC&page=<integer>&pageSize=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "Returns orders that match the specified name",
+                      "key": "customerName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Returns orders that contain items that match the specified keyword",
+                      "key": "itemKeyword",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Returns orders that were created in ShipStation after the specified date",
+                      "key": "createDateStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Returns orders that were created in ShipStation before the specified date",
+                      "key": "createDateEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Returns orders modified after the specified date",
+                      "key": "modifyDateStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Returns orders modified before the specified date",
+                      "key": "modifyDateEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Returns orders that were placed after the specified date",
+                      "key": "orderDateStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Returns orders that were placed before the specified date",
+                      "key": "orderDateEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter by order number",
+                      "key": "orderNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by order status",
+                      "key": "orderStatus",
+                      "value": "pending_fulfillment"
+                    },
+                    {
+                      "key": "paymentDateStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "paymentDateEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filters orders by store",
+                      "key": "storeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "CreateDate"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "DESC"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"orders\": [\n    {\n      \"orderId\": \"<integer>\",\n      \"orderNumber\": \"<string>\",\n      \"orderKey\": \"<string>\",\n      \"orderDate\": \"<dateTime>\",\n      \"createDate\": \"<dateTime>\",\n      \"modifyDate\": \"<dateTime>\",\n      \"paymentDate\": \"<dateTime>\",\n      \"shipByDate\": \"<dateTime>\",\n      \"orderStatus\": \"cancelled\",\n      \"customerId\": \"<integer>\",\n      \"customerUsername\": \"<string>\",\n      \"customerEmail\": \"<string>\",\n      \"billTo\": {\n        \"name\": \"<string>\",\n        \"company\": \"<string>\",\n        \"street1\": \"<string>\",\n        \"street2\": \"<string>\",\n        \"street3\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"residential\": \"<boolean>\"\n      },\n      \"shipTo\": {\n        \"name\": \"<string>\",\n        \"company\": \"<string>\",\n        \"street1\": \"<string>\",\n        \"street2\": \"<string>\",\n        \"street3\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"residential\": \"<boolean>\"\n      },\n      \"items\": [\n        {\n          \"lineItemKey\": \"<string>\",\n          \"sku\": \"<string>\",\n          \"name\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"weight\": {\n            \"value\": \"<float>\",\n            \"units\": \"grams\",\n            \"WeightUnits\": \"<integer>\"\n          },\n          \"quantity\": \"<integer>\",\n          \"unitPrice\": \"<float>\",\n          \"taxAmount\": \"<float>\",\n          \"shippingAmount\": \"<float>\",\n          \"warehouseLocation\": \"<string>\",\n          \"productId\": \"<integer>\",\n          \"fulfillmentSku\": \"<string>\",\n          \"adjustment\": \"<boolean>\",\n          \"upc\": \"<string>\"\n        },\n        {\n          \"lineItemKey\": \"<string>\",\n          \"sku\": \"<string>\",\n          \"name\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"weight\": {\n            \"value\": \"<float>\",\n            \"units\": \"pounds\",\n            \"WeightUnits\": \"<integer>\"\n          },\n          \"quantity\": \"<integer>\",\n          \"unitPrice\": \"<float>\",\n          \"taxAmount\": \"<float>\",\n          \"shippingAmount\": \"<float>\",\n          \"warehouseLocation\": \"<string>\",\n          \"productId\": \"<integer>\",\n          \"fulfillmentSku\": \"<string>\",\n          \"adjustment\": \"<boolean>\",\n          \"upc\": \"<string>\"\n        }\n      ],\n      \"orderTotal\": \"<float>\",\n      \"amountPaid\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"customerNotes\": \"<string>\",\n      \"internalNotes\": \"<string>\",\n      \"gift\": \"<boolean>\",\n      \"giftMessage\": \"<string>\",\n      \"paymentMethod\": \"<string>\",\n      \"requestedShippingService\": \"<string>\",\n      \"carrierCode\": \"<string>\",\n      \"serviceCode\": \"<string>\",\n      \"packageCode\": \"<string>\",\n      \"confirmation\": \"delivery\",\n      \"shipDate\": \"<date>\",\n      \"holdUntilDate\": \"<dateTime>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"ounces\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"dimensions\": {\n        \"length\": \"<float>\",\n        \"width\": \"<float>\",\n        \"height\": \"<float>\",\n        \"units\": \"centimeters\"\n      },\n      \"insuranceOptions\": {},\n      \"internationalOptions\": {},\n      \"advancedOptions\": {},\n      \"tagIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"userId\": \"<string>\",\n      \"externallyFulfilled\": \"<boolean>\",\n      \"externallyFulfilledBy\": \"<string>\"\n    },\n    {\n      \"orderId\": \"<integer>\",\n      \"orderNumber\": \"<string>\",\n      \"orderKey\": \"<string>\",\n      \"orderDate\": \"<dateTime>\",\n      \"createDate\": \"<dateTime>\",\n      \"modifyDate\": \"<dateTime>\",\n      \"paymentDate\": \"<dateTime>\",\n      \"shipByDate\": \"<dateTime>\",\n      \"orderStatus\": \"awaiting_payment\",\n      \"customerId\": \"<integer>\",\n      \"customerUsername\": \"<string>\",\n      \"customerEmail\": \"<string>\",\n      \"billTo\": {\n        \"name\": \"<string>\",\n        \"company\": \"<string>\",\n        \"street1\": \"<string>\",\n        \"street2\": \"<string>\",\n        \"street3\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"residential\": \"<boolean>\"\n      },\n      \"shipTo\": {\n        \"name\": \"<string>\",\n        \"company\": \"<string>\",\n        \"street1\": \"<string>\",\n        \"street2\": \"<string>\",\n        \"street3\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"residential\": \"<boolean>\"\n      },\n      \"items\": [\n        {\n          \"lineItemKey\": \"<string>\",\n          \"sku\": \"<string>\",\n          \"name\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"weight\": {\n            \"value\": \"<float>\",\n            \"units\": \"pounds\",\n            \"WeightUnits\": \"<integer>\"\n          },\n          \"quantity\": \"<integer>\",\n          \"unitPrice\": \"<float>\",\n          \"taxAmount\": \"<float>\",\n          \"shippingAmount\": \"<float>\",\n          \"warehouseLocation\": \"<string>\",\n          \"productId\": \"<integer>\",\n          \"fulfillmentSku\": \"<string>\",\n          \"adjustment\": \"<boolean>\",\n          \"upc\": \"<string>\"\n        },\n        {\n          \"lineItemKey\": \"<string>\",\n          \"sku\": \"<string>\",\n          \"name\": \"<string>\",\n          \"imageUrl\": \"<string>\",\n          \"weight\": {\n            \"value\": \"<float>\",\n            \"units\": \"pounds\",\n            \"WeightUnits\": \"<integer>\"\n          },\n          \"quantity\": \"<integer>\",\n          \"unitPrice\": \"<float>\",\n          \"taxAmount\": \"<float>\",\n          \"shippingAmount\": \"<float>\",\n          \"warehouseLocation\": \"<string>\",\n          \"productId\": \"<integer>\",\n          \"fulfillmentSku\": \"<string>\",\n          \"adjustment\": \"<boolean>\",\n          \"upc\": \"<string>\"\n        }\n      ],\n      \"orderTotal\": \"<float>\",\n      \"amountPaid\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"customerNotes\": \"<string>\",\n      \"internalNotes\": \"<string>\",\n      \"gift\": \"<boolean>\",\n      \"giftMessage\": \"<string>\",\n      \"paymentMethod\": \"<string>\",\n      \"requestedShippingService\": \"<string>\",\n      \"carrierCode\": \"<string>\",\n      \"serviceCode\": \"<string>\",\n      \"packageCode\": \"<string>\",\n      \"confirmation\": \"delivery\",\n      \"shipDate\": \"<date>\",\n      \"holdUntilDate\": \"<dateTime>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"ounces\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"dimensions\": {\n        \"length\": \"<float>\",\n        \"width\": \"<float>\",\n        \"height\": \"<float>\",\n        \"units\": \"inches\"\n      },\n      \"insuranceOptions\": {},\n      \"internationalOptions\": {},\n      \"advancedOptions\": {},\n      \"tagIds\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"userId\": \"<string>\",\n      \"externallyFulfilled\": \"<boolean>\",\n      \"externallyFulfilledBy\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"page\": \"<integer>\",\n  \"pages\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T02:53:06.000Z",
+              "updatedAt": "2026-07-28T02:53:06.000Z",
+              "uid": "35240-63b3002b-8d06-4d05-ba96-e96fb707b0d4"
+            }
+          ],
+          "createdAt": "2026-07-28T02:53:06.000Z",
+          "updatedAt": "2026-07-28T02:53:06.000Z",
+          "uid": "35240-55a4bab4-d483-43d8-ae72-6dc94106b55f"
+        },
+        {
+          "name": "Create or Update Order",
+          "id": "857e174d-6eff-43eb-8986-0b6aa89b8f28",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderNumber\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"orderStatus\": \"<string>\",\n  \"billTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"shipTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"orderKey\": \"<string>\",\n  \"paymentDate\": \"<dateTime>\",\n  \"shipByDate\": \"<dateTime>\",\n  \"customerId\": \"<integer>\",\n  \"customerUsername\": \"<string>\",\n  \"customerEmail\": \"<string>\",\n  \"items\": [\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"pounds\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    },\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"ounces\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    }\n  ],\n  \"amountPaid\": \"<number>\",\n  \"taxAmount\": \"<number>\",\n  \"shippingAmount\": \"<number>\",\n  \"customerNotes\": \"<string>\",\n  \"internalNotes\": \"<string>\",\n  \"gift\": \"<boolean>\",\n  \"giftMessage\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"requestedShippingService\": \"<string>\",\n  \"carrierCode\": \"<string>\",\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"confirmation\": \"<string>\",\n  \"shipDate\": \"<date>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"pounds\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"inches\"\n  },\n  \"tagIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            },
+            "description": "Creates a new order or updates an existing order. This call does not support partial updates. The entire resource must be provided in the body of the request."
+          },
+          "response": [
+            {
+              "id": "75d7af1b-88f0-4df0-b91b-f320356fb9aa",
+              "name": "Order created or updated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderNumber\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"orderStatus\": \"<string>\",\n  \"billTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"shipTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"orderKey\": \"<string>\",\n  \"paymentDate\": \"<dateTime>\",\n  \"shipByDate\": \"<dateTime>\",\n  \"customerId\": \"<integer>\",\n  \"customerUsername\": \"<string>\",\n  \"customerEmail\": \"<string>\",\n  \"items\": [\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"pounds\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    },\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"ounces\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    }\n  ],\n  \"amountPaid\": \"<number>\",\n  \"taxAmount\": \"<number>\",\n  \"shippingAmount\": \"<number>\",\n  \"customerNotes\": \"<string>\",\n  \"internalNotes\": \"<string>\",\n  \"gift\": \"<boolean>\",\n  \"giftMessage\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"requestedShippingService\": \"<string>\",\n  \"carrierCode\": \"<string>\",\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"confirmation\": \"<string>\",\n  \"shipDate\": \"<date>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"pounds\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"inches\"\n  },\n  \"tagIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"orderId\": \"<integer>\",\n  \"orderNumber\": \"<string>\",\n  \"orderKey\": \"<string>\",\n  \"orderDate\": \"<dateTime>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"paymentDate\": \"<dateTime>\",\n  \"shipByDate\": \"<dateTime>\",\n  \"orderStatus\": \"awaiting_payment\",\n  \"customerId\": \"<integer>\",\n  \"customerUsername\": \"<string>\",\n  \"customerEmail\": \"<string>\",\n  \"billTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"shipTo\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"items\": [\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"ounces\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    },\n    {\n      \"lineItemKey\": \"<string>\",\n      \"sku\": \"<string>\",\n      \"name\": \"<string>\",\n      \"imageUrl\": \"<string>\",\n      \"weight\": {\n        \"value\": \"<float>\",\n        \"units\": \"grams\",\n        \"WeightUnits\": \"<integer>\"\n      },\n      \"quantity\": \"<integer>\",\n      \"unitPrice\": \"<float>\",\n      \"taxAmount\": \"<float>\",\n      \"shippingAmount\": \"<float>\",\n      \"warehouseLocation\": \"<string>\",\n      \"productId\": \"<integer>\",\n      \"fulfillmentSku\": \"<string>\",\n      \"adjustment\": \"<boolean>\",\n      \"upc\": \"<string>\"\n    }\n  ],\n  \"orderTotal\": \"<float>\",\n  \"amountPaid\": \"<float>\",\n  \"taxAmount\": \"<float>\",\n  \"shippingAmount\": \"<float>\",\n  \"customerNotes\": \"<string>\",\n  \"internalNotes\": \"<string>\",\n  \"gift\": \"<boolean>\",\n  \"giftMessage\": \"<string>\",\n  \"paymentMethod\": \"<string>\",\n  \"requestedShippingService\": \"<string>\",\n  \"carrierCode\": \"<string>\",\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"confirmation\": \"none\",\n  \"shipDate\": \"<date>\",\n  \"holdUntilDate\": \"<dateTime>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"pounds\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"inches\"\n  },\n  \"insuranceOptions\": {},\n  \"internationalOptions\": {},\n  \"advancedOptions\": {},\n  \"tagIds\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"userId\": \"<string>\",\n  \"externallyFulfilled\": \"<boolean>\",\n  \"externallyFulfilledBy\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:53:06.000Z",
+              "updatedAt": "2026-07-28T02:53:06.000Z",
+              "uid": "35240-75d7af1b-88f0-4df0-b91b-f320356fb9aa"
+            }
+          ],
+          "createdAt": "2026-07-28T02:53:06.000Z",
+          "updatedAt": "2026-07-28T02:53:06.000Z",
+          "uid": "35240-857e174d-6eff-43eb-8986-0b6aa89b8f28"
+        }
+      ],
+      "id": "3c24ea1b-9210-414e-a217-db8df0145ede",
+      "createdAt": "2026-07-28T02:53:06.000Z",
+      "updatedAt": "2026-07-28T02:53:06.000Z",
+      "uid": "35240-3c24ea1b-9210-414e-a217-db8df0145ede"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://ssapi.shipstation.com"
+    }
+  ]
+}
