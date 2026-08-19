@@ -1,0 +1,242 @@
+{
+  "item": [
+    {
+      "id": "03e2fa71-2120-4a75-b2d6-99850f84bd04",
+      "name": "Fulfillments",
+      "description": {
+        "content": "Manage third-party fulfillments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9fc7986d-90ec-450a-b95d-4429c7b52829",
+          "name": "List Fulfillments",
+          "request": {
+            "name": "List Fulfillments",
+            "description": {
+              "content": "Obtains a list of fulfillments that match the specified criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fulfillments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fulfillmentId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "trackingNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipientName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "createDateStart",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "createDateEnd",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "shipDateStart",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "shipDateEnd",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4409f4a6-ef50-4e8e-91c4-7bdd0114f3d3",
+              "name": "A list of fulfillments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fulfillments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fulfillmentId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipientName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createDateStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createDateEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "shipDateStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "shipDateEnd",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"fulfillments\": [\n    {\n      \"fulfillmentId\": 4989,\n      \"orderId\": 2219,\n      \"orderNumber\": \"string\",\n      \"userId\": \"string\",\n      \"customerEmail\": \"string\",\n      \"trackingNumber\": \"string\",\n      \"createDate\": \"1948-03-20T14:13:33.535Z\",\n      \"shipDate\": \"2014-02-18\",\n      \"void\": true,\n      \"deliveryEmail\": true,\n      \"shipTo\": {\n        \"name\": \"string\",\n        \"company\": \"string\",\n        \"street1\": \"string\",\n        \"street2\": \"string\",\n        \"street3\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\",\n        \"phone\": \"string\",\n        \"residential\": true\n      }\n    },\n    {\n      \"fulfillmentId\": 7049,\n      \"orderId\": 3729,\n      \"orderNumber\": \"string\",\n      \"userId\": \"string\",\n      \"customerEmail\": \"string\",\n      \"trackingNumber\": \"string\",\n      \"createDate\": \"2011-01-08T04:23:50.929Z\",\n      \"shipDate\": \"2024-05-06\",\n      \"void\": false,\n      \"deliveryEmail\": true,\n      \"shipTo\": {\n        \"name\": \"string\",\n        \"company\": \"string\",\n        \"street1\": \"string\",\n        \"street2\": \"string\",\n        \"street3\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\",\n        \"phone\": \"string\",\n        \"residential\": true\n      }\n    }\n  ],\n  \"total\": 3431,\n  \"page\": 8907,\n  \"pages\": 3106\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ssapi.shipstation.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "775b95a8-af59-4ac9-972b-db3e8a1ca440",
+    "name": "ShipStation V1 Accounts Fulfillments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+      "type": "text/plain"
+    }
+  }
+}

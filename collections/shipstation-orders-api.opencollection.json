@@ -1,0 +1,268 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipStation V1 Accounts Orders API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/orders",
+            "params": [
+              {
+                "name": "customerName",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that match the specified name"
+              },
+              {
+                "name": "itemKeyword",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that contain items that match the specified keyword"
+              },
+              {
+                "name": "createDateStart",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that were created in ShipStation after the specified date"
+              },
+              {
+                "name": "createDateEnd",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that were created in ShipStation before the specified date"
+              },
+              {
+                "name": "modifyDateStart",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders modified after the specified date"
+              },
+              {
+                "name": "modifyDateEnd",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders modified before the specified date"
+              },
+              {
+                "name": "orderDateStart",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that were placed after the specified date"
+              },
+              {
+                "name": "orderDateEnd",
+                "value": "",
+                "type": "query",
+                "description": "Returns orders that were placed before the specified date"
+              },
+              {
+                "name": "orderNumber",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order number"
+              },
+              {
+                "name": "orderStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "paymentDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "paymentDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "storeId",
+                "value": "",
+                "type": "query",
+                "description": "Filters orders by store"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtains a list of orders that match the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Create or Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new order or updates an existing order. This call does not support partial updates. The entire resource must be provided in the body of the request."
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The system-generated identifier for the order"
+              }
+            ]
+          },
+          "docs": "Retrieves a single order from the database."
+        },
+        {
+          "info": {
+            "name": "Delete Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ssapi.shipstation.com/orders/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes order from ShipStation's UI."
+        },
+        {
+          "info": {
+            "name": "Create Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/createorder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new order. Use this endpoint when creating an order for the first time."
+        },
+        {
+          "info": {
+            "name": "Create Orders (Bulk)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/createorders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates multiple orders in a single request. Supports up to 100 orders."
+        },
+        {
+          "info": {
+            "name": "Hold Order Until",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/holduntil",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks an order as on hold until the given date."
+        },
+        {
+          "info": {
+            "name": "Mark Order as Shipped",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/markasshipped",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks an order as shipped without creating a label in ShipStation."
+        },
+        {
+          "info": {
+            "name": "Assign Order to User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/orders/:orderId/assignuser",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns the requested orders to the user specified."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipStation V1 Accounts Fulfillments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fulfillments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Fulfillments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/fulfillments",
+            "params": [
+              {
+                "name": "fulfillmentId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trackingNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recipientName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "createDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "createDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shipDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shipDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtains a list of fulfillments that match the specified criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

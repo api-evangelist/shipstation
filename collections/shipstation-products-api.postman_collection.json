@@ -1,0 +1,446 @@
+{
+  "item": [
+    {
+      "id": "c01794cb-9381-4fc5-8366-ffd85daf7306",
+      "name": "Products",
+      "description": {
+        "content": "Manage product records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "144084f0-1627-462a-be0d-525169efae5d",
+          "name": "List Products",
+          "request": {
+            "name": "List Products",
+            "description": {
+              "content": "Obtains a list of products that match the specified criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sku",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "productCategoryId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "productTypeId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "showInactive",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "71968a0c-3e90-40eb-93b5-090cb53666e0",
+              "name": "A list of products",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sku",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "productCategoryId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "productTypeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tagId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "showInactive",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"products\": [\n    {\n      \"productId\": 770,\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 5.88069303894434,\n      \"defaultCost\": 9496.512420447518,\n      \"length\": 9915.949206599364,\n      \"width\": 158.0366886378315,\n      \"height\": 6411.440109077875,\n      \"weightOz\": 9663.673242781122,\n      \"internalNotes\": \"string\",\n      \"fulfillmentSku\": \"string\",\n      \"createDate\": \"2005-03-16T11:35:25.014Z\",\n      \"modifyDate\": \"1994-01-09T21:14:23.128Z\",\n      \"active\": false,\n      \"productCategory\": {},\n      \"productType\": {},\n      \"warehouseLocation\": \"string\",\n      \"defaultCarrierCode\": \"string\",\n      \"defaultServiceCode\": \"string\",\n      \"defaultPackageCode\": \"string\",\n      \"defaultIntlCarrierCode\": \"string\",\n      \"defaultIntlServiceCode\": \"string\",\n      \"defaultIntlPackageCode\": \"string\",\n      \"defaultConfirmation\": \"string\",\n      \"defaultIntlConfirmation\": \"string\",\n      \"customsDescription\": \"string\",\n      \"customsValue\": 706.3450879869138,\n      \"customsTariffNo\": \"string\",\n      \"customsCountryCode\": \"string\",\n      \"noCustoms\": true,\n      \"tags\": [\n        {\n          \"tagId\": 3405,\n          \"name\": \"string\",\n          \"color\": \"string\"\n        },\n        {\n          \"tagId\": 4103,\n          \"name\": \"string\",\n          \"color\": \"string\"\n        }\n      ]\n    },\n    {\n      \"productId\": 6501,\n      \"sku\": \"string\",\n      \"name\": \"string\",\n      \"price\": 7233.423756416078,\n      \"defaultCost\": 4318.711860379078,\n      \"length\": 8694.272914542906,\n      \"width\": 3020.5219214844315,\n      \"height\": 6297.081120122679,\n      \"weightOz\": 4091.5250427066053,\n      \"internalNotes\": \"string\",\n      \"fulfillmentSku\": \"string\",\n      \"createDate\": \"1978-10-01T08:19:30.300Z\",\n      \"modifyDate\": \"1975-09-24T09:03:30.193Z\",\n      \"active\": false,\n      \"productCategory\": {},\n      \"productType\": {},\n      \"warehouseLocation\": \"string\",\n      \"defaultCarrierCode\": \"string\",\n      \"defaultServiceCode\": \"string\",\n      \"defaultPackageCode\": \"string\",\n      \"defaultIntlCarrierCode\": \"string\",\n      \"defaultIntlServiceCode\": \"string\",\n      \"defaultIntlPackageCode\": \"string\",\n      \"defaultConfirmation\": \"string\",\n      \"defaultIntlConfirmation\": \"string\",\n      \"customsDescription\": \"string\",\n      \"customsValue\": 1834.1578200825704,\n      \"customsTariffNo\": \"string\",\n      \"customsCountryCode\": \"string\",\n      \"noCustoms\": false,\n      \"tags\": [\n        {\n          \"tagId\": 2354,\n          \"name\": \"string\",\n          \"color\": \"string\"\n        },\n        {\n          \"tagId\": 3090,\n          \"name\": \"string\",\n          \"color\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"total\": 7106,\n  \"page\": 3460,\n  \"pages\": 7975\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2d64eeb-af3d-4897-9344-371c00b7874c",
+          "name": "Get Product",
+          "request": {
+            "name": "Get Product",
+            "description": {
+              "content": "Retrieves the product specified by the system-generated identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                ":productId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "productId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c541a49f-b603-4317-8049-67549bb4dae3",
+              "name": "Product object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "productId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"productId\": 7234,\n  \"sku\": \"string\",\n  \"name\": \"string\",\n  \"price\": 7703.81560365351,\n  \"defaultCost\": 3734.523165264947,\n  \"length\": 3887.4876140730053,\n  \"width\": 7035.893971545281,\n  \"height\": 1888.151380003178,\n  \"weightOz\": 7396.115461576928,\n  \"internalNotes\": \"string\",\n  \"fulfillmentSku\": \"string\",\n  \"createDate\": \"2006-01-04T22:57:53.786Z\",\n  \"modifyDate\": \"1949-11-17T08:08:31.710Z\",\n  \"active\": false,\n  \"productCategory\": {},\n  \"productType\": {},\n  \"warehouseLocation\": \"string\",\n  \"defaultCarrierCode\": \"string\",\n  \"defaultServiceCode\": \"string\",\n  \"defaultPackageCode\": \"string\",\n  \"defaultIntlCarrierCode\": \"string\",\n  \"defaultIntlServiceCode\": \"string\",\n  \"defaultIntlPackageCode\": \"string\",\n  \"defaultConfirmation\": \"string\",\n  \"defaultIntlConfirmation\": \"string\",\n  \"customsDescription\": \"string\",\n  \"customsValue\": 2893.0669255711005,\n  \"customsTariffNo\": \"string\",\n  \"customsCountryCode\": \"string\",\n  \"noCustoms\": true,\n  \"tags\": [\n    {\n      \"tagId\": 4483,\n      \"name\": \"string\",\n      \"color\": \"string\"\n    },\n    {\n      \"tagId\": 7765,\n      \"name\": \"string\",\n      \"color\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0cc20665-d870-480e-9f2a-17ca25093f11",
+          "name": "Update Product",
+          "request": {
+            "name": "Update Product",
+            "description": {
+              "content": "Updates the specified product.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products",
+                ":productId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "productId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"<integer>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<float>\",\n  \"defaultCost\": \"<float>\",\n  \"length\": \"<float>\",\n  \"width\": \"<float>\",\n  \"height\": \"<float>\",\n  \"weightOz\": \"<float>\",\n  \"internalNotes\": \"<string>\",\n  \"fulfillmentSku\": \"<string>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"active\": \"<boolean>\",\n  \"productCategory\": \"<object>\",\n  \"productType\": \"<object>\",\n  \"warehouseLocation\": \"<string>\",\n  \"defaultCarrierCode\": \"<string>\",\n  \"defaultServiceCode\": \"<string>\",\n  \"defaultPackageCode\": \"<string>\",\n  \"defaultIntlCarrierCode\": \"<string>\",\n  \"defaultIntlServiceCode\": \"<string>\",\n  \"defaultIntlPackageCode\": \"<string>\",\n  \"defaultConfirmation\": \"<string>\",\n  \"defaultIntlConfirmation\": \"<string>\",\n  \"customsDescription\": \"<string>\",\n  \"customsValue\": \"<number>\",\n  \"customsTariffNo\": \"<string>\",\n  \"customsCountryCode\": \"<string>\",\n  \"noCustoms\": \"<boolean>\",\n  \"tags\": [\n    {\n      \"tagId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    },\n    {\n      \"tagId\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e20192b9-8a56-472a-9b80-222f147b6bf7",
+              "name": "Product updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "productId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"<integer>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"price\": \"<float>\",\n  \"defaultCost\": \"<float>\",\n  \"length\": \"<float>\",\n  \"width\": \"<float>\",\n  \"height\": \"<float>\",\n  \"weightOz\": \"<float>\",\n  \"internalNotes\": \"<string>\",\n  \"fulfillmentSku\": \"<string>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"active\": \"<boolean>\",\n  \"productCategory\": \"<object>\",\n  \"productType\": \"<object>\",\n  \"warehouseLocation\": \"<string>\",\n  \"defaultCarrierCode\": \"<string>\",\n  \"defaultServiceCode\": \"<string>\",\n  \"defaultPackageCode\": \"<string>\",\n  \"defaultIntlCarrierCode\": \"<string>\",\n  \"defaultIntlServiceCode\": \"<string>\",\n  \"defaultIntlPackageCode\": \"<string>\",\n  \"defaultConfirmation\": \"<string>\",\n  \"defaultIntlConfirmation\": \"<string>\",\n  \"customsDescription\": \"<string>\",\n  \"customsValue\": \"<number>\",\n  \"customsTariffNo\": \"<string>\",\n  \"customsCountryCode\": \"<string>\",\n  \"noCustoms\": \"<boolean>\",\n  \"tags\": [\n    {\n      \"tagId\": 6290,\n      \"name\": \"string\",\n      \"color\": \"string\"\n    },\n    {\n      \"tagId\": 8959,\n      \"name\": \"string\",\n      \"color\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ssapi.shipstation.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "53896aa3-11eb-4877-80d3-72b821371168",
+    "name": "ShipStation V1 Accounts Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+      "type": "text/plain"
+    }
+  }
+}

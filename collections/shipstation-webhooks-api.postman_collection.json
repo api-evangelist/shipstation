@@ -1,0 +1,308 @@
+{
+  "item": [
+    {
+      "id": "a04726f7-3509-4e22-a13c-4e3353fb61e1",
+      "name": "Webhooks",
+      "description": {
+        "content": "Manage webhook subscriptions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "55fa6398-b9bd-44cd-8d31-f1465ad63382",
+          "name": "List Webhooks",
+          "request": {
+            "name": "List Webhooks",
+            "description": {
+              "content": "Retrieves a list of registered webhooks for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3282e21-d931-4209-b01d-0a41177817cc",
+              "name": "A list of webhooks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"webhooks\": [\n    {\n      \"IsLabelAPIHook\": true,\n      \"WebHookID\": 5961,\n      \"SellerID\": 5490,\n      \"StoreID\": 2297,\n      \"HookType\": \"string\",\n      \"MessageFormat\": \"string\",\n      \"Url\": \"string\",\n      \"Name\": \"string\",\n      \"BulkCopyBatchID\": \"string\",\n      \"BulkCopyRecordID\": \"string\",\n      \"Active\": false,\n      \"Seller\": \"string\",\n      \"Store\": \"string\"\n    },\n    {\n      \"IsLabelAPIHook\": true,\n      \"WebHookID\": 9577,\n      \"SellerID\": 9036,\n      \"StoreID\": 6936,\n      \"HookType\": \"string\",\n      \"MessageFormat\": \"string\",\n      \"Url\": \"string\",\n      \"Name\": \"string\",\n      \"BulkCopyBatchID\": \"string\",\n      \"BulkCopyRecordID\": \"string\",\n      \"Active\": false,\n      \"Seller\": \"string\",\n      \"Store\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a288727e-9f70-4e5f-a9d3-f6d8725ef90a",
+          "name": "Subscribe to Webhook",
+          "request": {
+            "name": "Subscribe to Webhook",
+            "description": {
+              "content": "Subscribes to a specific type of event so that when the event occurs, a notification is sent to a specified URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"target_url\": \"<string>\",\n  \"event\": \"<string>\",\n  \"store_id\": \"<string>\",\n  \"friendly_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3e0589d4-e27a-4618-8ac7-f58f014e7093",
+              "name": "Webhook subscription created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"target_url\": \"<string>\",\n  \"event\": \"<string>\",\n  \"store_id\": \"<string>\",\n  \"friendly_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1035\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d692525-c994-41fc-840c-9fb4ec7569e8",
+          "name": "Unsubscribe from Webhook",
+          "request": {
+            "name": "Unsubscribe from Webhook",
+            "description": {
+              "content": "Unsubscribes from a specific webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "webhooks",
+                ":webhookId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "webhookId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76e225af-76e8-4ade-80fc-f32d6a1e9e3f",
+              "name": "Webhook unsubscribed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "webhooks",
+                    ":webhookId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "webhookId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ssapi.shipstation.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "138eae7f-70e8-4553-8aa7-6bfb68db829c",
+    "name": "ShipStation V1 Accounts Webhooks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+      "type": "text/plain"
+    }
+  }
+}

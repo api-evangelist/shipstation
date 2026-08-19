@@ -1,0 +1,606 @@
+{
+  "item": [
+    {
+      "id": "5179367b-9d89-4319-9143-c2bf998548c5",
+      "name": "Shipments",
+      "description": {
+        "content": "Create and manage shipments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fa04f8bd-a221-49fb-a182-d154a800f81e",
+          "name": "List Shipments",
+          "request": {
+            "name": "List Shipments",
+            "description": {
+              "content": "Obtains a list of shipments that match the specified criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "recipientName",
+                  "value": "<string>",
+                  "description": "Returns shipments shipped to the specified recipient name"
+                },
+                {
+                  "disabled": false,
+                  "key": "recipientCountryCode",
+                  "value": "<string>",
+                  "description": "Returns shipments shipped to the specified country code"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderNumber",
+                  "value": "<string>",
+                  "description": "Returns shipments for the specified order number"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderId",
+                  "value": "<integer>",
+                  "description": "Returns shipments for the specified order ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "carrierCode",
+                  "value": "<string>",
+                  "description": "Returns shipments shipped with the specified carrier"
+                },
+                {
+                  "disabled": false,
+                  "key": "serviceCode",
+                  "value": "<string>",
+                  "description": "Returns shipments shipped with the specified service"
+                },
+                {
+                  "disabled": false,
+                  "key": "trackingNumber",
+                  "value": "<string>",
+                  "description": "Returns shipments with the specified tracking number"
+                },
+                {
+                  "disabled": false,
+                  "key": "createDateStart",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "createDateEnd",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "shipDateStart",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "shipDateEnd",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "voidDateStart",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "voidDateEnd",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "storeId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeShipmentItems",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee56bbcd-8453-47c4-96d8-5c6365ce00b9",
+              "name": "A list of shipments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "recipientName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recipientCountryCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "carrierCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "serviceCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "trackingNumber",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "createDateStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "createDateEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "shipDateStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "shipDateEnd",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "voidDateStart",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "voidDateEnd",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "storeId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeShipmentItems",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"shipments\": [\n    {\n      \"shipmentId\": 1205,\n      \"orderId\": 7437,\n      \"orderKey\": \"string\",\n      \"userId\": \"string\",\n      \"customerEmail\": \"string\",\n      \"orderNumber\": \"string\",\n      \"createDate\": \"2009-05-08T08:26:47.659Z\",\n      \"shipDate\": \"2014-01-10\",\n      \"shipmentCost\": 7325.411069237114,\n      \"insuranceCost\": 4905.811520673074,\n      \"trackingNumber\": \"string\",\n      \"isReturnLabel\": false,\n      \"batchNumber\": \"string\",\n      \"carrierCode\": \"string\",\n      \"serviceCode\": \"string\",\n      \"packageCode\": \"string\",\n      \"confirmation\": \"string\",\n      \"warehouseId\": 9553,\n      \"voided\": false,\n      \"voidDate\": \"1983-05-19T16:10:43.197Z\",\n      \"marketplaceNotified\": true,\n      \"notifyErrorMessage\": \"string\",\n      \"shipTo\": {\n        \"name\": \"string\",\n        \"company\": \"string\",\n        \"street1\": \"string\",\n        \"street2\": \"string\",\n        \"street3\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\",\n        \"phone\": \"string\",\n        \"residential\": true\n      },\n      \"weight\": {\n        \"value\": 9354.835869061622,\n        \"units\": \"ounces\",\n        \"WeightUnits\": 5563\n      },\n      \"dimensions\": {\n        \"length\": 6276.1659772416115,\n        \"width\": 133.17672490143596,\n        \"height\": 327.02112875733326,\n        \"units\": \"inches\"\n      },\n      \"insuranceOptions\": {},\n      \"advancedOptions\": {},\n      \"labelData\": \"string\",\n      \"formData\": \"string\"\n    },\n    {\n      \"shipmentId\": 8802,\n      \"orderId\": 3330,\n      \"orderKey\": \"string\",\n      \"userId\": \"string\",\n      \"customerEmail\": \"string\",\n      \"orderNumber\": \"string\",\n      \"createDate\": \"1980-04-24T11:55:04.379Z\",\n      \"shipDate\": \"1993-05-12\",\n      \"shipmentCost\": 7171.436851128446,\n      \"insuranceCost\": 2412.503861723716,\n      \"trackingNumber\": \"string\",\n      \"isReturnLabel\": true,\n      \"batchNumber\": \"string\",\n      \"carrierCode\": \"string\",\n      \"serviceCode\": \"string\",\n      \"packageCode\": \"string\",\n      \"confirmation\": \"string\",\n      \"warehouseId\": 3035,\n      \"voided\": true,\n      \"voidDate\": \"2003-02-25T04:50:18.560Z\",\n      \"marketplaceNotified\": true,\n      \"notifyErrorMessage\": \"string\",\n      \"shipTo\": {\n        \"name\": \"string\",\n        \"company\": \"string\",\n        \"street1\": \"string\",\n        \"street2\": \"string\",\n        \"street3\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\",\n        \"phone\": \"string\",\n        \"residential\": false\n      },\n      \"weight\": {\n        \"value\": 3459.0339057671517,\n        \"units\": \"grams\",\n        \"WeightUnits\": 5210\n      },\n      \"dimensions\": {\n        \"length\": 6670.962114717338,\n        \"width\": 4681.007611550386,\n        \"height\": 211.39751153696596,\n        \"units\": \"centimeters\"\n      },\n      \"insuranceOptions\": {},\n      \"advancedOptions\": {},\n      \"labelData\": \"string\",\n      \"formData\": \"string\"\n    }\n  ],\n  \"total\": 4595,\n  \"page\": 8795,\n  \"pages\": 7126\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca45d8ea-1629-4826-9007-9079b380f33f",
+          "name": "Create Shipment Label",
+          "request": {
+            "name": "Create Shipment Label",
+            "description": {
+              "content": "Creates a shipping label for the specified order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                "createlabel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": \"<integer>\",\n  \"carrierCode\": \"<string>\",\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"<string>\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"confirmation\": \"<string>\",\n  \"shipDate\": \"<date>\",\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"<string>\"\n  },\n  \"insuranceOptions\": \"<object>\",\n  \"internationalOptions\": \"<object>\",\n  \"advancedOptions\": \"<object>\",\n  \"testLabel\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "94eebbef-d34f-4323-8889-3fc88868d793",
+              "name": "Label created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    "createlabel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"orderId\": \"<integer>\",\n  \"carrierCode\": \"<string>\",\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"weight\": {\n    \"value\": 3026.3614371933313,\n    \"units\": \"grams\",\n    \"WeightUnits\": 7325\n  },\n  \"confirmation\": \"<string>\",\n  \"shipDate\": \"<date>\",\n  \"dimensions\": {\n    \"length\": 7820.797572595378,\n    \"width\": 2620.7380431392867,\n    \"height\": 5281.76668124322,\n    \"units\": \"centimeters\"\n  },\n  \"insuranceOptions\": \"<object>\",\n  \"internationalOptions\": \"<object>\",\n  \"advancedOptions\": \"<object>\",\n  \"testLabel\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"shipmentId\": 5644,\n  \"orderId\": 8171,\n  \"userId\": \"string\",\n  \"customerEmail\": \"string\",\n  \"orderNumber\": \"string\",\n  \"createDate\": \"1965-04-15T11:22:45.157Z\",\n  \"shipDate\": \"1966-04-25\",\n  \"shipmentCost\": 3203.9699556400915,\n  \"trackingNumber\": \"string\",\n  \"labelData\": \"string\",\n  \"formData\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26f3a2aa-b20c-41ea-a5a0-8c21fb7d4594",
+          "name": "Get Shipping Rates",
+          "request": {
+            "name": "Get Shipping Rates",
+            "description": {
+              "content": "Retrieves shipping rates for the specified shipment details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                "getrates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carrierCode\": \"<string>\",\n  \"fromPostalCode\": \"<string>\",\n  \"toPostalCode\": \"<string>\",\n  \"toCountry\": \"<string>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"<string>\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"toState\": \"<string>\",\n  \"toCity\": \"<string>\",\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"<string>\"\n  },\n  \"confirmation\": \"<string>\",\n  \"residential\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "423c0a72-cc17-41b7-a4a5-a0a461dbb09c",
+              "name": "Shipping rates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    "getrates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"carrierCode\": \"<string>\",\n  \"fromPostalCode\": \"<string>\",\n  \"toPostalCode\": \"<string>\",\n  \"toCountry\": \"<string>\",\n  \"weight\": {\n    \"value\": 2275.445641300725,\n    \"units\": \"grams\",\n    \"WeightUnits\": 8473\n  },\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"toState\": \"<string>\",\n  \"toCity\": \"<string>\",\n  \"dimensions\": {\n    \"length\": 2665.7270408798595,\n    \"width\": 4706.375875856199,\n    \"height\": 4341.724929515146,\n    \"units\": \"centimeters\"\n  },\n  \"confirmation\": \"<string>\",\n  \"residential\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"serviceName\": \"string\",\n    \"serviceCode\": \"string\",\n    \"shipmentCost\": 3666.155298398346,\n    \"otherCost\": 8476.68796421442\n  },\n  {\n    \"serviceName\": \"string\",\n    \"serviceCode\": \"string\",\n    \"shipmentCost\": 7053.256510538907,\n    \"otherCost\": 4090.424895704988\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5151c33-8eca-4a8c-bc71-10b62d8822ee",
+          "name": "Void Label",
+          "request": {
+            "name": "Void Label",
+            "description": {
+              "content": "Voids the specified label.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                "voidlabel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shipmentId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f5fce2e-e64a-48ce-a02c-f8f668e5c9f8",
+              "name": "Label voided",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    "voidlabel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipmentId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"approved\": true,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ssapi.shipstation.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b135f853-9c12-4b91-b5d5-cf2472e9a00b",
+    "name": "ShipStation V1 Accounts Shipments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+      "type": "text/plain"
+    }
+  }
+}

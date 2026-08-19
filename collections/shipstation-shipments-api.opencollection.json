@@ -1,0 +1,185 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipStation V1 Accounts Shipments API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Shipments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/shipments",
+            "params": [
+              {
+                "name": "recipientName",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments shipped to the specified recipient name"
+              },
+              {
+                "name": "recipientCountryCode",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments shipped to the specified country code"
+              },
+              {
+                "name": "orderNumber",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments for the specified order number"
+              },
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments for the specified order ID"
+              },
+              {
+                "name": "carrierCode",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments shipped with the specified carrier"
+              },
+              {
+                "name": "serviceCode",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments shipped with the specified service"
+              },
+              {
+                "name": "trackingNumber",
+                "value": "",
+                "type": "query",
+                "description": "Returns shipments with the specified tracking number"
+              },
+              {
+                "name": "createDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "createDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shipDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shipDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "voidDateStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "voidDateEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "storeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeShipmentItems",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtains a list of shipments that match the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Create Shipment Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/shipments/createlabel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a shipping label for the specified order."
+        },
+        {
+          "info": {
+            "name": "Get Shipping Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/shipments/getrates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves shipping rates for the specified shipment details."
+        },
+        {
+          "info": {
+            "name": "Void Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/shipments/voidlabel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Voids the specified label."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

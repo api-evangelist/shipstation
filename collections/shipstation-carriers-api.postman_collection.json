@@ -1,0 +1,408 @@
+{
+  "item": [
+    {
+      "id": "4ee4a108-9728-4d65-8f70-c81d61851426",
+      "name": "Carriers",
+      "description": {
+        "content": "Query carriers and services",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "792a6120-866f-4c87-8c21-63bb1aab9b8f",
+          "name": "Get Shipping Rates",
+          "request": {
+            "name": "Get Shipping Rates",
+            "description": {
+              "content": "Retrieves shipping rates for the specified shipment details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "shipments",
+                "getrates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carrierCode\": \"<string>\",\n  \"fromPostalCode\": \"<string>\",\n  \"toPostalCode\": \"<string>\",\n  \"toCountry\": \"<string>\",\n  \"weight\": {\n    \"value\": \"<float>\",\n    \"units\": \"<string>\",\n    \"WeightUnits\": \"<integer>\"\n  },\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"toState\": \"<string>\",\n  \"toCity\": \"<string>\",\n  \"dimensions\": {\n    \"length\": \"<float>\",\n    \"width\": \"<float>\",\n    \"height\": \"<float>\",\n    \"units\": \"<string>\"\n  },\n  \"confirmation\": \"<string>\",\n  \"residential\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eee04177-cf13-461b-a95e-a1c3592b6e67",
+              "name": "Shipping rates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "shipments",
+                    "getrates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"carrierCode\": \"<string>\",\n  \"fromPostalCode\": \"<string>\",\n  \"toPostalCode\": \"<string>\",\n  \"toCountry\": \"<string>\",\n  \"weight\": {\n    \"value\": 5280.629369697175,\n    \"units\": \"ounces\",\n    \"WeightUnits\": 6794\n  },\n  \"serviceCode\": \"<string>\",\n  \"packageCode\": \"<string>\",\n  \"toState\": \"<string>\",\n  \"toCity\": \"<string>\",\n  \"dimensions\": {\n    \"length\": 8428.265040433482,\n    \"width\": 5014.775916986982,\n    \"height\": 5529.251116082715,\n    \"units\": \"inches\"\n  },\n  \"confirmation\": \"<string>\",\n  \"residential\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"serviceName\": \"string\",\n    \"serviceCode\": \"string\",\n    \"shipmentCost\": 270.4825684025836,\n    \"otherCost\": 6217.606706952546\n  },\n  {\n    \"serviceName\": \"string\",\n    \"serviceCode\": \"string\",\n    \"shipmentCost\": 4053.4052947875134,\n    \"otherCost\": 5164.022775155342\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5fd46b0-9da6-430d-978d-6e63c1e710ca",
+          "name": "List Carriers",
+          "request": {
+            "name": "List Carriers",
+            "description": {
+              "content": "Lists all shipping providers connected to this account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carriers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddecfeea-fb8b-458c-b099-9eb5086d37ec",
+              "name": "A list of carriers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carriers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"code\": \"string\",\n    \"accountNumber\": \"string\",\n    \"requiresFundedAccount\": true,\n    \"balance\": 2659.6613666011535,\n    \"nickname\": \"string\",\n    \"shippingProviderId\": 308,\n    \"primary\": true\n  },\n  {\n    \"name\": \"string\",\n    \"code\": \"string\",\n    \"accountNumber\": \"string\",\n    \"requiresFundedAccount\": false,\n    \"balance\": 4438.013453851414,\n    \"nickname\": \"string\",\n    \"shippingProviderId\": 6961,\n    \"primary\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34ba4311-d4da-488d-b83f-5e9cbd42f0b3",
+          "name": "List Carrier Services",
+          "request": {
+            "name": "List Carrier Services",
+            "description": {
+              "content": "Lists the services available to the specified carrier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carriers",
+                "getservices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "carrierCode",
+                  "value": "<string>",
+                  "description": "(Required) The carrier's code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77075cf1-6380-4e31-9a34-a24c7b27d15d",
+              "name": "A list of carrier services",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carriers",
+                    "getservices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "carrierCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"carrierId\": 2033,\n    \"carrierCode\": \"string\",\n    \"code\": \"string\",\n    \"name\": \"string\",\n    \"domestic\": false,\n    \"international\": true\n  },\n  {\n    \"carrierId\": 1008,\n    \"carrierCode\": \"string\",\n    \"code\": \"string\",\n    \"name\": \"string\",\n    \"domestic\": true,\n    \"international\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "043004d8-91da-4084-9cca-bed8485f7a33",
+          "name": "List Carrier Packages",
+          "request": {
+            "name": "List Carrier Packages",
+            "description": {
+              "content": "Retrieves a list of packages for the specified carrier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carriers",
+                "listpackages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "carrierCode",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c0fe845-70d9-4001-9b12-a8a042601356",
+              "name": "A list of packages",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carriers",
+                    "listpackages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "carrierCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"carrierCode\": \"string\",\n    \"code\": \"string\",\n    \"name\": \"string\",\n    \"domestic\": false,\n    \"international\": true\n  },\n  {\n    \"carrierCode\": \"string\",\n    \"code\": \"string\",\n    \"name\": \"string\",\n    \"domestic\": false,\n    \"international\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ssapi.shipstation.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "72f958d6-1e87-488a-95db-69f8fc3fbaa7",
+    "name": "ShipStation V1 Accounts Carriers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+      "type": "text/plain"
+    }
+  }
+}

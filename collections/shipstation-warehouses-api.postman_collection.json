@@ -1,0 +1,531 @@
+{
+  "item": [
+    {
+      "id": "ab46b035-d1ae-42e3-b588-f0567f8a8576",
+      "name": "Warehouses",
+      "description": {
+        "content": "Manage warehouse locations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64ba78d5-6cdc-436b-80f9-f836f4f4c24e",
+          "name": "List Warehouses",
+          "request": {
+            "name": "List Warehouses",
+            "description": {
+              "content": "Obtains a list of your warehouses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "warehouses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af815be4-8d5f-4551-99f5-4e959b92d0c4",
+              "name": "A list of warehouses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "warehouses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"warehouseId\": 5713,\n    \"warehouseName\": \"string\",\n    \"originAddress\": {\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"street1\": \"string\",\n      \"street2\": \"string\",\n      \"street3\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\",\n      \"phone\": \"string\",\n      \"residential\": false\n    },\n    \"returnAddress\": {\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"street1\": \"string\",\n      \"street2\": \"string\",\n      \"street3\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\",\n      \"phone\": \"string\",\n      \"residential\": true\n    },\n    \"createDate\": \"1988-08-10T22:59:18.795Z\",\n    \"isDefault\": true\n  },\n  {\n    \"warehouseId\": 8071,\n    \"warehouseName\": \"string\",\n    \"originAddress\": {\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"street1\": \"string\",\n      \"street2\": \"string\",\n      \"street3\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\",\n      \"phone\": \"string\",\n      \"residential\": true\n    },\n    \"returnAddress\": {\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"street1\": \"string\",\n      \"street2\": \"string\",\n      \"street3\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\",\n      \"phone\": \"string\",\n      \"residential\": false\n    },\n    \"createDate\": \"1967-07-04T03:17:43.713Z\",\n    \"isDefault\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a2d18d2-034b-40bb-8df7-4dd774ed9270",
+          "name": "Create Warehouse",
+          "request": {
+            "name": "Create Warehouse",
+            "description": {
+              "content": "Adds a warehouse record to your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "warehouses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"warehouseName\": \"<string>\",\n  \"originAddress\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"returnAddress\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"isDefault\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e954f561-08d6-4cf4-bd1a-9a83bcf4215f",
+              "name": "Warehouse created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "warehouses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"warehouseName\": \"<string>\",\n  \"originAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": true\n  },\n  \"returnAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": false\n  },\n  \"isDefault\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"warehouseId\": 8114,\n  \"warehouseName\": \"string\",\n  \"originAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": false\n  },\n  \"returnAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": true\n  },\n  \"createDate\": \"1955-10-12T17:40:51.328Z\",\n  \"isDefault\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07d4b7c0-6029-412a-8dd0-7224789a5a17",
+          "name": "Get Warehouse",
+          "request": {
+            "name": "Get Warehouse",
+            "description": {
+              "content": "Returns a warehouse by warehouseId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "warehouses",
+                ":warehouseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "warehouseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6315ee25-e03e-41d2-b70a-518b307850af",
+              "name": "Warehouse object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "warehouses",
+                    ":warehouseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "warehouseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"warehouseId\": 8114,\n  \"warehouseName\": \"string\",\n  \"originAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": false\n  },\n  \"returnAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": true\n  },\n  \"createDate\": \"1955-10-12T17:40:51.328Z\",\n  \"isDefault\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5b233b3-ead6-49c0-acd4-5e89d6d12c59",
+          "name": "Update Warehouse",
+          "request": {
+            "name": "Update Warehouse",
+            "description": {
+              "content": "Updates an existing warehouse.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "warehouses",
+                ":warehouseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "warehouseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"warehouseName\": \"<string>\",\n  \"originAddress\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"returnAddress\": {\n    \"name\": \"<string>\",\n    \"company\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"street3\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"isDefault\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d58124a9-e26a-4f2f-a4bc-7828ee9a270e",
+              "name": "Warehouse updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "warehouses",
+                    ":warehouseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "warehouseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"warehouseName\": \"<string>\",\n  \"originAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": true\n  },\n  \"returnAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": false\n  },\n  \"isDefault\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"warehouseId\": 8114,\n  \"warehouseName\": \"string\",\n  \"originAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": false\n  },\n  \"returnAddress\": {\n    \"name\": \"string\",\n    \"company\": \"string\",\n    \"street1\": \"string\",\n    \"street2\": \"string\",\n    \"street3\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"phone\": \"string\",\n    \"residential\": true\n  },\n  \"createDate\": \"1955-10-12T17:40:51.328Z\",\n  \"isDefault\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b410dff-20d8-4032-87fd-fffb8ddbc58a",
+          "name": "Delete Warehouse",
+          "request": {
+            "name": "Delete Warehouse",
+            "description": {
+              "content": "Removes a warehouse from ShipStation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "warehouses",
+                ":warehouseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "warehouseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1650b238-0fee-48dc-8281-7237f611d82a",
+              "name": "Warehouse deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "warehouses",
+                    ":warehouseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "warehouseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ssapi.shipstation.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "82c6492e-6a1f-42ca-a57f-b9cfc25ae4ea",
+    "name": "ShipStation V1 Accounts Warehouses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+      "type": "text/plain"
+    }
+  }
+}

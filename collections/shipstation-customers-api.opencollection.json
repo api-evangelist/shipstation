@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipStation V1 Accounts Customers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/customers",
+            "params": [
+              {
+                "name": "stateCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Obtains a list of customers that match the specified criteria."
+        },
+        {
+          "info": {
+            "name": "Get Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets the customer specified by the system-generated identifier."
+        },
+        {
+          "info": {
+            "name": "Update Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ssapi.shipstation.com/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified customer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipStation V1 Accounts Warehouses API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Warehouses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Warehouses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/warehouses"
+          },
+          "docs": "Obtains a list of your warehouses."
+        },
+        {
+          "info": {
+            "name": "Create Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/warehouses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a warehouse record to your account."
+        },
+        {
+          "info": {
+            "name": "Get Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/warehouses/:warehouseId",
+            "params": [
+              {
+                "name": "warehouseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a warehouse by warehouseId."
+        },
+        {
+          "info": {
+            "name": "Update Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://ssapi.shipstation.com/warehouses/:warehouseId",
+            "params": [
+              {
+                "name": "warehouseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing warehouse."
+        },
+        {
+          "info": {
+            "name": "Delete Warehouse",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ssapi.shipstation.com/warehouses/:warehouseId",
+            "params": [
+              {
+                "name": "warehouseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a warehouse from ShipStation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

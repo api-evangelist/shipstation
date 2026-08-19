@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipStation V1 Accounts Stores API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stores",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Stores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/stores",
+            "params": [
+              {
+                "name": "showInactive",
+                "value": "",
+                "type": "query",
+                "description": "Determines whether inactive stores are returned"
+              },
+              {
+                "name": "marketplaceId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by marketplace ID"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of installed stores on the account."
+        },
+        {
+          "info": {
+            "name": "Get Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/stores/:storeId",
+            "params": [
+              {
+                "name": "storeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details about a specific store."
+        },
+        {
+          "info": {
+            "name": "Refresh Store",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/stores/refreshstore",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a store refresh."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

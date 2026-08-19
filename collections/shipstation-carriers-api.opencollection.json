@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipStation V1 Accounts Carriers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Carriers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Shipping Rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/shipments/getrates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieves shipping rates for the specified shipment details."
+        },
+        {
+          "info": {
+            "name": "List Carriers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/carriers"
+          },
+          "docs": "Lists all shipping providers connected to this account."
+        },
+        {
+          "info": {
+            "name": "List Carrier Services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/carriers/getservices",
+            "params": [
+              {
+                "name": "carrierCode",
+                "value": "",
+                "type": "query",
+                "description": "The carrier's code"
+              }
+            ]
+          },
+          "docs": "Lists the services available to the specified carrier."
+        },
+        {
+          "info": {
+            "name": "List Carrier Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/carriers/listpackages",
+            "params": [
+              {
+                "name": "carrierCode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of packages for the specified carrier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

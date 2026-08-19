@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "ShipStation V1 Accounts Webhooks API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://ssapi.shipstation.com/webhooks"
+          },
+          "docs": "Retrieves a list of registered webhooks for the account."
+        },
+        {
+          "info": {
+            "name": "Subscribe to Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://ssapi.shipstation.com/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribes to a specific type of event so that when the event occurs, a notification is sent to a specified URL."
+        },
+        {
+          "info": {
+            "name": "Unsubscribe from Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://ssapi.shipstation.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unsubscribes from a specific webhook."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

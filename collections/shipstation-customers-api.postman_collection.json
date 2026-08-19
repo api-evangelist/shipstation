@@ -1,0 +1,410 @@
+{
+  "item": [
+    {
+      "id": "ef259d35-139b-427f-8851-797177705606",
+      "name": "Customers",
+      "description": {
+        "content": "Manage customer records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a8bb7b5-0473-4178-9d15-64c61e280d53",
+          "name": "List Customers",
+          "request": {
+            "name": "List Customers",
+            "description": {
+              "content": "Obtains a list of customers that match the specified criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "stateCode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "marketplaceId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3366105c-4f12-475e-bc1b-770b79c3c1fa",
+              "name": "A list of customers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "stateCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "marketplaceId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tagId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customers\": [\n    {\n      \"customerId\": 704,\n      \"createDate\": \"2009-01-09T04:55:40.952Z\",\n      \"modifyDate\": \"1962-05-20T20:53:31.929Z\",\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"street1\": \"string\",\n      \"street2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"countryCode\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"addressVerified\": \"string\"\n    },\n    {\n      \"customerId\": 7993,\n      \"createDate\": \"1970-04-04T21:52:33.637Z\",\n      \"modifyDate\": \"2007-05-30T21:40:45.619Z\",\n      \"name\": \"string\",\n      \"company\": \"string\",\n      \"street1\": \"string\",\n      \"street2\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"countryCode\": \"string\",\n      \"phone\": \"string\",\n      \"email\": \"string\",\n      \"addressVerified\": \"string\"\n    }\n  ],\n  \"total\": 3799,\n  \"page\": 8181,\n  \"pages\": 3734\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24a7c04c-433e-4ffc-8bb2-6e77224d679a",
+          "name": "Get Customer",
+          "request": {
+            "name": "Get Customer",
+            "description": {
+              "content": "Gets the customer specified by the system-generated identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e8b02d4-7399-4ccb-8b01-e36901a9d017",
+              "name": "Customer object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customerId\": 4469,\n  \"createDate\": \"1974-10-19T00:25:52.138Z\",\n  \"modifyDate\": \"2001-09-15T09:34:25.731Z\",\n  \"name\": \"string\",\n  \"company\": \"string\",\n  \"street1\": \"string\",\n  \"street2\": \"string\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"postalCode\": \"string\",\n  \"countryCode\": \"string\",\n  \"phone\": \"string\",\n  \"email\": \"string\",\n  \"addressVerified\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e5a6749-64cb-40c9-93cd-11c00f36fa60",
+          "name": "Update Customer",
+          "request": {
+            "name": "Update Customer",
+            "description": {
+              "content": "Updates the specified customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<integer>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"company\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"street2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"addressVerified\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5293b70-f1a4-4049-8e4a-a4c1ea829608",
+              "name": "Customer updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<integer>\",\n  \"createDate\": \"<dateTime>\",\n  \"modifyDate\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"company\": \"<string>\",\n  \"street1\": \"<string>\",\n  \"street2\": \"<string>\",\n  \"city\": \"<string>\",\n  \"state\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"addressVerified\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://ssapi.shipstation.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "62690bb1-ab59-4452-a25e-816ba255a817",
+    "name": "ShipStation V1 Accounts Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.\n\nContact Support:\n Name: ShipStation\n Email: apisupport@shipstation.com",
+      "type": "text/plain"
+    }
+  }
+}
