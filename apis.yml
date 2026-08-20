@@ -4,6 +4,11 @@ apis:
 - aid: shipstation:shipstation-v2-api
   name: ShipStation V2 API
   tags:
+  - E-Commerce
+  - Labels
+  - Order Management
+  - Shipping
+  tags_raw:
   - Ecommerce
   - Labels
   - Order Management
@@ -24,6 +29,8 @@ apis:
   description: Manage ShipStation account settings
   humanURL: https://www.shipstation.com/docs/api/
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -124,6 +131,8 @@ apis:
   description: Manage customer orders
   humanURL: https://www.shipstation.com/docs/api/
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -149,6 +158,8 @@ apis:
   description: Manage product records
   humanURL: https://www.shipstation.com/docs/api/
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -249,6 +260,8 @@ apis:
   description: Manage webhook subscriptions
   humanURL: https://www.shipstation.com/docs/api/
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
@@ -271,6 +284,13 @@ apis:
     url: graphql/shipstation-graphql.md
 name: ShipStation
 tags:
+- E-Commerce
+- Labels
+- Logistics
+- Order Management
+- Shipping
+- Warehousing
+tags_raw:
 - Ecommerce
 - Labels
 - Logistics
