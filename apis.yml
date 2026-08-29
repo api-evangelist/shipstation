@@ -366,6 +366,9 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: CapabilityMap
+  url: capabilities/shipstation-capability-edges.yml
+  name: ShipStation Business Capability Map
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/shipstation/overview
 - type: AgenticAccess
