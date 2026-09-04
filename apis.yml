@@ -312,22 +312,23 @@ deliveryModel:
   method: derived
 accessModel:
   pricing: paid
-  onboarding: self-serve
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Paid · Self-serve signup
-  confidence: high
+  label: Paid
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/shipstation.png
 access: 3rd-Party
 created: '2025-03-01'
 modified: '2026-05-30'
-position: Consumer
+position: Consuming
 description: ShipStation is a leading shipping platform for ecommerce businesses providing
   APIs to integrate shipping workflows into applications. The ShipStation API enables
   developers to automate order management, create shipments, generate labels, track
