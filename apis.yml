@@ -288,6 +288,7 @@ apis:
     url: graphql/shipstation-graphql.md
 name: ShipStation
 tags:
+- ShipStation
 - E-Commerce
 - Labels
 - Logistics
