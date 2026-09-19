@@ -56,6 +56,8 @@ apis:
   description: Query carriers and services
   humanURL: https://www.shipstation.com/docs/api/
   tags:
+  - Carrier
+  tags_raw:
   - Carriers
   properties:
   - type: OpenAPI
@@ -235,6 +237,8 @@ apis:
   description: Manage warehouse locations
   humanURL: https://www.shipstation.com/docs/api/
   tags:
+  - Warehouse
+  tags_raw:
   - Warehouses
   properties:
   - type: OpenAPI
@@ -290,8 +294,8 @@ tags:
 - Order Management
 - Shipping
 - Warehousing
-- ShipStation
 tags_raw:
+- ShipStation
 - Ecommerce
 - Labels
 - Logistics
