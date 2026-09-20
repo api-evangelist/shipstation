@@ -373,6 +373,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: RateLimits
+  url: rate-limits/shipstation-rate-limits.yml
 - type: Pricing
   url: https://www.shipstation.com/pricing/
 - type: Plans
