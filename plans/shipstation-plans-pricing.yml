@@ -10,6 +10,11 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: business-product
 pricing_basis: tiered-subscription
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-09-20'
+  managed_tier: Starter
 published: true
 note: ShipStation software pricing page with three plans priced by monthly shipment volume tiers (many
   intermediate tiers listed, e.g. Standard 10,000 per month $599.99 /month; Premium 10,000 per month $1,099.99
