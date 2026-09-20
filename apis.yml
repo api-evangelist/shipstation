@@ -373,6 +373,10 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: Pricing
+  url: https://www.shipstation.com/pricing/
+- type: Plans
+  url: plans/shipstation-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/shipstation-capability-edges.yml
   name: ShipStation Business Capability Map
