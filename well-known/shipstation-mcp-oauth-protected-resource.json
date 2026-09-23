@@ -1,0 +1,1 @@
+{"resource":"https://mcp.shipstation.com/mcp","authorization_servers":["https://mcp.shipstation.com/"],"scopes_supported":["offline","shipstation-mcp:all"],"bearer_methods_supported":["header"]}

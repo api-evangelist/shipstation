@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ShipStation V1 Accounts Fulfillments API
+  title: ShipStation V1 Fulfillments API
   description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
   version: '1.0'
   contact:
@@ -96,19 +96,6 @@ paths:
                 $ref: '#/components/schemas/FulfillmentPaginatedList'
 components:
   schemas:
-    FulfillmentPaginatedList:
-      type: object
-      properties:
-        fulfillments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fulfillment'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
     Fulfillment:
       type: object
       properties:
@@ -136,6 +123,19 @@ components:
           type: boolean
         shipTo:
           $ref: '#/components/schemas/Address'
+    FulfillmentPaginatedList:
+      type: object
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
     Address:
       type: object
       properties:

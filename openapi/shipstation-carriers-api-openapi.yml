@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ShipStation V1 Accounts Carriers API
+  title: ShipStation V1 Carriers API
   description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
   version: '1.0'
   contact:
@@ -105,6 +105,99 @@ paths:
                   $ref: '#/components/schemas/Package'
 components:
   schemas:
+    Package:
+      type: object
+      properties:
+        carrierCode:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
+    CarrierService:
+      type: object
+      properties:
+        carrierId:
+          type: integer
+        carrierCode:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
+    Rate:
+      type: object
+      properties:
+        serviceName:
+          type: string
+        serviceCode:
+          type: string
+        shipmentCost:
+          type: number
+          format: float
+        otherCost:
+          type: number
+          format: float
+    Weight:
+      type: object
+      properties:
+        value:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
+          type: integer
+    Dimensions:
+      type: object
+      properties:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
+    Carrier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Carrier name
+        code:
+          type: string
+          description: Carrier code
+        accountNumber:
+          type: string
+        requiresFundedAccount:
+          type: boolean
+        balance:
+          type: number
+        nickname:
+          type: string
+        shippingProviderId:
+          type: integer
+        primary:
+          type: boolean
     RateRequest:
       type: object
       required:
@@ -138,99 +231,6 @@ components:
           type: string
         residential:
           type: boolean
-    Carrier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Carrier name
-        code:
-          type: string
-          description: Carrier code
-        accountNumber:
-          type: string
-        requiresFundedAccount:
-          type: boolean
-        balance:
-          type: number
-        nickname:
-          type: string
-        shippingProviderId:
-          type: integer
-        primary:
-          type: boolean
-    Rate:
-      type: object
-      properties:
-        serviceName:
-          type: string
-        serviceCode:
-          type: string
-        shipmentCost:
-          type: number
-          format: float
-        otherCost:
-          type: number
-          format: float
-    Weight:
-      type: object
-      properties:
-        value:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - pounds
-          - ounces
-          - grams
-        WeightUnits:
-          type: integer
-    Package:
-      type: object
-      properties:
-        carrierCode:
-          type: string
-        code:
-          type: string
-        name:
-          type: string
-        domestic:
-          type: boolean
-        international:
-          type: boolean
-    CarrierService:
-      type: object
-      properties:
-        carrierId:
-          type: integer
-        carrierCode:
-          type: string
-        code:
-          type: string
-        name:
-          type: string
-        domestic:
-          type: boolean
-        international:
-          type: boolean
-    Dimensions:
-      type: object
-      properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - inches
-          - centimeters
   securitySchemes:
     BasicAuth:
       type: http

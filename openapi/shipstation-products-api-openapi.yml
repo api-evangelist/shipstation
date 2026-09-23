@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ShipStation V1 Accounts Products API
+  title: ShipStation V1 Products API
   description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
   version: '1.0'
   contact:
@@ -135,6 +135,15 @@ paths:
                 type: object
 components:
   schemas:
+    Tag:
+      type: object
+      properties:
+        tagId:
+          type: integer
+        name:
+          type: string
+        color:
+          type: string
     ProductPaginatedList:
       type: object
       properties:
@@ -148,15 +157,6 @@ components:
           type: integer
         pages:
           type: integer
-    Tag:
-      type: object
-      properties:
-        tagId:
-          type: integer
-        name:
-          type: string
-        color:
-          type: string
     Product:
       type: object
       properties:

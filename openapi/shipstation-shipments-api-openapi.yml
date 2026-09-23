@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: ShipStation V1 Accounts Shipments API
+  title: ShipStation V1 Shipments API
   description: The ShipStation V1 API provides programmatic access to ShipStation's shipping platform for ecommerce businesses. Endpoints cover order management, shipment creation, label generation, carrier rate shopping, package tracking, warehouse management, product management, and store integrations. Authentication uses HTTP Basic auth with API key and secret.
   version: '1.0'
   contact:
@@ -200,6 +200,155 @@ paths:
                     type: string
 components:
   schemas:
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of person
+        company:
+          type: string
+          description: Company
+        street1:
+          type: string
+          description: First line of address
+        street2:
+          type: string
+          description: Second line of address
+        street3:
+          type: string
+          description: Third line of address
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        residential:
+          type: boolean
+          description: Whether the address is residential
+    Rate:
+      type: object
+      properties:
+        serviceName:
+          type: string
+        serviceCode:
+          type: string
+        shipmentCost:
+          type: number
+          format: float
+        otherCost:
+          type: number
+          format: float
+    Weight:
+      type: object
+      properties:
+        value:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
+          type: integer
+    Dimensions:
+      type: object
+      properties:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
+    Label:
+      type: object
+      properties:
+        shipmentId:
+          type: integer
+        orderId:
+          type: integer
+        userId:
+          type: string
+        customerEmail:
+          type: string
+        orderNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        shipmentCost:
+          type: number
+        trackingNumber:
+          type: string
+        labelData:
+          type: string
+        formData:
+          type: string
+    ShipmentPaginatedList:
+      type: object
+      properties:
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    LabelCreateRequest:
+      type: object
+      required:
+      - orderId
+      - carrierCode
+      - serviceCode
+      - packageCode
+      - weight
+      properties:
+        orderId:
+          type: integer
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+        shipDate:
+          type: string
+          format: date
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        insuranceOptions:
+          type: object
+        internationalOptions:
+          type: object
+        advancedOptions:
+          type: object
+        testLabel:
+          type: boolean
     RateRequest:
       type: object
       required:
@@ -304,155 +453,6 @@ components:
           description: Base64-encoded label data
         formData:
           type: string
-    Label:
-      type: object
-      properties:
-        shipmentId:
-          type: integer
-        orderId:
-          type: integer
-        userId:
-          type: string
-        customerEmail:
-          type: string
-        orderNumber:
-          type: string
-        createDate:
-          type: string
-          format: date-time
-        shipDate:
-          type: string
-          format: date
-        shipmentCost:
-          type: number
-        trackingNumber:
-          type: string
-        labelData:
-          type: string
-        formData:
-          type: string
-    Rate:
-      type: object
-      properties:
-        serviceName:
-          type: string
-        serviceCode:
-          type: string
-        shipmentCost:
-          type: number
-          format: float
-        otherCost:
-          type: number
-          format: float
-    Weight:
-      type: object
-      properties:
-        value:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - pounds
-          - ounces
-          - grams
-        WeightUnits:
-          type: integer
-    Address:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of person
-        company:
-          type: string
-          description: Company
-        street1:
-          type: string
-          description: First line of address
-        street2:
-          type: string
-          description: Second line of address
-        street3:
-          type: string
-          description: Third line of address
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        phone:
-          type: string
-        residential:
-          type: boolean
-          description: Whether the address is residential
-    ShipmentPaginatedList:
-      type: object
-      properties:
-        shipments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
-    LabelCreateRequest:
-      type: object
-      required:
-      - orderId
-      - carrierCode
-      - serviceCode
-      - packageCode
-      - weight
-      properties:
-        orderId:
-          type: integer
-        carrierCode:
-          type: string
-        serviceCode:
-          type: string
-        packageCode:
-          type: string
-        confirmation:
-          type: string
-        shipDate:
-          type: string
-          format: date
-        weight:
-          $ref: '#/components/schemas/Weight'
-        dimensions:
-          $ref: '#/components/schemas/Dimensions'
-        insuranceOptions:
-          type: object
-        internationalOptions:
-          type: object
-        advancedOptions:
-          type: object
-        testLabel:
-          type: boolean
-    Dimensions:
-      type: object
-      properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - inches
-          - centimeters
   securitySchemes:
     BasicAuth:
       type: http
