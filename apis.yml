@@ -49,8 +49,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 - aid: shipstation:shipstation-carriers-api
   name: ShipStation Carriers API
   description: Query carriers and services
@@ -76,8 +74,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 - aid: shipstation:shipstation-customers-api
   name: ShipStation Customers API
   description: Manage customer records
@@ -101,8 +97,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 - aid: shipstation:shipstation-fulfillments-api
   name: ShipStation Fulfillments API
   description: Manage third-party fulfillments
@@ -126,8 +120,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 - aid: shipstation:shipstation-orders-api
   name: ShipStation Orders API
   description: Manage customer orders
@@ -153,8 +145,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 - aid: shipstation:shipstation-products-api
   name: ShipStation Products API
   description: Manage product records
@@ -180,8 +170,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 - aid: shipstation:shipstation-shipments-api
   name: ShipStation Shipments API
   description: Create and manage shipments
@@ -205,8 +193,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 - aid: shipstation:shipstation-stores-api
   name: ShipStation Stores API
   description: Manage marketplace store connections
@@ -230,8 +216,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 - aid: shipstation:shipstation-warehouses-api
   name: ShipStation Warehouses API
   description: Manage warehouse locations
@@ -257,8 +241,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 - aid: shipstation:shipstation-webhooks-api
   name: ShipStation Webhooks API
   description: Manage webhook subscriptions
@@ -284,8 +266,6 @@ apis:
     url: rules/shipstation-rules.yml
   - type: Vocabulary
     url: vocabulary/shipstation-vocabulary.yml
-  - type: GraphQL
-    url: graphql/shipstation-graphql.md
 name: ShipStation
 tags:
 - ShipStation
