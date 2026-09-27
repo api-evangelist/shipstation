@@ -121,6 +121,19 @@ paths:
                 type: object
 components:
   schemas:
+    CustomerPaginatedList:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
     Customer:
       type: object
       properties:
@@ -154,19 +167,6 @@ components:
           type: string
         addressVerified:
           type: string
-    CustomerPaginatedList:
-      type: object
-      properties:
-        customers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Customer'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
   securitySchemes:
     BasicAuth:
       type: http

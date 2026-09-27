@@ -135,28 +135,6 @@ paths:
                 type: object
 components:
   schemas:
-    Tag:
-      type: object
-      properties:
-        tagId:
-          type: integer
-        name:
-          type: string
-        color:
-          type: string
-    ProductPaginatedList:
-      type: object
-      properties:
-        products:
-          type: array
-          items:
-            $ref: '#/components/schemas/Product'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
     Product:
       type: object
       properties:
@@ -232,6 +210,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
+    ProductPaginatedList:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
+    Tag:
+      type: object
+      properties:
+        tagId:
+          type: integer
+        name:
+          type: string
+        color:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

@@ -346,6 +346,54 @@ paths:
                 type: object
 components:
   schemas:
+    Dimensions:
+      type: object
+      properties:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
+    Address:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of person
+        company:
+          type: string
+          description: Company
+        street1:
+          type: string
+          description: First line of address
+        street2:
+          type: string
+          description: Second line of address
+        street3:
+          type: string
+          description: Third line of address
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        residential:
+          type: boolean
+          description: Whether the address is residential
     OrderItem:
       type: object
       properties:
@@ -498,37 +546,19 @@ components:
           type: boolean
         externallyFulfilledBy:
           type: string
-    Address:
+    OrderPaginatedList:
       type: object
       properties:
-        name:
-          type: string
-          description: Name of person
-        company:
-          type: string
-          description: Company
-        street1:
-          type: string
-          description: First line of address
-        street2:
-          type: string
-          description: Second line of address
-        street3:
-          type: string
-          description: Third line of address
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        phone:
-          type: string
-        residential:
-          type: boolean
-          description: Whether the address is residential
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
     OrderCreateRequest:
       type: object
       required:
@@ -617,36 +647,6 @@ components:
           - ounces
           - grams
         WeightUnits:
-          type: integer
-    Dimensions:
-      type: object
-      properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - inches
-          - centimeters
-    OrderPaginatedList:
-      type: object
-      properties:
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
           type: integer
   securitySchemes:
     BasicAuth:

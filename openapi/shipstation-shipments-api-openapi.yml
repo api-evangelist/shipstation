@@ -200,6 +200,23 @@ paths:
                     type: string
 components:
   schemas:
+    Dimensions:
+      type: object
+      properties:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
     Address:
       type: object
       properties:
@@ -231,77 +248,6 @@ components:
         residential:
           type: boolean
           description: Whether the address is residential
-    Rate:
-      type: object
-      properties:
-        serviceName:
-          type: string
-        serviceCode:
-          type: string
-        shipmentCost:
-          type: number
-          format: float
-        otherCost:
-          type: number
-          format: float
-    Weight:
-      type: object
-      properties:
-        value:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - pounds
-          - ounces
-          - grams
-        WeightUnits:
-          type: integer
-    Dimensions:
-      type: object
-      properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - inches
-          - centimeters
-    Label:
-      type: object
-      properties:
-        shipmentId:
-          type: integer
-        orderId:
-          type: integer
-        userId:
-          type: string
-        customerEmail:
-          type: string
-        orderNumber:
-          type: string
-        createDate:
-          type: string
-          format: date-time
-        shipDate:
-          type: string
-          format: date
-        shipmentCost:
-          type: number
-        trackingNumber:
-          type: string
-        labelData:
-          type: string
-        formData:
-          type: string
     ShipmentPaginatedList:
       type: object
       properties:
@@ -315,40 +261,6 @@ components:
           type: integer
         pages:
           type: integer
-    LabelCreateRequest:
-      type: object
-      required:
-      - orderId
-      - carrierCode
-      - serviceCode
-      - packageCode
-      - weight
-      properties:
-        orderId:
-          type: integer
-        carrierCode:
-          type: string
-        serviceCode:
-          type: string
-        packageCode:
-          type: string
-        confirmation:
-          type: string
-        shipDate:
-          type: string
-          format: date
-        weight:
-          $ref: '#/components/schemas/Weight'
-        dimensions:
-          $ref: '#/components/schemas/Dimensions'
-        insuranceOptions:
-          type: object
-        internationalOptions:
-          type: object
-        advancedOptions:
-          type: object
-        testLabel:
-          type: boolean
     RateRequest:
       type: object
       required:
@@ -453,6 +365,94 @@ components:
           description: Base64-encoded label data
         formData:
           type: string
+    Label:
+      type: object
+      properties:
+        shipmentId:
+          type: integer
+        orderId:
+          type: integer
+        userId:
+          type: string
+        customerEmail:
+          type: string
+        orderNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        shipmentCost:
+          type: number
+        trackingNumber:
+          type: string
+        labelData:
+          type: string
+        formData:
+          type: string
+    LabelCreateRequest:
+      type: object
+      required:
+      - orderId
+      - carrierCode
+      - serviceCode
+      - packageCode
+      - weight
+      properties:
+        orderId:
+          type: integer
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+        shipDate:
+          type: string
+          format: date
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        insuranceOptions:
+          type: object
+        internationalOptions:
+          type: object
+        advancedOptions:
+          type: object
+        testLabel:
+          type: boolean
+    Weight:
+      type: object
+      properties:
+        value:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
+          type: integer
+    Rate:
+      type: object
+      properties:
+        serviceName:
+          type: string
+        serviceCode:
+          type: string
+        shipmentCost:
+          type: number
+          format: float
+        otherCost:
+          type: number
+          format: float
   securitySchemes:
     BasicAuth:
       type: http

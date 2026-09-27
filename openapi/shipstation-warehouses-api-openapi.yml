@@ -121,6 +121,36 @@ paths:
                 type: object
 components:
   schemas:
+    WarehouseCreateRequest:
+      type: object
+      required:
+      - warehouseName
+      - originAddress
+      properties:
+        warehouseName:
+          type: string
+        originAddress:
+          $ref: '#/components/schemas/Address'
+        returnAddress:
+          $ref: '#/components/schemas/Address'
+        isDefault:
+          type: boolean
+    Warehouse:
+      type: object
+      properties:
+        warehouseId:
+          type: integer
+        warehouseName:
+          type: string
+        originAddress:
+          $ref: '#/components/schemas/Address'
+        returnAddress:
+          $ref: '#/components/schemas/Address'
+        createDate:
+          type: string
+          format: date-time
+        isDefault:
+          type: boolean
     Address:
       type: object
       properties:
@@ -152,36 +182,6 @@ components:
         residential:
           type: boolean
           description: Whether the address is residential
-    WarehouseCreateRequest:
-      type: object
-      required:
-      - warehouseName
-      - originAddress
-      properties:
-        warehouseName:
-          type: string
-        originAddress:
-          $ref: '#/components/schemas/Address'
-        returnAddress:
-          $ref: '#/components/schemas/Address'
-        isDefault:
-          type: boolean
-    Warehouse:
-      type: object
-      properties:
-        warehouseId:
-          type: integer
-        warehouseName:
-          type: string
-        originAddress:
-          $ref: '#/components/schemas/Address'
-        returnAddress:
-          $ref: '#/components/schemas/Address'
-        createDate:
-          type: string
-          format: date-time
-        isDefault:
-          type: boolean
   securitySchemes:
     BasicAuth:
       type: http
