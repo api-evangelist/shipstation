@@ -105,36 +105,6 @@ paths:
                   $ref: '#/components/schemas/Package'
 components:
   schemas:
-    Dimensions:
-      type: object
-      properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - inches
-          - centimeters
-    Package:
-      type: object
-      properties:
-        carrierCode:
-          type: string
-        code:
-          type: string
-        name:
-          type: string
-        domestic:
-          type: boolean
-        international:
-          type: boolean
     CarrierService:
       type: object
       properties:
@@ -149,6 +119,52 @@ components:
         domestic:
           type: boolean
         international:
+          type: boolean
+    Package:
+      type: object
+      properties:
+        carrierCode:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
+    RateRequest:
+      type: object
+      required:
+      - carrierCode
+      - fromPostalCode
+      - toPostalCode
+      - toCountry
+      - weight
+      properties:
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        fromPostalCode:
+          type: string
+        toPostalCode:
+          type: string
+        toState:
+          type: string
+        toCountry:
+          type: string
+        toCity:
+          type: string
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        confirmation:
+          type: string
+        residential:
           type: boolean
     Carrier:
       type: object
@@ -198,39 +214,23 @@ components:
           - grams
         WeightUnits:
           type: integer
-    RateRequest:
+    Dimensions:
       type: object
-      required:
-      - carrierCode
-      - fromPostalCode
-      - toPostalCode
-      - toCountry
-      - weight
       properties:
-        carrierCode:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
           type: string
-        serviceCode:
-          type: string
-        packageCode:
-          type: string
-        fromPostalCode:
-          type: string
-        toPostalCode:
-          type: string
-        toState:
-          type: string
-        toCountry:
-          type: string
-        toCity:
-          type: string
-        weight:
-          $ref: '#/components/schemas/Weight'
-        dimensions:
-          $ref: '#/components/schemas/Dimensions'
-        confirmation:
-          type: string
-        residential:
-          type: boolean
+          enum:
+          - inches
+          - centimeters
   securitySchemes:
     BasicAuth:
       type: http

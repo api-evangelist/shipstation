@@ -96,6 +96,46 @@ paths:
                 $ref: '#/components/schemas/FulfillmentPaginatedList'
 components:
   schemas:
+    Fulfillment:
+      type: object
+      properties:
+        fulfillmentId:
+          type: integer
+        orderId:
+          type: integer
+        orderNumber:
+          type: string
+        userId:
+          type: string
+        customerEmail:
+          type: string
+        trackingNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        void:
+          type: boolean
+        deliveryEmail:
+          type: boolean
+        shipTo:
+          $ref: '#/components/schemas/Address'
+    FulfillmentPaginatedList:
+      type: object
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
     Address:
       type: object
       properties:
@@ -127,46 +167,6 @@ components:
         residential:
           type: boolean
           description: Whether the address is residential
-    FulfillmentPaginatedList:
-      type: object
-      properties:
-        fulfillments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fulfillment'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
-    Fulfillment:
-      type: object
-      properties:
-        fulfillmentId:
-          type: integer
-        orderId:
-          type: integer
-        orderNumber:
-          type: string
-        userId:
-          type: string
-        customerEmail:
-          type: string
-        trackingNumber:
-          type: string
-        createDate:
-          type: string
-          format: date-time
-        shipDate:
-          type: string
-          format: date
-        void:
-          type: boolean
-        deliveryEmail:
-          type: boolean
-        shipTo:
-          $ref: '#/components/schemas/Address'
   securitySchemes:
     BasicAuth:
       type: http

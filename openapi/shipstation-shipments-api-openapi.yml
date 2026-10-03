@@ -200,23 +200,6 @@ paths:
                     type: string
 components:
   schemas:
-    Dimensions:
-      type: object
-      properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - inches
-          - centimeters
     Address:
       type: object
       properties:
@@ -248,19 +231,6 @@ components:
         residential:
           type: boolean
           description: Whether the address is residential
-    ShipmentPaginatedList:
-      type: object
-      properties:
-        shipments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
     RateRequest:
       type: object
       required:
@@ -294,6 +264,19 @@ components:
           type: string
         residential:
           type: boolean
+    ShipmentPaginatedList:
+      type: object
+      properties:
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
     Shipment:
       type: object
       properties:
@@ -392,6 +375,19 @@ components:
           type: string
         formData:
           type: string
+    Rate:
+      type: object
+      properties:
+        serviceName:
+          type: string
+        serviceCode:
+          type: string
+        shipmentCost:
+          type: number
+          format: float
+        otherCost:
+          type: number
+          format: float
     LabelCreateRequest:
       type: object
       required:
@@ -440,19 +436,23 @@ components:
           - grams
         WeightUnits:
           type: integer
-    Rate:
+    Dimensions:
       type: object
       properties:
-        serviceName:
-          type: string
-        serviceCode:
-          type: string
-        shipmentCost:
+        length:
           type: number
           format: float
-        otherCost:
+        width:
           type: number
           format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
   securitySchemes:
     BasicAuth:
       type: http
