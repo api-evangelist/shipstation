@@ -79,26 +79,6 @@ paths:
           description: Webhook unsubscribed
 components:
   schemas:
-    WebhookCreateRequest:
-      type: object
-      required:
-      - target_url
-      - event
-      properties:
-        target_url:
-          type: string
-          description: The URL where webhook events will be sent
-        event:
-          type: string
-          enum:
-          - ORDER_NOTIFY
-          - ITEM_ORDER_NOTIFY
-          - SHIP_NOTIFY
-          - ITEM_SHIP_NOTIFY
-        store_id:
-          type: string
-        friendly_name:
-          type: string
     Webhook:
       type: object
       properties:
@@ -131,6 +111,26 @@ components:
         Seller:
           type: string
         Store:
+          type: string
+    WebhookCreateRequest:
+      type: object
+      required:
+      - target_url
+      - event
+      properties:
+        target_url:
+          type: string
+          description: The URL where webhook events will be sent
+        event:
+          type: string
+          enum:
+          - ORDER_NOTIFY
+          - ITEM_ORDER_NOTIFY
+          - SHIP_NOTIFY
+          - ITEM_SHIP_NOTIFY
+        store_id:
+          type: string
+        friendly_name:
           type: string
   securitySchemes:
     BasicAuth:

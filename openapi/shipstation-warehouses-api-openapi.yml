@@ -152,20 +152,6 @@ components:
         residential:
           type: boolean
           description: Whether the address is residential
-    WarehouseCreateRequest:
-      type: object
-      required:
-      - warehouseName
-      - originAddress
-      properties:
-        warehouseName:
-          type: string
-        originAddress:
-          $ref: '#/components/schemas/Address'
-        returnAddress:
-          $ref: '#/components/schemas/Address'
-        isDefault:
-          type: boolean
     Warehouse:
       type: object
       properties:
@@ -180,6 +166,20 @@ components:
         createDate:
           type: string
           format: date-time
+        isDefault:
+          type: boolean
+    WarehouseCreateRequest:
+      type: object
+      required:
+      - warehouseName
+      - originAddress
+      properties:
+        warehouseName:
+          type: string
+        originAddress:
+          $ref: '#/components/schemas/Address'
+        returnAddress:
+          $ref: '#/components/schemas/Address'
         isDefault:
           type: boolean
   securitySchemes:

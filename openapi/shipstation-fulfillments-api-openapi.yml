@@ -123,19 +123,6 @@ components:
           type: boolean
         shipTo:
           $ref: '#/components/schemas/Address'
-    FulfillmentPaginatedList:
-      type: object
-      properties:
-        fulfillments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fulfillment'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
     Address:
       type: object
       properties:
@@ -167,6 +154,19 @@ components:
         residential:
           type: boolean
           description: Whether the address is residential
+    FulfillmentPaginatedList:
+      type: object
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
   securitySchemes:
     BasicAuth:
       type: http

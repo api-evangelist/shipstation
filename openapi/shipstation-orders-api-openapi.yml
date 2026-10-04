@@ -346,18 +346,19 @@ paths:
                 type: object
 components:
   schemas:
-    OrderPaginatedList:
+    Weight:
       type: object
       properties:
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
+        value:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
           type: integer
     Address:
       type: object
@@ -504,6 +505,74 @@ components:
           type: boolean
         externallyFulfilledBy:
           type: string
+    OrderItem:
+      type: object
+      properties:
+        lineItemKey:
+          type: string
+        sku:
+          type: string
+        name:
+          type: string
+        imageUrl:
+          type: string
+        weight:
+          $ref: '#/components/schemas/Weight'
+        quantity:
+          type: integer
+        unitPrice:
+          type: number
+          format: float
+        taxAmount:
+          type: number
+          format: float
+        shippingAmount:
+          type: number
+          format: float
+        warehouseLocation:
+          type: string
+        options:
+          type: array
+          items:
+            type: object
+        productId:
+          type: integer
+        fulfillmentSku:
+          type: string
+        adjustment:
+          type: boolean
+        upc:
+          type: string
+    Dimensions:
+      type: object
+      properties:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
+    OrderPaginatedList:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
     OrderCreateRequest:
       type: object
       required:
@@ -579,75 +648,6 @@ components:
           type: array
           items:
             type: integer
-    OrderItem:
-      type: object
-      properties:
-        lineItemKey:
-          type: string
-        sku:
-          type: string
-        name:
-          type: string
-        imageUrl:
-          type: string
-        weight:
-          $ref: '#/components/schemas/Weight'
-        quantity:
-          type: integer
-        unitPrice:
-          type: number
-          format: float
-        taxAmount:
-          type: number
-          format: float
-        shippingAmount:
-          type: number
-          format: float
-        warehouseLocation:
-          type: string
-        options:
-          type: array
-          items:
-            type: object
-        productId:
-          type: integer
-        fulfillmentSku:
-          type: string
-        adjustment:
-          type: boolean
-        upc:
-          type: string
-    Weight:
-      type: object
-      properties:
-        value:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - pounds
-          - ounces
-          - grams
-        WeightUnits:
-          type: integer
-    Dimensions:
-      type: object
-      properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - inches
-          - centimeters
   securitySchemes:
     BasicAuth:
       type: http

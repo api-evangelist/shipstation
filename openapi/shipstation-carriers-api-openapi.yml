@@ -105,34 +105,20 @@ paths:
                   $ref: '#/components/schemas/Package'
 components:
   schemas:
-    CarrierService:
+    Weight:
       type: object
       properties:
-        carrierId:
+        value:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
           type: integer
-        carrierCode:
-          type: string
-        code:
-          type: string
-        name:
-          type: string
-        domestic:
-          type: boolean
-        international:
-          type: boolean
-    Package:
-      type: object
-      properties:
-        carrierCode:
-          type: string
-        code:
-          type: string
-        name:
-          type: string
-        domestic:
-          type: boolean
-        international:
-          type: boolean
     RateRequest:
       type: object
       required:
@@ -187,6 +173,34 @@ components:
           type: integer
         primary:
           type: boolean
+    CarrierService:
+      type: object
+      properties:
+        carrierId:
+          type: integer
+        carrierCode:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
+    Package:
+      type: object
+      properties:
+        carrierCode:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
     Rate:
       type: object
       properties:
@@ -200,20 +214,6 @@ components:
         otherCost:
           type: number
           format: float
-    Weight:
-      type: object
-      properties:
-        value:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - pounds
-          - ounces
-          - grams
-        WeightUnits:
-          type: integer
     Dimensions:
       type: object
       properties:

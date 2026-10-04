@@ -231,6 +231,20 @@ components:
         residential:
           type: boolean
           description: Whether the address is residential
+    Weight:
+      type: object
+      properties:
+        value:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
+          type: integer
     RateRequest:
       type: object
       required:
@@ -264,19 +278,23 @@ components:
           type: string
         residential:
           type: boolean
-    ShipmentPaginatedList:
+    Dimensions:
       type: object
       properties:
-        shipments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
     Shipment:
       type: object
       properties:
@@ -348,33 +366,6 @@ components:
           description: Base64-encoded label data
         formData:
           type: string
-    Label:
-      type: object
-      properties:
-        shipmentId:
-          type: integer
-        orderId:
-          type: integer
-        userId:
-          type: string
-        customerEmail:
-          type: string
-        orderNumber:
-          type: string
-        createDate:
-          type: string
-          format: date-time
-        shipDate:
-          type: string
-          format: date
-        shipmentCost:
-          type: number
-        trackingNumber:
-          type: string
-        labelData:
-          type: string
-        formData:
-          type: string
     Rate:
       type: object
       properties:
@@ -422,37 +413,46 @@ components:
           type: object
         testLabel:
           type: boolean
-    Weight:
+    ShipmentPaginatedList:
       type: object
       properties:
-        value:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - pounds
-          - ounces
-          - grams
-        WeightUnits:
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        total:
           type: integer
-    Dimensions:
+        page:
+          type: integer
+        pages:
+          type: integer
+    Label:
       type: object
       properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
+        shipmentId:
+          type: integer
+        orderId:
+          type: integer
+        userId:
           type: string
-          enum:
-          - inches
-          - centimeters
+        customerEmail:
+          type: string
+        orderNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        shipmentCost:
+          type: number
+        trackingNumber:
+          type: string
+        labelData:
+          type: string
+        formData:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http
