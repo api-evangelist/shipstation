@@ -353,6 +353,8 @@ maintainers:
   email: kin@apievangelist.com
 specificationVersion: '0.23'
 common:
+- type: FinOps
+  url: finops/shipstation-finops.yml
 - type: RateLimits
   url: rate-limits/shipstation-rate-limits.yml
 - type: Pricing
