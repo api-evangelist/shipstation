@@ -1,0 +1,31 @@
+# Front Door AI Index — shipstation — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: shipstation
+  lexicon_version: '1.0'
+  probed_at: '2026-09-25'
+  host: www.shipstation.com
+  final_host: www.shipstation.com
+  ownership: own
+  owner: shipstation
+  shares_host_with: null
+  inherited_from: null
+  alias_of: null
+  verdict: scored
+  score: 21
+  band: 5
+  band_label: prominent
+  host_score: 21
+  density: 4.23
+  words: 4965
+  tiers:
+    agentic: 2
+    core: 19
+    model: 0
+  ambiguous: 24
+  top_terms:
+    AI: 19
+    intelligence: 14
+    automation: 10
+    MCP: 2
