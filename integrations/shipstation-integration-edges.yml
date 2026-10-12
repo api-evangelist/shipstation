@@ -1,0 +1,598 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/shipstation/integrations
+- https://n8n.io/integrations/shipstation/
+checked:
+- https://composio.dev/toolkits/shipstation
+- https://monid.ai/tools/shipstation
+- https://n8n.io/integrations/shipstation/
+- https://zapier.com/apps/shipstation/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  channel: ipaas-listing
+  app: shipstation
+  url: https://zapier.com/apps/shipstation/integrations
+  external_url: http://www.shipstation.com/
+  partner_tier: GOLD
+  triggers:
+  - key: ITEM_ORDER_NOTIFY
+    label: Item Ordered
+  - key: ITEM_SHIP_NOTIFY
+    label: Item Shipped
+  - key: ORDER_NOTIFY
+    label: New Order
+  - key: SHIP_NOTIFY
+    label: Order Shipped
+  actions:
+  - key: order
+    label: Create Order
+  - key: _zap_raw_request
+    label: API Request (Beta)
+  searches: []
+- marketplace: n8n
+  channel: open-source-node
+  app: shipstation
+  url: https://n8n.io/integrations/shipstation/
+  identity: title
+  pair_pages: 164
+  pairs:
+  - shopify
+  - shortio
+  - shuffler
+  - sierra-interactive
+  - sifter
+  - signaturit
+  - signl4
+  - signrequest
+  - simpleem
+  - simplehash
+  - simplekpi
+  - simplelocalize
+  - simplero
+  - simpletexting
+  - sitecreatorio
+  - sitespeakai
+  - slack
+  - smaily
+  - smartreach
+  - smartsuite
+  - sms-it
+  - sms-magic
+  - sms77
+  - snapdocs
+  - snatchbot
+  - snipcart
+  - snowflake
+  - solve-data
+  - specter
+  - splunk
+  - spondyr
+  - spontit
+  - sportsdata
+  - spotify
+  - spydra
+  - sslmate-cert-spotter-api
+  - stackby
+  - stammerai
+  - starton
+  - statuscake
+  - storyblok
+  - strapi
+  - strava
+  - stripe
+  - studio-by-ai21-labs
+  - suitedash
+  - supabase
+  - supernormal
+  - superpowered
+  - supportivekoala
+  - survicate
+  - swagup
+  - switchboard
+  - syncly
+  - syncromsp
+  - synthesia
+  - taiga
+  - talentlms
+  - talknotes
+  - tapfiliate
+  - td-ameritrade
+  - teachable
+  - team-up
+  - teamdeck
+  - teamgate
+  - teknoir
+  - telegram
+  - testmonitor
+  - textcortex-ai
+  - textgain
+  - textkit
+  - textmagic
+  - thankster
+  - the-customer-factor
+  - the-leap
+  - thehive
+  - thehive-5
+  - thoughtfulgpt
+  - thrivecart
+  - tidb-cloud
+  - tierion
+  - tilda
+  - timescaledb
+  - timetonic
+  - tinyurl
+  - tisane-labs
+  - todoist
+  - token-metrics
+  - toket
+  - totango
+  - trackvia
+  - transifex
+  - travisci
+  - trellix-epo
+  - trello
+  - trengo
+  - trevorio
+  - turbohire
+  - tuskr
+  - tuulio
+  - twake
+  - twilio
+  - twist
+  - twitter
+  - unbounce
+  - unisender
+  - unleashed-software
+  - upkeep
+  - uplead
+  - uproc
+  - uptimerobot
+  - uptimetoolbox
+  - urlscanio
+  - uservoice
+  - venafi-tls-protect-cloud
+  - venafi-tls-protect-datacenter
+  - venly
+  - verifalia
+  - vero
+  - vimeo
+  - virustotal
+  - vivifyscrum
+  - voicit
+  - vonage
+  - vowel
+  - watchsignals
+  - waveline-extract
+  - webex-by-cisco
+  - webflow
+  - webscraperio
+  - wekan
+  - whal3s
+  - whatconverts
+  - whatsapp-business-cloud
+  - wise
+  - wizychat
+  - wonderchat
+  - wondercraft
+  - woocommerce
+  - woodpeckerco
+  - wordpress
+  - workast
+  - workboard
+  - woxo
+  - writesonic
+  - wubook-ratechecker
+  - xero
+  - xtractly
+  - ybug
+  - ycode
+  - yodiz
+  - yourls
+  - youtube
+  - zabbix
+  - zammad
+  - zendesk
+  - zenrows
+  - zoho-books
+  - zoho-crm
+  - zoho-desk
+  - zonka-feedback
+  - zoom
+  - zscaler-zia
+  - zulip
+edges:
+- partner_name: QuickBooks Online
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/quickbooks
+  direction: third-party
+  category: Accounting
+  partner_url: http://intuit.com/
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: ClickFunnels Classic
+  partner: clickfunnels
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/clickfunnels-classic
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.clickfunnels.com/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: Wave
+  partner: wave-financial
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/wave
+  direction: third-party
+  category: Accounting
+  partner_url: https://www.waveapps.com/
+- partner_name: Gravity Forms
+  partner: gravity-forms
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/gravity-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: https://www.gravityforms.com/?utm_campaign=partners&utm_source=zapier-listing-learn-more&utm_medium=free-placement
+- partner_name: Kajabi
+  partner: kajabi
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/kajabi
+  direction: third-party
+  category: eCommerce
+  partner_url: http://kajabi.com/
+- partner_name: WooCommerce
+  partner: woocommerce
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/woocommerce
+  direction: third-party
+  category: eCommerce
+  partner_url: https://woocommerce.com/products/woocommerce-zapier/?utm_source=zapier&utm_medium=website&utm_campaign=integration
+- partner_name: Trello
+  partner: trello
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/trello
+  direction: third-party
+  category: Project Management
+  partner_url: https://trello.com/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Xero
+  partner: xero
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/xero
+  direction: third-party
+  category: Accounting
+  partner_url: https://xero5440.partnerlinks.io/uvwuuwrxyoi8
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: SamCart
+  partner: samcart
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/samcart
+  direction: third-party
+  category: eCommerce
+  partner_url: https://samcart.com/
+- partner_name: Kartra
+  partner: kartra
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/kartra
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://home.kartra.com/
+- partner_name: Zoho Inventory
+  partner: zoho-inventory
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/zoho-inventory
+  direction: third-party
+  category: eCommerce
+  partner_url: https://go.zoho.com/ZGz
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Jotform
+  partner: jotform
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/jotform
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://www.jotform.com/
+- partner_name: Ecwid by Lightspeed
+  partner: ecwid
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/ecwid
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.ecwid.com/
+- partner_name: Pipedrive
+  partner: pipedrive
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/pipedrive
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://pipedrive.com/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: Microsoft Excel
+  partner: null
+  partner_match: null
+  partner_candidate: zapier
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/excel
+  direction: third-party
+  category: Microsoft
+  partner_url: https://zapier.com/office.com
+- partner_name: Twilio
+  partner: twilio
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/twilio
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://www.twilio.com/
+- partner_name: Printavo
+  partner: printavo
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/printavo
+  direction: third-party
+  category: Printing
+  partner_url: https://www.printavo.com/
+- partner_name: Volusion
+  partner: volusion
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/volusion
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.volusion.com/
+- partner_name: Square
+  partner: square
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/square
+  direction: third-party
+  category: eCommerce
+  partner_url: https://squareup.com/t/cmtp_performance/pr_developers/d_partnerships/p_zapier/?route=
+- partner_name: eBay
+  partner: ebay
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/ebay
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.ebay.com/
+- partner_name: ClickFunnels
+  partner: clickfunnels
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/clickfunnels
+  direction: third-party
+  category: Website & App Building
+  partner_url: https://help.myclickfunnels.com/hc/en-us/articles/9655675588119-ClickFunnels-FAQs
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+templates:
+- title: Add new ShipStation orders to Google Sheets rows
+  url: https://zapier.com/apps/google-sheets/integrations/shipstation/9623/add-new-shipstation-orders-to-google-sheets-rows
+  apps:
+  - shipstation
+  - google-sheets
+- title: Create ShipStation order from QuickBooks invoices
+  url: https://zapier.com/apps/quickbooks/integrations/shipstation/9626/create-shipstation-order-from-quickbooks-invoices
+  apps:
+  - quickbooks
+  - shipstation
+- title: Add new Stripe payments to ShipStation as orders
+  url: https://zapier.com/apps/shipstation/integrations/stripe/13015/add-new-stripe-payments-to-shipstation-as-orders
+  apps:
+  - stripe
+  - shipstation
+- title: Create ShipStation orders from new Wave invoices
+  url: https://zapier.com/apps/shipstation/integrations/wave/24920/create-shipstation-orders-from-new-wave-invoices
+  apps:
+  - wave
+  - shipstation
+- title: Create ShipStation orders from new rows on Google Sheets
+  url: https://zapier.com/apps/google-sheets/integrations/shipstation/12133/create-shipstation-orders-from-new-rows-on-google-sheets
+  apps:
+  - google-sheets
+  - shipstation
+- title: Post new ShipStation orders to Slack
+  url: https://zapier.com/apps/shipstation/integrations/slack/9624/post-new-shipstation-orders-to-slack
+  apps:
+  - shipstation
+  - slack
+- title: Create new ShipStation orders from new Jotform submissions
+  url: https://zapier.com/apps/jotform/integrations/shipstation/1218748/create-new-shipstation-orders-from-new-jotform-submissions
+  apps:
+  - jotform
+  - shipstation
+- title: Create Google Sheet rows for new shipped orders in ShipStation
+  url: https://zapier.com/apps/google-sheets/integrations/shipstation/158790/create-google-sheet-rows-for-new-shipped-orders-in-shipstation
+  apps:
+  - shipstation
+  - google-sheets
+- title: Get SMS messages for new shipped ShipStation orders
+  url: https://zapier.com/apps/shipstation/integrations/sms/9622/get-sms-messages-for-new-shipped-shipstation-orders
+  apps:
+  - shipstation
+  - sms
+- title: Create orders in ShipStation for newly-updated quotes or invoices in Printavo
+  url: https://zapier.com/apps/printavo/integrations/shipstation/798228/create-orders-in-shipstation-for-newly-updated-quotes-or-invoices-in-printavo
+  apps:
+  - printavo
+  - filter
+  - shipstation
+- title: Create new ShipStation orders from Zoho Invoice-triggered invoices
+  url: https://zapier.com/apps/shipstation/integrations/zoho-invoice/1277949/create-new-shipstation-orders-from-zoho-invoice-triggered-invoices
+  apps:
+  - zoho-invoice
+  - shipstation
+- title: Add ShipStation customers to a Mailchimp list
+  url: https://zapier.com/apps/mailchimp/integrations/shipstation/9576/add-shipstation-customers-to-a-mailchimp-list
+  apps:
+  - shipstation
+  - mailchimp
+template_total: 494
