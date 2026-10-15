@@ -465,7 +465,7 @@
     builder: unknown (not in the directory record)
     other_apps:
     - shipstation-api-v2-ca246690
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: shipstation-pipedream
   label: Pipedream
@@ -491,5 +491,5 @@
     actions: true
     sources: true
     builder: Pipedream repo (component)
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
