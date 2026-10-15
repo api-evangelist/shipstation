@@ -7,6 +7,9 @@ checked:
 - https://composio.dev/toolkits/shipstation
 - https://monid.ai/tools/shipstation
 - https://n8n.io/integrations/shipstation/
+- https://www.gs1.org/services/gdsn/certified-data-pools-list
+- https://www.gs1us.org/services/find-gs1-us-solution-partner/profiles
+- https://www.spscommerce.com/partner-community/directory/
 - https://zapier.com/apps/shipstation/integrations
 - shopify/integrations/shopify-integration-edges.yml
 summary: null
@@ -550,6 +553,32 @@ edges:
   listing_count: 1
   detected: '2026-10-15'
   detected_by: mirror-platform-listings.py
+- partner_name: SPS Commerce
+  partner: sps-commerce
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  app: ShipStation
+  evidence: https://www.spscommerce.com/partner-community/directory/
+  category: Software Provider
+  contract_reference:
+    register: SPS Commerce partner community directory
+    spec_file: null
+    role: sps-integration-partner
+    registered_name: ShipStation
+    website: https://www.shipstation.com/
+    matched_domain: shipstation.com
+    matched_by: domain
+    business_types:
+    - Software Provider
+    signal_note: 'participation only: a directory listing, never a count'
+    detected_by: sweep-consumer-goods.py
+    detected: '2026-10-15'
+  detected_by: sweep-consumer-goods.py
+  first_seen: '2026-10-15'
 templates:
 - title: Add new ShipStation orders to Google Sheets rows
   url: https://zapier.com/apps/google-sheets/integrations/shipstation/9623/add-new-shipstation-orders-to-google-sheets-rows
