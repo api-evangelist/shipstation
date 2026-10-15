@@ -8,6 +8,7 @@ checked:
 - https://monid.ai/tools/shipstation
 - https://n8n.io/integrations/shipstation/
 - https://zapier.com/apps/shipstation/integrations
+- shopify/integrations/shopify-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -533,6 +534,22 @@ edges:
   direction: third-party
   category: Forms & Surveys
   partner_url: http://google.com/
+- partner_name: Shopify (own)
+  partner: shopify
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.shopify.com/shipstation
+  mirror_of: shopify/integrations/shopify-integration-edges.yml
+  apps:
+  - ShipStation Orders & Inventory
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
 templates:
 - title: Add new ShipStation orders to Google Sheets rows
   url: https://zapier.com/apps/google-sheets/integrations/shipstation/9623/add-new-shipstation-orders-to-google-sheets-rows
