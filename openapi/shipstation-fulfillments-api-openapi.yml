@@ -96,6 +96,19 @@ paths:
                 $ref: '#/components/schemas/FulfillmentPaginatedList'
 components:
   schemas:
+    FulfillmentPaginatedList:
+      type: object
+      properties:
+        fulfillments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Fulfillment'
+        total:
+          type: integer
+        page:
+          type: integer
+        pages:
+          type: integer
     Fulfillment:
       type: object
       properties:
@@ -154,19 +167,6 @@ components:
         residential:
           type: boolean
           description: Whether the address is residential
-    FulfillmentPaginatedList:
-      type: object
-      properties:
-        fulfillments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Fulfillment'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
   securitySchemes:
     BasicAuth:
       type: http

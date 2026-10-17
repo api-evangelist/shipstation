@@ -105,6 +105,34 @@ paths:
                   $ref: '#/components/schemas/Package'
 components:
   schemas:
+    CarrierService:
+      type: object
+      properties:
+        carrierId:
+          type: integer
+        carrierCode:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
+    Rate:
+      type: object
+      properties:
+        serviceName:
+          type: string
+        serviceCode:
+          type: string
+        shipmentCost:
+          type: number
+          format: float
+        otherCost:
+          type: number
+          format: float
     Weight:
       type: object
       properties:
@@ -119,6 +147,57 @@ components:
           - grams
         WeightUnits:
           type: integer
+    Dimensions:
+      type: object
+      properties:
+        length:
+          type: number
+          format: float
+        width:
+          type: number
+          format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
+    Package:
+      type: object
+      properties:
+        carrierCode:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        domestic:
+          type: boolean
+        international:
+          type: boolean
+    Carrier:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Carrier name
+        code:
+          type: string
+          description: Carrier code
+        accountNumber:
+          type: string
+        requiresFundedAccount:
+          type: boolean
+        balance:
+          type: number
+        nickname:
+          type: string
+        shippingProviderId:
+          type: integer
+        primary:
+          type: boolean
     RateRequest:
       type: object
       required:
@@ -152,85 +231,6 @@ components:
           type: string
         residential:
           type: boolean
-    Carrier:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Carrier name
-        code:
-          type: string
-          description: Carrier code
-        accountNumber:
-          type: string
-        requiresFundedAccount:
-          type: boolean
-        balance:
-          type: number
-        nickname:
-          type: string
-        shippingProviderId:
-          type: integer
-        primary:
-          type: boolean
-    CarrierService:
-      type: object
-      properties:
-        carrierId:
-          type: integer
-        carrierCode:
-          type: string
-        code:
-          type: string
-        name:
-          type: string
-        domestic:
-          type: boolean
-        international:
-          type: boolean
-    Package:
-      type: object
-      properties:
-        carrierCode:
-          type: string
-        code:
-          type: string
-        name:
-          type: string
-        domestic:
-          type: boolean
-        international:
-          type: boolean
-    Rate:
-      type: object
-      properties:
-        serviceName:
-          type: string
-        serviceCode:
-          type: string
-        shipmentCost:
-          type: number
-          format: float
-        otherCost:
-          type: number
-          format: float
-    Dimensions:
-      type: object
-      properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - inches
-          - centimeters
   securitySchemes:
     BasicAuth:
       type: http

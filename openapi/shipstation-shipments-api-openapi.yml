@@ -200,101 +200,59 @@ paths:
                     type: string
 components:
   schemas:
-    Address:
+    ShipmentPaginatedList:
       type: object
       properties:
-        name:
-          type: string
-          description: Name of person
-        company:
-          type: string
-          description: Company
-        street1:
-          type: string
-          description: First line of address
-        street2:
-          type: string
-          description: Second line of address
-        street3:
-          type: string
-          description: Third line of address
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        phone:
-          type: string
-        residential:
-          type: boolean
-          description: Whether the address is residential
-    Weight:
-      type: object
-      properties:
-        value:
-          type: number
-          format: float
-        units:
-          type: string
-          enum:
-          - pounds
-          - ounces
-          - grams
-        WeightUnits:
+        shipments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Shipment'
+        total:
           type: integer
-    RateRequest:
+        page:
+          type: integer
+        pages:
+          type: integer
+    Rate:
       type: object
-      required:
-      - carrierCode
-      - fromPostalCode
-      - toPostalCode
-      - toCountry
-      - weight
       properties:
-        carrierCode:
+        serviceName:
           type: string
         serviceCode:
           type: string
-        packageCode:
-          type: string
-        fromPostalCode:
-          type: string
-        toPostalCode:
-          type: string
-        toState:
-          type: string
-        toCountry:
-          type: string
-        toCity:
-          type: string
-        weight:
-          $ref: '#/components/schemas/Weight'
-        dimensions:
-          $ref: '#/components/schemas/Dimensions'
-        confirmation:
-          type: string
-        residential:
-          type: boolean
-    Dimensions:
+        shipmentCost:
+          type: number
+          format: float
+        otherCost:
+          type: number
+          format: float
+    Label:
       type: object
       properties:
-        length:
-          type: number
-          format: float
-        width:
-          type: number
-          format: float
-        height:
-          type: number
-          format: float
-        units:
+        shipmentId:
+          type: integer
+        orderId:
+          type: integer
+        userId:
           type: string
-          enum:
-          - inches
-          - centimeters
+        customerEmail:
+          type: string
+        orderNumber:
+          type: string
+        createDate:
+          type: string
+          format: date-time
+        shipDate:
+          type: string
+          format: date
+        shipmentCost:
+          type: number
+        trackingNumber:
+          type: string
+        labelData:
+          type: string
+        formData:
+          type: string
     Shipment:
       type: object
       properties:
@@ -366,19 +324,54 @@ components:
           description: Base64-encoded label data
         formData:
           type: string
-    Rate:
+    Address:
       type: object
       properties:
-        serviceName:
+        name:
           type: string
-        serviceCode:
+          description: Name of person
+        company:
           type: string
-        shipmentCost:
+          description: Company
+        street1:
+          type: string
+          description: First line of address
+        street2:
+          type: string
+          description: Second line of address
+        street3:
+          type: string
+          description: Third line of address
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        residential:
+          type: boolean
+          description: Whether the address is residential
+    Dimensions:
+      type: object
+      properties:
+        length:
           type: number
           format: float
-        otherCost:
+        width:
           type: number
           format: float
+        height:
+          type: number
+          format: float
+        units:
+          type: string
+          enum:
+          - inches
+          - centimeters
     LabelCreateRequest:
       type: object
       required:
@@ -413,46 +406,53 @@ components:
           type: object
         testLabel:
           type: boolean
-    ShipmentPaginatedList:
+    Weight:
       type: object
       properties:
-        shipments:
-          type: array
-          items:
-            $ref: '#/components/schemas/Shipment'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
-    Label:
-      type: object
-      properties:
-        shipmentId:
-          type: integer
-        orderId:
-          type: integer
-        userId:
-          type: string
-        customerEmail:
-          type: string
-        orderNumber:
-          type: string
-        createDate:
-          type: string
-          format: date-time
-        shipDate:
-          type: string
-          format: date
-        shipmentCost:
+        value:
           type: number
-        trackingNumber:
+          format: float
+        units:
           type: string
-        labelData:
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
+          type: integer
+    RateRequest:
+      type: object
+      required:
+      - carrierCode
+      - fromPostalCode
+      - toPostalCode
+      - toCountry
+      - weight
+      properties:
+        carrierCode:
           type: string
-        formData:
+        serviceCode:
           type: string
+        packageCode:
+          type: string
+        fromPostalCode:
+          type: string
+        toPostalCode:
+          type: string
+        toState:
+          type: string
+        toCountry:
+          type: string
+        toCity:
+          type: string
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        confirmation:
+          type: string
+        residential:
+          type: boolean
   securitySchemes:
     BasicAuth:
       type: http

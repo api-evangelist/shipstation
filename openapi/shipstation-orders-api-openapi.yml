@@ -346,51 +346,119 @@ paths:
                 type: object
 components:
   schemas:
-    Weight:
+    OrderItem:
       type: object
       properties:
-        value:
-          type: number
-          format: float
-        units:
+        lineItemKey:
           type: string
-          enum:
-          - pounds
-          - ounces
-          - grams
-        WeightUnits:
-          type: integer
-    Address:
-      type: object
-      properties:
+        sku:
+          type: string
         name:
           type: string
-          description: Name of person
-        company:
+        imageUrl:
           type: string
-          description: Company
-        street1:
+        weight:
+          $ref: '#/components/schemas/Weight'
+        quantity:
+          type: integer
+        unitPrice:
+          type: number
+          format: float
+        taxAmount:
+          type: number
+          format: float
+        shippingAmount:
+          type: number
+          format: float
+        warehouseLocation:
           type: string
-          description: First line of address
-        street2:
+        options:
+          type: array
+          items:
+            type: object
+        productId:
+          type: integer
+        fulfillmentSku:
           type: string
-          description: Second line of address
-        street3:
-          type: string
-          description: Third line of address
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        phone:
-          type: string
-        residential:
+        adjustment:
           type: boolean
-          description: Whether the address is residential
+        upc:
+          type: string
+    OrderCreateRequest:
+      type: object
+      required:
+      - orderNumber
+      - orderDate
+      - orderStatus
+      - billTo
+      - shipTo
+      properties:
+        orderNumber:
+          type: string
+        orderKey:
+          type: string
+        orderDate:
+          type: string
+          format: date-time
+        paymentDate:
+          type: string
+          format: date-time
+        shipByDate:
+          type: string
+          format: date-time
+        orderStatus:
+          type: string
+        customerId:
+          type: integer
+        customerUsername:
+          type: string
+        customerEmail:
+          type: string
+        billTo:
+          $ref: '#/components/schemas/Address'
+        shipTo:
+          $ref: '#/components/schemas/Address'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        amountPaid:
+          type: number
+        taxAmount:
+          type: number
+        shippingAmount:
+          type: number
+        customerNotes:
+          type: string
+        internalNotes:
+          type: string
+        gift:
+          type: boolean
+        giftMessage:
+          type: string
+        paymentMethod:
+          type: string
+        requestedShippingService:
+          type: string
+        carrierCode:
+          type: string
+        serviceCode:
+          type: string
+        packageCode:
+          type: string
+        confirmation:
+          type: string
+        shipDate:
+          type: string
+          format: date
+        weight:
+          $ref: '#/components/schemas/Weight'
+        dimensions:
+          $ref: '#/components/schemas/Dimensions'
+        tagIds:
+          type: array
+          items:
+            type: integer
     Order:
       type: object
       properties:
@@ -505,44 +573,50 @@ components:
           type: boolean
         externallyFulfilledBy:
           type: string
-    OrderItem:
+    OrderPaginatedList:
       type: object
       properties:
-        lineItemKey:
-          type: string
-        sku:
-          type: string
-        name:
-          type: string
-        imageUrl:
-          type: string
-        weight:
-          $ref: '#/components/schemas/Weight'
-        quantity:
-          type: integer
-        unitPrice:
-          type: number
-          format: float
-        taxAmount:
-          type: number
-          format: float
-        shippingAmount:
-          type: number
-          format: float
-        warehouseLocation:
-          type: string
-        options:
+        orders:
           type: array
           items:
-            type: object
-        productId:
+            $ref: '#/components/schemas/Order'
+        total:
           type: integer
-        fulfillmentSku:
+        page:
+          type: integer
+        pages:
+          type: integer
+    Address:
+      type: object
+      properties:
+        name:
           type: string
-        adjustment:
+          description: Name of person
+        company:
+          type: string
+          description: Company
+        street1:
+          type: string
+          description: First line of address
+        street2:
+          type: string
+          description: Second line of address
+        street3:
+          type: string
+          description: Third line of address
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        phone:
+          type: string
+        residential:
           type: boolean
-        upc:
-          type: string
+          description: Whether the address is residential
     Dimensions:
       type: object
       properties:
@@ -560,94 +634,20 @@ components:
           enum:
           - inches
           - centimeters
-    OrderPaginatedList:
+    Weight:
       type: object
       properties:
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
-        total:
-          type: integer
-        page:
-          type: integer
-        pages:
-          type: integer
-    OrderCreateRequest:
-      type: object
-      required:
-      - orderNumber
-      - orderDate
-      - orderStatus
-      - billTo
-      - shipTo
-      properties:
-        orderNumber:
-          type: string
-        orderKey:
-          type: string
-        orderDate:
-          type: string
-          format: date-time
-        paymentDate:
-          type: string
-          format: date-time
-        shipByDate:
-          type: string
-          format: date-time
-        orderStatus:
-          type: string
-        customerId:
-          type: integer
-        customerUsername:
-          type: string
-        customerEmail:
-          type: string
-        billTo:
-          $ref: '#/components/schemas/Address'
-        shipTo:
-          $ref: '#/components/schemas/Address'
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderItem'
-        amountPaid:
+        value:
           type: number
-        taxAmount:
-          type: number
-        shippingAmount:
-          type: number
-        customerNotes:
+          format: float
+        units:
           type: string
-        internalNotes:
-          type: string
-        gift:
-          type: boolean
-        giftMessage:
-          type: string
-        paymentMethod:
-          type: string
-        requestedShippingService:
-          type: string
-        carrierCode:
-          type: string
-        serviceCode:
-          type: string
-        packageCode:
-          type: string
-        confirmation:
-          type: string
-        shipDate:
-          type: string
-          format: date
-        weight:
-          $ref: '#/components/schemas/Weight'
-        dimensions:
-          $ref: '#/components/schemas/Dimensions'
-        tagIds:
-          type: array
-          items:
-            type: integer
+          enum:
+          - pounds
+          - ounces
+          - grams
+        WeightUnits:
+          type: integer
   securitySchemes:
     BasicAuth:
       type: http

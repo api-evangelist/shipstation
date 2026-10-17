@@ -210,15 +210,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
-    Tag:
-      type: object
-      properties:
-        tagId:
-          type: integer
-        name:
-          type: string
-        color:
-          type: string
     ProductPaginatedList:
       type: object
       properties:
@@ -232,6 +223,15 @@ components:
           type: integer
         pages:
           type: integer
+    Tag:
+      type: object
+      properties:
+        tagId:
+          type: integer
+        name:
+          type: string
+        color:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http
