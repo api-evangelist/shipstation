@@ -15,10 +15,12 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/shipstation/9623/add-new-shipstation-orders-to-google-sheets-rows
   template: https://zapier.com/apps/google-sheets/integrations/shipstation/9623/add-new-shipstation-orders-to-google-sheets-rows
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: shipstation-create-shipstation-order-from-quickbooks-invoices
   label: Create ShipStation order from QuickBooks invoices
+  partner: quickbooks
   partner_name: QuickBooks Online
   category: Accounting
   use_case: Create ShipStation order from QuickBooks invoices
@@ -28,6 +30,7 @@
   evidence: https://zapier.com/apps/quickbooks/integrations/shipstation/9626/create-shipstation-order-from-quickbooks-invoices
   template: https://zapier.com/apps/quickbooks/integrations/shipstation/9626/create-shipstation-order-from-quickbooks-invoices
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: shipstation-create-shipstation-orders-from-new-wave-invoices
@@ -42,6 +45,7 @@
   evidence: https://zapier.com/apps/shipstation/integrations/wave/24920/create-shipstation-orders-from-new-wave-invoices
   template: https://zapier.com/apps/shipstation/integrations/wave/24920/create-shipstation-orders-from-new-wave-invoices
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: shipstation-create-shipstation-orders-from-new-rows-on-google-sheets
@@ -56,6 +60,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/shipstation/12133/create-shipstation-orders-from-new-rows-on-google-sheets
   template: https://zapier.com/apps/google-sheets/integrations/shipstation/12133/create-shipstation-orders-from-new-rows-on-google-sheets
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: shipstation-post-new-shipstation-orders-to-slack
@@ -70,6 +75,7 @@
   evidence: https://zapier.com/apps/shipstation/integrations/slack/9624/post-new-shipstation-orders-to-slack
   template: https://zapier.com/apps/shipstation/integrations/slack/9624/post-new-shipstation-orders-to-slack
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: shipstation-create-new-shipstation-orders-from-new-jotform-submissions
@@ -84,6 +90,7 @@
   evidence: https://zapier.com/apps/jotform/integrations/shipstation/1218748/create-new-shipstation-orders-from-new-jotform-submissions
   template: https://zapier.com/apps/jotform/integrations/shipstation/1218748/create-new-shipstation-orders-from-new-jotform-submissions
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: shipstation-create-google-sheet-rows-for-new-shipped-orders-in-shipstation
@@ -98,6 +105,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/shipstation/158790/create-google-sheet-rows-for-new-shipped-orders-in-shipstation
   template: https://zapier.com/apps/google-sheets/integrations/shipstation/158790/create-google-sheet-rows-for-new-shipped-orders-in-shipstation
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: shipstation-create-orders-in-shipstation-for-newly-updated-quotes-or-invoices-in-printavo
@@ -112,6 +120,7 @@
   evidence: https://zapier.com/apps/printavo/integrations/shipstation/798228/create-orders-in-shipstation-for-newly-updated-quotes-or-invoices-in-printavo
   template: https://zapier.com/apps/printavo/integrations/shipstation/798228/create-orders-in-shipstation-for-newly-updated-quotes-or-invoices-in-printavo
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: shipstation-add-shipstation-customers-to-a-mailchimp-list
@@ -126,280 +135,7 @@
   evidence: https://zapier.com/apps/mailchimp/integrations/shipstation/9576/add-shipstation-customers-to-a-mailchimp-list
   template: https://zapier.com/apps/mailchimp/integrations/shipstation/9576/add-shipstation-customers-to-a-mailchimp-list
   source: template
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/hubspot
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-clickfunnels-classic
-  label: ClickFunnels Classic
-  partner: clickfunnels
-  partner_name: ClickFunnels Classic
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/clickfunnels-classic
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-airtable
-  label: Airtable
-  partner: airtable
-  partner_name: Airtable
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/airtable
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-shopify
-  label: Shopify
-  partner: shopify
-  partner_name: Shopify
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/shopify
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-gravity-forms
-  label: Gravity Forms
-  partner: gravity-forms
-  partner_name: Gravity Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/gravity-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-kajabi
-  label: Kajabi
-  partner: kajabi
-  partner_name: Kajabi
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/kajabi
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-woocommerce
-  label: WooCommerce
-  partner: woocommerce
-  partner_name: WooCommerce
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/woocommerce
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-trello
-  label: Trello
-  partner: trello
-  partner_name: Trello
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/trello
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-monday-com
-  label: monday.com
-  partner_name: monday.com
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/monday
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: shipstation-xero
-  label: Xero
-  partner: xero
-  partner_name: Xero
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/xero
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-samcart
-  label: SamCart
-  partner: samcart
-  partner_name: SamCart
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/samcart
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-kartra
-  label: Kartra
-  partner: kartra
-  partner_name: Kartra
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/kartra
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: shipstation-zoho-inventory
-  label: Zoho Inventory
-  partner: zoho-inventory
-  partner_name: Zoho Inventory
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/zoho-inventory
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-ecwid-by-lightspeed
-  label: Ecwid by Lightspeed
-  partner: ecwid
-  partner_name: Ecwid by Lightspeed
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/ecwid
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-pipedrive
-  label: Pipedrive
-  partner: pipedrive
-  partner_name: Pipedrive
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/pipedrive
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-activecampaign
-  label: ActiveCampaign
-  partner: activecampaign
-  partner_name: ActiveCampaign
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/activecampaign
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-microsoft-excel
-  label: Microsoft Excel
-  partner_name: Microsoft Excel
-  category: Microsoft
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/excel
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: shipstation-twilio
-  label: Twilio
-  partner: twilio
-  partner_name: Twilio
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/twilio
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-volusion
-  label: Volusion
-  partner: volusion
-  partner_name: Volusion
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/volusion
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: shipstation-square
-  label: Square
-  partner: square
-  partner_name: Square
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/square
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-ebay
-  label: eBay
-  partner: ebay
-  partner_name: eBay
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/ebay
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-clickfunnels
-  label: ClickFunnels
-  partner: clickfunnels
-  partner_name: ClickFunnels
-  category: Website & App Building
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/clickfunnels
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: shipstation-google-forms
-  label: Google Forms
-  partner: google-forms
-  partner_name: Google Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/shipstation/integrations/google-forms
-  source: edge
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: shipstation-sps-commerce
@@ -590,4 +326,302 @@
   source: edge
   relationship: platform-app
   status: not-a-workflow
+  arazzo: null
+- slug: shipstation-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-clickfunnels-classic
+  label: ClickFunnels Classic
+  partner: clickfunnels
+  partner_name: ClickFunnels Classic
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/clickfunnels-classic
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-airtable
+  label: Airtable
+  partner: airtable
+  partner_name: Airtable
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/airtable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/shopify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-gravity-forms
+  label: Gravity Forms
+  partner: gravity-forms
+  partner_name: Gravity Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/gravity-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-kajabi
+  label: Kajabi
+  partner: kajabi
+  partner_name: Kajabi
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/kajabi
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-woocommerce
+  label: WooCommerce
+  partner: woocommerce
+  partner_name: WooCommerce
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/woocommerce
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-trello
+  label: Trello
+  partner: trello
+  partner_name: Trello
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/trello
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-monday-com
+  label: monday.com
+  partner: monday-com
+  partner_name: monday.com
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/monday
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-xero
+  label: Xero
+  partner: xero
+  partner_name: Xero
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/xero
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-samcart
+  label: SamCart
+  partner: samcart
+  partner_name: SamCart
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/samcart
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-kartra
+  label: Kartra
+  partner: kartra
+  partner_name: Kartra
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/kartra
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: shipstation-zoho-inventory
+  label: Zoho Inventory
+  partner: zoho-inventory
+  partner_name: Zoho Inventory
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/zoho-inventory
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-ecwid-by-lightspeed
+  label: Ecwid by Lightspeed
+  partner: ecwid
+  partner_name: Ecwid by Lightspeed
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/ecwid
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-activecampaign
+  label: ActiveCampaign
+  partner: activecampaign
+  partner_name: ActiveCampaign
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/activecampaign
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-microsoft-excel
+  label: Microsoft Excel
+  partner_name: Microsoft Excel
+  category: Microsoft
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/excel
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: shipstation-twilio
+  label: Twilio
+  partner: twilio
+  partner_name: Twilio
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/twilio
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-volusion
+  label: Volusion
+  partner: volusion
+  partner_name: Volusion
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/volusion
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: shipstation-square
+  label: Square
+  partner: square
+  partner_name: Square
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/square
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-ebay
+  label: eBay
+  partner: ebay
+  partner_name: eBay
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/ebay
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-microsoft-outlook
+  label: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_name: Microsoft Outlook
+  category: Calendar
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/microsoft-outlook
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-clickfunnels
+  label: ClickFunnels
+  partner: clickfunnels
+  partner_name: ClickFunnels
+  category: Website & App Building
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/clickfunnels
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: shipstation-google-forms
+  label: Google Forms
+  partner: google-forms
+  partner_name: Google Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/shipstation/integrations/google-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null
