@@ -625,3 +625,16 @@
   relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
+- slug: shipstation-printful
+  label: Printful
+  partner: printful
+  partner_name: Printful
+  category: print-on-demand fulfilment integration
+  type: marketplace
+  marketplace: builder-directory
+  channel: partner-built
+  evidence: https://www.printful.com/integrations/shipstation
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

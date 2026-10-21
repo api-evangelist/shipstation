@@ -21,6 +21,13 @@ checked:
 - https://zapier.com/apps/shipstation/integrations
 - shopify/integrations/shopify-integration-edges.yml
 - zendesk/integrations/zendesk-integration-edges.yml
+- https://appexchange.salesforce.com/explore/business-needs?category=commerce
+- https://commercetools.com/partners
+- https://machalliance.org/members
+- https://marketplace.commercetools.com
+- https://printify.com/integrations/
+- https://www.bigcommerce.com/apps/
+- https://www.printful.com/integrations
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -612,6 +619,22 @@ edges:
   direction: third-party
   category: Forms & Surveys
   partner_url: http://google.com/
+- partner_name: Printful
+  app: Printful for Shipstation
+  partner: printful
+  partner_match: domain
+  type: marketplace
+  marketplace: builder-directory
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.printful.com/integrations/shipstation
+  category: print-on-demand fulfilment integration
+  partner_url: https://raw.githubusercontent.com/api-evangelist/printful/refs/heads/main/apis.yml
+  signal_note: the builder's own integrations directory (served from its own domain) names this platform as a channel
+    it publishes onto
+  detected_by: sweep-mach-headless-commerce.py
+  detected: '2026-10-20'
 templates:
 - title: Add new ShipStation orders to Google Sheets rows
   url: https://zapier.com/apps/google-sheets/integrations/shipstation/9623/add-new-shipstation-orders-to-google-sheets-rows
