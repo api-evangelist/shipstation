@@ -33,6 +33,8 @@ checked:
 - https://sellercentral.amazon.com/selling-partner-appstore
 - adobe-commerce/integrations/adobe-commerce-integration-edges.yml
 - wix/integrations/wix-integration-edges.yml
+- https://api.apis.guru/v2/list.json
+- https://api.apis.guru/v2/providers.json
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -691,6 +693,47 @@ edges:
   category: Shipping & Delivery
   publisher_verified:
   - Verified by Wix
+- partner_name: APIs.guru OpenAPI Directory
+  partner: apis-guru
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: third-party
+  evidence: https://apis.guru/
+  category: API definition directory listing (OpenAPI)
+  contract_reference:
+    register: APIs.guru OpenAPI Directory
+    spec_file: null
+    standard: APIs.guru OpenAPI Directory
+    role: listed-in-directory
+    directory_provider: shipstation.com
+    matched_domain: shipstation.com
+    matched_by: domain
+    apis_listed: 1
+    version_count: 1
+    first_added: '2017-09-28'
+    last_updated: '2021-04-07'
+    origin_publisher_hosted: false
+    origin_hosts:
+    - shipstation.docs.apiary.io
+    categories:
+    - ecommerce
+    own_openapi_files: 10
+    listings:
+    - key: shipstation.com
+      title: shipstation
+      preferred: 1.0.0
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/shipstation.com/1.0.0/openapi.json
+      origin_url: https://shipstation.docs.apiary.io/api-description-document
+      openapi_version: 3.0.0
+    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
+      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
+    detected_by: sweep-openapi-directory-apis-guru.py
+    detected: '2026-10-22'
+  detected_by: sweep-openapi-directory-apis-guru.py
+  first_seen: '2026-10-22'
 templates:
 - title: Add new ShipStation orders to Google Sheets rows
   url: https://zapier.com/apps/google-sheets/integrations/shipstation/9623/add-new-shipstation-orders-to-google-sheets-rows
